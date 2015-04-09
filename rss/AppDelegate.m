@@ -7,16 +7,29 @@
 //
 
 #import "AppDelegate.h"
+#import "NXOAuth2.h"
 
 @interface AppDelegate ()
 
 @end
+
+//-- for Feedly Oauth2(sandbox)
+NSString * const kOauth2ClientAccountType = @"Feedly";                                      // account type
+static NSString * const kOauth2ClientClientId = @"sandbox";                                 // clientId
+static NSString * const kOauth2ClientClientSecret = @"4205DQXBAP99S8SUHXI3";                // Client Secret
+static NSString * const kOauth2ClientRedirectUrl = @"http://localhost";                     // Redirect Url
+static NSString * const kOauth2ClientBaseUrl = @"https://sandbox.feedly.com";               // base url
+static NSString * const kOauth2ClientAuthUrl = @"/v3/auth/auth";                            // auth url
+static NSString * const kOauth2ClientTokenUrl = @"/v3/auth/token";                          // token url
+static NSString * const kOauth2ClientScopeUrl = @"https://cloud.feedly.com/subscriptions";  // scope url
+static NSString *const kOauth2ClientKeyChainGroup = @"Feedly";                              // keyChainGroup
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
     return YES;
 }
 
@@ -40,6 +53,23 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
++ (void)initialize {
+    
+    NSString *authUrl = [kOauth2ClientBaseUrl stringByAppendingString:kOauth2ClientAuthUrl];
+    NSString *tokenUrl = [kOauth2ClientBaseUrl stringByAppendingString:kOauth2ClientTokenUrl];
+    
+    // setup oauth2client
+    [[NXOAuth2AccountStore sharedStore] setClientID:kOauth2ClientClientId
+                                             secret:kOauth2ClientClientSecret
+                                              scope:[NSSet setWithObjects:kOauth2ClientScopeUrl, nil]
+                                   authorizationURL:[NSURL URLWithString:authUrl]
+                                           tokenURL:[NSURL URLWithString:tokenUrl]
+                                        redirectURL:[NSURL URLWithString:kOauth2ClientRedirectUrl]
+                                      keyChainGroup:kOauth2ClientKeyChainGroup
+                                     forAccountType:kOauth2ClientAccountType];
+    
 }
 
 @end
