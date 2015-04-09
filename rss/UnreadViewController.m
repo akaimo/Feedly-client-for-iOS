@@ -80,27 +80,42 @@
 
 //-- カテゴリーを習得
 - (void)feedCategory {
-    NSURL *url = [NSURL URLWithString:@"https://sandbox.feedly.com/v3/markers/counts"];
+    NSURL *url = [NSURL URLWithString:UNREAD_COUNT];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    
     [request setValue:self.account.accessToken.accessToken forHTTPHeaderField:@"Authorization"];
     
-    NSURLResponse *response = nil;
-    NSError *error = nil;
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    
-    if (error != nil) {
-        NSLog(@"Error!");
-        return;
-    }
-    
-    NSError *e = nil;
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&e];
-    
-    NSLog(@"%@", dict);
-    
-    // cell数を設定
-    self.categoryCount = [[dict valueForKey:@"unreadcounts"] count];
+    // 非同期通信
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if (error) {
+            if (error.code == -1003) {
+                NSLog(@"not found hostname. targetURL=%@", url);
+            } else if (-1019) {
+                NSLog(@"auth error. reason=%@", error);
+            } else {
+                NSLog(@"unknown error occurred. reason = %@", error);
+            }
+        } else {
+            int httpStatusCode = ((NSHTTPURLResponse *)response).statusCode;
+            if (httpStatusCode == 404) {
+                NSLog(@"404 NOT FOUND ERROR. targetURL=%@", url);
+            } else {
+                NSLog(@"success request!!");
+                NSLog(@"statusCode = %ld", (long)((NSHTTPURLResponse *)response).statusCode);
+                
+                NSError *e = nil;
+                NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&e];
+                NSLog(@"%@", [[dict valueForKey:@"unreadcounts"] valueForKey:@"count"]);
+                
+                self.categoryCount = [[dict valueForKey:@"unreadcounts"] count];
+                
+                // メインスレッドでの処理
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.unreadTableView reloadData];
+                });
+            }
+        }
+    }];
 }
 
 @end
