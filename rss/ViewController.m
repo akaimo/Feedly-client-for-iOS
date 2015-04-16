@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "NXOauth2.h"
 #import "objc/message.h"
+#import "AppDelegate.h"
 #import "UnreadViewController.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -61,7 +62,8 @@
     }
     NXOAuth2Account *account = [[[NXOAuth2AccountStore sharedStore] accounts] objectAtIndex:indexPath.row];
     NSDictionary *userData = (id)account.userData;
-    NSString *name = [NSString stringWithFormat:@"%@:%ld", [userData objectForKey:@"fullName"], (long)indexPath.row ];
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSString *name = [NSString stringWithFormat:@"%@:%ld", [appDelegate jsonToString:[[userData valueForKey:@"logins"] valueForKey:@"provider"]], (long)indexPath.row ];
     cell.textLabel.text = name;
     
     cell.detailTextLabel.text = account.identifier;

@@ -16,6 +16,7 @@
 		990606401ACBA8660014964E /* rssTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9906063F1ACBA8660014964E /* rssTests.m */; };
 		990606911ACE869C0014964E /* UnreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990606901ACE869C0014964E /* UnreadViewController.m */; };
 		997E43EB1AD3D4BB002CB3BB /* OAuthWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 997E43EA1AD3D4BB002CB3BB /* OAuthWebViewController.m */; };
+		999BEA2C1ADFF0CB0087D51A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 999BEA2A1ADFF0CB0087D51A /* Model.xcdatamodeld */; };
 		EAA96D513CBE9BB0827511BE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C231D427ABBCDAB4D87DB76F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		997E43EA1AD3D4BB002CB3BB /* OAuthWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthWebViewController.m; sourceTree = "<group>"; };
 		997E43EC1AD673EF002CB3BB /* Define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
 		997E43ED1AD67483002CB3BB /* Rss-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Rss-Prefix.pch"; sourceTree = "<group>"; };
+		999BEA2B1ADFF0CB0087D51A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C231D427ABBCDAB4D87DB76F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA8E5499C38816703E582A9E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,19 +115,20 @@
 		990606221ACBA8660014964E /* rss */ = {
 			isa = PBXGroup;
 			children = (
-				990606271ACBA8660014964E /* AppDelegate.h */,
 				997E43EC1AD673EF002CB3BB /* Define.h */,
+				990606271ACBA8660014964E /* AppDelegate.h */,
 				990606281ACBA8660014964E /* AppDelegate.m */,
 				9906062A1ACBA8660014964E /* ViewController.h */,
 				9906062B1ACBA8660014964E /* ViewController.m */,
-				9906062D1ACBA8660014964E /* Main.storyboard */,
-				990606301ACBA8660014964E /* Images.xcassets */,
-				990606321ACBA8660014964E /* LaunchScreen.xib */,
-				990606231ACBA8660014964E /* Supporting Files */,
 				9906068F1ACE869C0014964E /* UnreadViewController.h */,
 				990606901ACE869C0014964E /* UnreadViewController.m */,
 				997E43E91AD3D4BB002CB3BB /* OAuthWebViewController.h */,
 				997E43EA1AD3D4BB002CB3BB /* OAuthWebViewController.m */,
+				9906062D1ACBA8660014964E /* Main.storyboard */,
+				990606301ACBA8660014964E /* Images.xcassets */,
+				990606321ACBA8660014964E /* LaunchScreen.xib */,
+				999BEA2A1ADFF0CB0087D51A /* Model.xcdatamodeld */,
+				990606231ACBA8660014964E /* Supporting Files */,
 			);
 			path = rss;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				990606261ACBA8660014964E /* main.m in Sources */,
 				997E43EB1AD3D4BB002CB3BB /* OAuthWebViewController.m in Sources */,
 				990606911ACE869C0014964E /* UnreadViewController.m in Sources */,
+				999BEA2C1ADFF0CB0087D51A /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +507,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		999BEA2A1ADFF0CB0087D51A /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				999BEA2B1ADFF0CB0087D51A /* Model.xcdatamodel */,
+			);
+			currentVersion = 999BEA2B1ADFF0CB0087D51A /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 990606181ACBA8660014964E /* Project object */;
 }

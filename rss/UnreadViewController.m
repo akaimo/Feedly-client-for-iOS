@@ -7,6 +7,7 @@
 //
 
 #import "UnreadViewController.h"
+#import "AppDelegate.h"
 
 @interface UnreadViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *unreadTableView;
@@ -61,26 +62,15 @@
 //-- タイトルを設定
 - (void)setTitle {
     NSDictionary *dict = [self.account userData];
-    NSString *str = [self jsonToString:[[dict valueForKey:@"logins"] valueForKey:@"id"]];
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSString *str = [appDelegate jsonToString:[[dict valueForKey:@"logins"] valueForKey:@"id"]];
     self.title = str;
 }
 
-//-- JsonからStringに変更し、余分な文字を除去
-- (NSString *)jsonToString:(id)json {
-    // jsonをdataに変更
-    NSData *json_check = [NSJSONSerialization dataWithJSONObject:json options:kNilOptions error:nil];
-    // dataをstringに変更
-    NSString *s1= [[NSString alloc] initWithData:json_check encoding:NSUTF8StringEncoding];
-    // 余分な文字を除去
-    s1 = [s1 stringByReplacingOccurrencesOfString:@"[" withString:@""];
-    s1 = [s1 stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-    s1 = [s1 stringByReplacingOccurrencesOfString:@"]" withString:@""];
-    return s1;
-}
 
 //-- カテゴリーを習得
 - (void)feedCategory {
-    NSURL *url = [NSURL URLWithString:UNREAD_COUNT];
+    NSURL *url = [NSURL URLWithString:CONTENTS];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     [request setValue:self.account.accessToken.accessToken forHTTPHeaderField:@"Authorization"];
     
@@ -105,7 +95,8 @@
                 
                 NSError *e = nil;
                 NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&e];
-                NSLog(@"%@", [[dict valueForKey:@"unreadcounts"] valueForKey:@"count"]);
+                NSLog(@"%@", dict);
+                NSLog(@"responseText = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
                 
                 self.categoryCount = [[dict valueForKey:@"unreadcounts"] count];
                 
