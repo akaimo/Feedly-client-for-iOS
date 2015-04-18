@@ -99,14 +99,16 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NXOAuth2Account *account = [[[NXOAuth2AccountStore sharedStore] accounts] objectAtIndex:indexPath.row];
-    [self performSegueWithIdentifier:@"Unread" sender:account];
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    delegate.account = account;
+    [self performSegueWithIdentifier:@"Unread" sender:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"Unread"]) {
-        UnreadViewController *unreadViewController = (UnreadViewController *)[segue destinationViewController];
-        unreadViewController.account = sender;
-    }
+//    if ([[segue identifier] isEqualToString:@"Unread"]) {
+//        UnreadViewController *unreadViewController = (UnreadViewController *)[segue destinationViewController];
+//        unreadViewController.account = sender;
+//    }
 }
 
 - (IBAction)editAction:(id)sender {

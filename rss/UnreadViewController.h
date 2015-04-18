@@ -11,6 +11,4 @@
 
 @interface UnreadViewController : UIViewController
 
-@property (nonatomic, assign) NXOAuth2Account *account;
-
 @end

@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NXOauth2.h"
 
 extern NSString * const kOauth2ClientAccountType;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (nonatomic, assign) NXOAuth2Account *account;
 @property (strong, nonatomic) UIWindow *window;
 
 

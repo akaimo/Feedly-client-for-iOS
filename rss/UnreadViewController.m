@@ -8,10 +8,13 @@
 
 #import "UnreadViewController.h"
 #import "AppDelegate.h"
+#import "AKASynchronized.h"
 
 @interface UnreadViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *unreadTableView;
 @property (nonatomic, assign) NSInteger * categoryCount;
+
+@property (nonatomic, assign) NXOAuth2Account *account;
 
 @end
 
@@ -21,8 +24,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.account = delegate.account;
     [self setTitle];
-    [self feedCategory];
+//    [self feedCategory];
+    [self synchro];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,6 +71,12 @@
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSString *str = [appDelegate jsonToString:[[dict valueForKey:@"logins"] valueForKey:@"id"]];
     self.title = str;
+}
+
+//-- 同期
+- (void)synchro {
+    AKASynchronized *synchronized = [[AKASynchronized alloc] init];
+    [synchronized synchro];
 }
 
 

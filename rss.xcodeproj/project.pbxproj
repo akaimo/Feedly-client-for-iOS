@@ -17,6 +17,9 @@
 		990606911ACE869C0014964E /* UnreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990606901ACE869C0014964E /* UnreadViewController.m */; };
 		997E43EB1AD3D4BB002CB3BB /* OAuthWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 997E43EA1AD3D4BB002CB3BB /* OAuthWebViewController.m */; };
 		999BEA2C1ADFF0CB0087D51A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 999BEA2A1ADFF0CB0087D51A /* Model.xcdatamodeld */; };
+		99A0A2DE1AE10DC100A3A592 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99A0A2DD1AE10DC100A3A592 /* CoreData.framework */; };
+		99A0A2E71AE110A000A3A592 /* AKACoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A0A2E61AE110A000A3A592 /* AKACoreData.m */; };
+		99A0A2EA1AE1153F00A3A592 /* AKASynchronized.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A0A2E91AE1153F00A3A592 /* AKASynchronized.m */; };
 		EAA96D513CBE9BB0827511BE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C231D427ABBCDAB4D87DB76F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +55,11 @@
 		997E43EC1AD673EF002CB3BB /* Define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
 		997E43ED1AD67483002CB3BB /* Rss-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Rss-Prefix.pch"; sourceTree = "<group>"; };
 		999BEA2B1ADFF0CB0087D51A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		99A0A2DD1AE10DC100A3A592 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		99A0A2E51AE110A000A3A592 /* AKACoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKACoreData.h; sourceTree = "<group>"; };
+		99A0A2E61AE110A000A3A592 /* AKACoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKACoreData.m; sourceTree = "<group>"; };
+		99A0A2E81AE1153F00A3A592 /* AKASynchronized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKASynchronized.h; sourceTree = "<group>"; };
+		99A0A2E91AE1153F00A3A592 /* AKASynchronized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKASynchronized.m; sourceTree = "<group>"; };
 		C231D427ABBCDAB4D87DB76F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA8E5499C38816703E582A9E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99A0A2DE1AE10DC100A3A592 /* CoreData.framework in Frameworks */,
 				EAA96D513CBE9BB0827511BE /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -78,6 +87,7 @@
 		1B845DE2ECC9CC7F75CA6012 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				99A0A2DD1AE10DC100A3A592 /* CoreData.framework */,
 				C231D427ABBCDAB4D87DB76F /* libPods.a */,
 			);
 			name = Frameworks;
@@ -118,6 +128,10 @@
 				997E43EC1AD673EF002CB3BB /* Define.h */,
 				990606271ACBA8660014964E /* AppDelegate.h */,
 				990606281ACBA8660014964E /* AppDelegate.m */,
+				99A0A2E81AE1153F00A3A592 /* AKASynchronized.h */,
+				99A0A2E91AE1153F00A3A592 /* AKASynchronized.m */,
+				99A0A2E51AE110A000A3A592 /* AKACoreData.h */,
+				99A0A2E61AE110A000A3A592 /* AKACoreData.m */,
 				9906062A1ACBA8660014964E /* ViewController.h */,
 				9906062B1ACBA8660014964E /* ViewController.m */,
 				9906068F1ACE869C0014964E /* UnreadViewController.h */,
@@ -206,6 +220,7 @@
 		990606181ACBA8660014964E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = AKA;
 				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = akaimo;
 				TargetAttributes = {
@@ -296,6 +311,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9906062C1ACBA8660014964E /* ViewController.m in Sources */,
+				99A0A2EA1AE1153F00A3A592 /* AKASynchronized.m in Sources */,
+				99A0A2E71AE110A000A3A592 /* AKACoreData.m in Sources */,
 				990606291ACBA8660014964E /* AppDelegate.m in Sources */,
 				990606261ACBA8660014964E /* main.m in Sources */,
 				997E43EB1AD3D4BB002CB3BB /* OAuthWebViewController.m in Sources */,
