@@ -27,7 +27,6 @@
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.account = delegate.account;
     [self setTitle];
-//    [self feedCategory];
     [self synchro];
 }
 
@@ -68,9 +67,7 @@
 //-- タイトルを設定
 - (void)setTitle {
     NSDictionary *dict = [self.account userData];
-    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    NSString *str = [appDelegate jsonToString:[[dict valueForKey:@"logins"] valueForKey:@"id"]];
-    self.title = str;
+    self.title = [[dict valueForKey:@"logins"][0] valueForKey:@"id"];
 }
 
 //-- 同期
@@ -82,7 +79,7 @@
 
 //-- カテゴリーを習得
 - (void)feedCategory {
-    NSURL *url = [NSURL URLWithString:CONTENTS];
+    NSURL *url = [NSURL URLWithString:FEED];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     [request setValue:self.account.accessToken.accessToken forHTTPHeaderField:@"Authorization"];
     

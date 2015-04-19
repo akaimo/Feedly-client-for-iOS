@@ -62,8 +62,7 @@
     }
     NXOAuth2Account *account = [[[NXOAuth2AccountStore sharedStore] accounts] objectAtIndex:indexPath.row];
     NSDictionary *userData = (id)account.userData;
-    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    NSString *name = [NSString stringWithFormat:@"%@:%ld", [appDelegate jsonToString:[[userData valueForKey:@"logins"] valueForKey:@"provider"]], (long)indexPath.row ];
+    NSString *name = [NSString stringWithFormat:@"%@:%ld", [[userData objectForKey:@"logins"][0] valueForKey:@"provider"], (long)indexPath.row ];
     cell.textLabel.text = name;
     
     cell.detailTextLabel.text = account.identifier;

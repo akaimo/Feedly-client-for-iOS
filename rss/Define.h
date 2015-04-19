@@ -5,7 +5,7 @@
 #define CATEGORY @"https://sandbox.feedly.com/v3/categories"
 
 //-- フィードを新しい順で収得
-#define FEED @"https://sandbox.feedly.com/v3/streams/contents?streamId=user/f58dd0b1-89a5-4161-8dfd-79d0a62be44e/category/global.all&count=1"
+#define FEED @"https://sandbox.feedly.com/v3/streams/contents?streamId=user/f58dd0b1-89a5-4161-8dfd-79d0a62be44e/category/global.all&count=3"
 
 //-- savedのフィードを収得
 #define SAVED @"https://sandbox.feedly.com/v3/streams/contents?streamId=user/f58dd0b1-89a5-4161-8dfd-79d0a62be44e/tag/global.saved"
