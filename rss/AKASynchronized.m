@@ -189,6 +189,8 @@
             /* 一致するサイトを探す */
             id site = [self currentSite:items :i];
             
+//            NSLog(@"%lld", [[items valueForKey:@"published"][i] longLongValue]);
+            
             /* データベースに存在しないfeedを追加する
                データベースが空の場合を考慮して分岐   */
             if (records.count == 0) {
@@ -295,13 +297,13 @@
         [obj setValue:[[items valueForKey:@"origin"] valueForKey:@"title"][count] forKey:@"title"];
         [obj setValue:[[items valueForKey:@"origin"] valueForKey:@"htmlUrl"][count] forKey:@"url"];
         [[AKACoreData sharedCoreData] saveContext];
-        NSLog(@"site 0");
-        NSLog(@"%@", [[items valueForKey:@"origin"] valueForKey:@"title"][count]);
-        NSLog(@"%@", [[items valueForKey:@"origin"] valueForKey:@"htmlUrl"][count]);
+//        NSLog(@"site 0");
+//        NSLog(@"%@", [[items valueForKey:@"origin"] valueForKey:@"title"][count]);
+//        NSLog(@"%@", [[items valueForKey:@"origin"] valueForKey:@"htmlUrl"][count]);
         site = obj;
     } else {
         /* Siteテーブルが存在する */
-        NSLog(@"site not 0");
+//        NSLog(@"site not 0");
         BOOL *exist = false;
         for (NSManagedObject *data in records) {
             /* Siteテーブルの中に目的のサイトが登録されている場合 */
@@ -318,8 +320,8 @@
             [obj setValue:[[items valueForKey:@"origin"] valueForKey:@"title"][count] forKey:@"title"];
             [obj setValue:[[items valueForKey:@"origin"] valueForKey:@"htmlUrl"][count] forKey:@"url"];
             [[AKACoreData sharedCoreData] saveContext];
-            NSLog(@"%@", [[items valueForKey:@"origin"] valueForKey:@"title"][count]);
-            NSLog(@"%@", [[items valueForKey:@"origin"] valueForKey:@"htmlUrl"][count]);
+//            NSLog(@"%@", [[items valueForKey:@"origin"] valueForKey:@"title"][count]);
+//            NSLog(@"%@", [[items valueForKey:@"origin"] valueForKey:@"htmlUrl"][count]);
             site = obj;
         }
     }
