@@ -24,7 +24,7 @@
 }
 
 - (void)synchro {
-    // アカウントの確認
+    // アカウントの照合
     [self checkAccount:self.userData];
     // カテゴリ一覧を収得
     NSURL *url = [NSURL URLWithString:CATEGORY];
@@ -135,7 +135,7 @@
     }
 }
 
-//-- アカウントの確認
+//-- アカウントを照合し、新規アカウントであればデータベースに保存
 - (void)checkAccount:(NSDictionary *)userData {
     NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Account"];
     NSArray* records = [[AKACoreData sharedCoreData].managedObjectContext executeFetchRequest:request error:nil];
@@ -158,7 +158,7 @@
             }
         }
         if (exist == false) {
-            id obj = [NSEntityDescription insertNewObjectForEntityForName:@"Token"
+            id obj = [NSEntityDescription insertNewObjectForEntityForName:@"Account"
                                                    inManagedObjectContext:[AKACoreData sharedCoreData].managedObjectContext];
             [obj setValue:[userData valueForKey:@"id"] forKey:@"id"];
             [obj setValue:[userData valueForKey:@"client"] forKey:@"client"];
@@ -173,78 +173,48 @@
     NSArray* records = [[AKACoreData sharedCoreData].managedObjectContext executeFetchRequest:request error:nil];
     
     /* Accountテーブルから現在使っているアカウントデータを抽出する */
-    id account;
-    NSFetchRequest* accountRequest = [NSFetchRequest fetchRequestWithEntityName:@"Account"];
-    NSArray* accountRecords = [[AKACoreData sharedCoreData].managedObjectContext executeFetchRequest:accountRequest error:nil];
-    for (NSManagedObject *data in accountRecords) {
-        if ([[data valueForKey:@"id"] isEqualToString:[self.userData valueForKey:@"id"]] && [[data valueForKey:@"client"] isEqualToString:[self.userData valueForKey:@"client"]]) {
-            account = data;
-            break;
-        }
-    }
-    
-    /* Categoryテーブルを関連付けるために、Categoryテーブルを収得する */
-    NSFetchRequest* categoryRequest = [NSFetchRequest fetchRequestWithEntityName:@"Category"];
-    NSArray* categoryRecords = [[AKACoreData sharedCoreData].managedObjectContext executeFetchRequest:categoryRequest error:nil];
+    id account = [self currentAccount];
     
     NSDictionary *items = [feedDict valueForKey:@"items"];
     NSLog(@"%lu", (unsigned long)items.count);
     
-    /* feedの保存処理
-       データベースに存在しないfeedを追加する
-       データベースが空の場合を考慮して分岐   */
+    /* feedの保存処理 */
     for (int i=0; i<items.count; i++) {
         @autoreleasepool {
             BOOL *exist = false;
+            
+            /* 一致するカテゴリを探す */
+            id category = [self currentCategory:items :i];
+            
+            /* 一致するサイトを探す */
+            id site = [self currentSite:items :i];
+            
+            /* データベースに存在しないfeedを追加する
+               データベースが空の場合を考慮して分岐   */
             if (records.count == 0) {
                 // 空の場合はすべてのfeedを保存
                 
-//                NSLog(@"count 0");
-//                if ([[items valueForKey:@"alternate"] valueForKey:@"herf"][i] == [NSNull null]) {
-//                    NSLog(@"hoge");
-//                } else {
-//                    NSLog(@"%@", [[items valueForKey:@"alternate"][i][0] valueForKey:@"href"]);
-//                }
+                id obj = [NSEntityDescription insertNewObjectForEntityForName:@"Article"
+                                                       inManagedObjectContext:[AKACoreData sharedCoreData].managedObjectContext];
                 
-//                NSLog(@"%@", categoryRecords[0]);
-                
-                /* 一致するカテゴリを探す */
-                id category;
-                for (NSManagedObject *data in categoryRecords) {
-                    /* カテゴリ登録されていない場合は[categories][label]が存在しないため、nullになる */
-                    if ([[items valueForKey:@"categories"] valueForKey:@"label"][i] == [NSNull null]) {
-                        NSLog(@"uncategorizedを追加");
-                        category = data;
-                        break;
-                    } else {
-                        /* [categories][label]が存在した場合、必ず一致するカテゴリが存在する */
-                        if ([[data valueForKey:@"name"] isEqualToString:[[items valueForKey:@"categories"][i][0] valueForKey:@"label"]]) {
-                            NSLog(@"存在した: %@", [[items valueForKey:@"categories"][i][0] valueForKey:@"label"]);
-                            category = data;
-                            break;
-                        }
-                    }
+                [obj setValue:[items valueForKey:@"id"][i] forKey:@"id"];                                     // feedのID
+                [obj setValue:[items valueForKey:@"title"][i] forKey:@"title"];                               // feedのタイトル
+                [obj setValue:[[items valueForKey:@"summary"] valueForKey:@"content"][i] forKey:@"detail"];   // feedの詳細
+                if ([[items valueForKey:@"alternate"] valueForKey:@"herf"][i] == [NSNull null]) {             // feedのURL
+                    [obj setValue:@"nil" forKey:@"url"];
+                } else {
+                    [obj setValue:[[items valueForKey:@"alternate"][i][0] valueForKey:@"href"] forKey:@"url"];
                 }
-                
-//                id obj = [NSEntityDescription insertNewObjectForEntityForName:@"Article"
-//                                                       inManagedObjectContext:[AKACoreData sharedCoreData].managedObjectContext];
-//                
-//                [obj setValue:[items valueForKey:@"id"][i] forKey:@"id"];                                     // feedのID
-//                [obj setValue:[items valueForKey:@"title"][i] forKey:@"title"];                               // feedのタイトル
-//                [obj setValue:[[items valueForKey:@"summary"] valueForKey:@"content"][i] forKey:@"detail"];   // feedの詳細
-//                if ([[items valueForKey:@"alternate"] valueForKey:@"herf"][i] == [NSNull null]) {             // feedのURL
-//                    [obj setValue:@"nil" forKey:@"url"];
-//                } else {
-//                    [obj setValue:[[items valueForKey:@"alternate"][i][0] valueForKey:@"href"] forKey:@"url"];
-//                }
-//                [obj setValue:[items valueForKey:@"unread"][i] forKey:@"unread"];                             // 未読のフラグ
-//                [obj setValue:[items valueForKey:@"published"][i] forKey:@"timestamp"];                       // タイムスタンプ
-//                [obj setValue:account forKey:@"account"];                                                     // Accountテーブルとの関連付け
-//                [obj setValue:category forKey:@"category"];                                                   // Categoryテーブルとの関連付け
-//
-//                [[AKACoreData sharedCoreData] saveContext];
+                [obj setValue:[items valueForKey:@"unread"][i] forKey:@"unread"];                             // 未読のフラグ
+                [obj setValue:[items valueForKey:@"published"][i] forKey:@"timestamp"];                       // タイムスタンプ
+                [obj setValue:account forKey:@"account"];                                                     // Accountテーブルとの関連付け
+                [obj setValue:category forKey:@"category"];                                                   // Categoryテーブルとの関連付け
+                [obj setValue:site forKey:@"site"];                                                           // Siteテーブルとの関連付け
+
+                [[AKACoreData sharedCoreData] saveContext];
             } else {
-//                // 保存されたデータがある場合は、タイムスタンプを利用して新しいfeedだけを保存
+                // 保存されたデータがある場合は、タイムスタンプを利用して新しいfeedだけを保存
+                
 //                @autoreleasepool {
 //                    for (NSManagedObject *data in records) {
 //                        NSLog(@"name: %@", [data valueForKey:@"name"]);
@@ -266,6 +236,95 @@
             }
         }
     }
+}
+
+//-- Accountテーブルから現在使っているアカウントデータを抽出する
+- (id)currentAccount {
+    id account;
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Account"];
+    NSArray* records = [[AKACoreData sharedCoreData].managedObjectContext executeFetchRequest:request error:nil];
+    
+    for (NSManagedObject *data in records) {
+        if ([[data valueForKey:@"id"] isEqualToString:[self.userData valueForKey:@"id"]] && [[data valueForKey:@"client"] isEqualToString:[self.userData valueForKey:@"client"]]) {
+            account = data;
+            break;
+        }
+    }
+    return account;
+}
+
+//-- 一致するカテゴリを探す
+- (id)currentCategory:(NSDictionary *)items :(int)count {
+    /* Categoryテーブルを関連付けるために、Categoryテーブルを収得する */
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Category"];
+    NSArray* records = [[AKACoreData sharedCoreData].managedObjectContext executeFetchRequest:request error:nil];
+    
+    /* 一致するカテゴリを探す */
+    id category;
+    for (NSManagedObject *data in records) {
+        /* カテゴリ登録されていない場合は[categories][label]が存在しないため、nullになる */
+        if ([[items valueForKey:@"categories"] valueForKey:@"label"][count] == [NSNull null]) {
+//            NSLog(@"uncategorized");
+            category = data;
+            break;
+        } else {
+            /* [categories][label]が存在した場合、必ず一致するカテゴリが存在する */
+            if ([[data valueForKey:@"name"] isEqualToString:[[items valueForKey:@"categories"][count][0] valueForKey:@"label"]]) {
+//                NSLog(@"存在した: %@", [[items valueForKey:@"categories"][count][0] valueForKey:@"label"]);
+                category = data;
+                break;
+            }
+        }
+    }
+    
+    return category;
+}
+
+//-- 一致するサイトを探す
+- (id)currentSite:(NSDictionary *)items :(int)count {
+    /* Siteテーブルを関連付けるために、Siteテーブルを収得する */
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Site"];
+    NSArray* records = [[AKACoreData sharedCoreData].managedObjectContext executeFetchRequest:request error:nil];
+    
+    /* 一致するサイトを探す Siteテーブルは始めは空なので、処理を分岐させる */
+    id site;
+    if (records.count == 0) {
+        /* Siteテーブルが空 */
+        id obj = [NSEntityDescription insertNewObjectForEntityForName:@"Site"
+                                               inManagedObjectContext:[AKACoreData sharedCoreData].managedObjectContext];
+        [obj setValue:[[items valueForKey:@"origin"] valueForKey:@"title"][count] forKey:@"title"];
+        [obj setValue:[[items valueForKey:@"origin"] valueForKey:@"htmlUrl"][count] forKey:@"url"];
+        [[AKACoreData sharedCoreData] saveContext];
+        NSLog(@"site 0");
+        NSLog(@"%@", [[items valueForKey:@"origin"] valueForKey:@"title"][count]);
+        NSLog(@"%@", [[items valueForKey:@"origin"] valueForKey:@"htmlUrl"][count]);
+        site = obj;
+    } else {
+        /* Siteテーブルが存在する */
+        NSLog(@"site not 0");
+        BOOL *exist = false;
+        for (NSManagedObject *data in records) {
+            /* Siteテーブルの中に目的のサイトが登録されている場合 */
+            if ([[data valueForKey:@"title"] isEqualToString:[[items valueForKey:@"origin"] valueForKey:@"title"][count]] && [[data valueForKey:@"url"] isEqualToString:[[items valueForKey:@"origin"] valueForKey:@"htmlUrl"][count]]) {
+                site = data;
+                exist = true;
+                break;
+            }
+        }
+        if (exist == false) {
+            /* 目的のサイトが登録されていない場合は保存 */
+            id obj = [NSEntityDescription insertNewObjectForEntityForName:@"Site"
+                                                   inManagedObjectContext:[AKACoreData sharedCoreData].managedObjectContext];
+            [obj setValue:[[items valueForKey:@"origin"] valueForKey:@"title"][count] forKey:@"title"];
+            [obj setValue:[[items valueForKey:@"origin"] valueForKey:@"htmlUrl"][count] forKey:@"url"];
+            [[AKACoreData sharedCoreData] saveContext];
+            NSLog(@"%@", [[items valueForKey:@"origin"] valueForKey:@"title"][count]);
+            NSLog(@"%@", [[items valueForKey:@"origin"] valueForKey:@"htmlUrl"][count]);
+            site = obj;
+        }
+    }
+    
+    return site;
 }
 
 @end
