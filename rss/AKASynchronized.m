@@ -17,24 +17,22 @@
     self = [super init];
     if (self != nil) {
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        self.account = delegate.account;
-        self.userData = [self.account userData];
+        _account = delegate.account;
+        _userData = [_account userData];
     }
     return self;
 }
 
 - (void)synchro {
     // アカウントの照合
-    [self checkAccount:self.userData];
-    // 未読数を収得
-    self.unreadCount = [self checkUnreadCount];
+    [self checkAccount:_userData];
     // カテゴリ一覧を収得
     NSURL *url = [NSURL URLWithString:CATEGORY];
     NSDictionary *category = [self urlForJSONToDictionary:url];
     // カテゴリを解析し保存
     [self saveCategory:category];
-    // 記事を収得
-    NSString *str = [FEED stringByAppendingString:self.unreadCount];
+    // 未読数を収得して、その数だけ記事を収得
+    NSString *str = [FEED stringByAppendingString:[self checkUnreadCount]];
     NSLog(@"%@", str);
     url = [NSURL URLWithString:str];
     NSDictionary *feed = [self urlForJSONToDictionary:url];
@@ -50,7 +48,7 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     
     // ヘッダー情報を追加する。
-    [request setValue:self.account.accessToken.accessToken forHTTPHeaderField:@"Authorization"];
+    [request setValue:_account.accessToken.accessToken forHTTPHeaderField:@"Authorization"];
     
     // リクエスト送信
     NSURLResponse *response = nil;
@@ -180,11 +178,6 @@
     request.fetchLimit = 1;
     NSArray* records = [[AKACoreData sharedCoreData].managedObjectContext executeFetchRequest:request error:nil];
     
-    NSLog(@"%lu", (unsigned long)records.count);
-    for (NSManagedObject *data in records) {
-        NSLog(@"%@", [data valueForKey:@"timestamp"]);
-    }
-    
     /* Accountテーブルから現在使っているアカウントデータを抽出する */
     id account = [self currentAccount];
     
@@ -222,7 +215,7 @@
                     [obj setValue:[[items valueForKey:@"alternate"][i][0] valueForKey:@"href"] forKey:@"url"];
                 }
                 [obj setValue:[items valueForKey:@"unread"][i] forKey:@"unread"];                             // 未読のフラグ
-                [obj setValue:[items valueForKey:@"published"][i] forKey:@"timestamp"];                       // タイムスタンプ
+                [obj setValue:[items valueForKey:@"crawled"][i] forKey:@"timestamp"];                       // タイムスタンプ
                 [obj setValue:account forKey:@"account"];                                                     // Accountテーブルとの関連付け
                 [obj setValue:category forKey:@"category"];                                                   // Categoryテーブルとの関連付け
                 [obj setValue:site forKey:@"site"];                                                           // Siteテーブルとの関連付け
@@ -231,7 +224,11 @@
             } else {
                 // 保存されたデータがある場合は、タイムスタンプを利用して新しいfeedだけを保存
                 
-                if ([[items valueForKey:@"published"][i] longLongValue] > [[records[0] valueForKey:@"timestamp"] longLongValue]) {
+                NSLog(@"items:   %lld", [[items valueForKey:@"crawled"][i] longLongValue]);
+                NSLog(@"records: %lld", [[records[0] valueForKey:@"timestamp"] longLongValue]);
+                NSLog(@"%@", [items valueForKey:@"title"][i]);
+                NSLog(@"%@", [records[0] valueForKey:@"title"]);
+                if ([[items valueForKey:@"crawled"][i] longLongValue] > [[records[0] valueForKey:@"timestamp"] longLongValue]) {
                     NSLog(@"新着記事");
                     id obj = [NSEntityDescription insertNewObjectForEntityForName:@"Article"
                                                            inManagedObjectContext:[AKACoreData sharedCoreData].managedObjectContext];
@@ -249,7 +246,7 @@
                         [obj setValue:[[items valueForKey:@"alternate"][i][0] valueForKey:@"href"] forKey:@"url"];
                     }
                     [obj setValue:[items valueForKey:@"unread"][i] forKey:@"unread"];                             // 未読のフラグ
-                    [obj setValue:[items valueForKey:@"published"][i] forKey:@"timestamp"];                       // タイムスタンプ
+                    [obj setValue:[items valueForKey:@"crawled"][i] forKey:@"timestamp"];                         // タイムスタンプ
                     [obj setValue:account forKey:@"account"];                                                     // Accountテーブルとの関連付け
                     [obj setValue:category forKey:@"category"];                                                   // Categoryテーブルとの関連付け
                     [obj setValue:site forKey:@"site"];                                                           // Siteテーブルとの関連付け
@@ -271,7 +268,7 @@
     NSArray* records = [[AKACoreData sharedCoreData].managedObjectContext executeFetchRequest:request error:nil];
     
     for (NSManagedObject *data in records) {
-        if ([[data valueForKey:@"id"] isEqualToString:[self.userData valueForKey:@"id"]] && [[data valueForKey:@"client"] isEqualToString:[self.userData valueForKey:@"client"]]) {
+        if ([[data valueForKey:@"id"] isEqualToString:[_userData valueForKey:@"id"]] && [[data valueForKey:@"client"] isEqualToString:[_userData valueForKey:@"client"]]) {
             account = data;
             break;
         }
@@ -354,15 +351,30 @@
 }
 
 - (NSString *)checkUnreadCount {
+    NSString *count;
     NSURL *url = [NSURL URLWithString:UNREAD_COUNT];
     NSDictionary *unreadDict = [self urlForJSONToDictionary:url];
     NSArray *unreadArray = [unreadDict valueForKey:@"unreadcounts"];
-    NSLog(@"%@", unreadArray[0]);
+    for (int i=0; i<unreadArray.count; i++) {
+        @autoreleasepool {
+            NSError *error = nil;
+            NSString *str = [unreadArray[i] valueForKey:@"id"];
+            NSString *pattern = @"/category/global.all";
+            
+            // パターンから正規表現を生成する
+            NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&error];
+            
+            // 正規表現を適用して結果を得る
+            NSTextCheckingResult *match = [regexp firstMatchInString:str options:0 range:NSMakeRange(0, str.length)];
+            
+            if (match) {
+                count = [[unreadArray[i] valueForKey:@"count"] stringValue];
+//                NSLog(@"count: %@", count);
+            }
+        }
+    }
     
-    NSString *str = @"100";
-    NSLog(@"%@", str);
-    
-    return str;
+    return count;
 }
 
 @end
