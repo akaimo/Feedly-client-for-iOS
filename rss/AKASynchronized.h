@@ -13,6 +13,7 @@
 
 @property (nonatomic, assign) NXOAuth2Account *account;
 @property (nonatomic, assign) NSDictionary *userData;
+@property (nonatomic, assign) NSString *unreadCount;
 
 //-- 同期処理
 - (void)synchro;

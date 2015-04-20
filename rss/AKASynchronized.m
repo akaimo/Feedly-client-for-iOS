@@ -26,13 +26,17 @@
 - (void)synchro {
     // アカウントの照合
     [self checkAccount:self.userData];
+    // 未読数を収得
+    self.unreadCount = [self checkUnreadCount];
     // カテゴリ一覧を収得
     NSURL *url = [NSURL URLWithString:CATEGORY];
     NSDictionary *category = [self urlForJSONToDictionary:url];
     // カテゴリを解析し保存
     [self saveCategory:category];
     // 記事を収得
-    url = [NSURL URLWithString:FEED];
+    NSString *str = [FEED stringByAppendingString:self.unreadCount];
+    NSLog(@"%@", str);
+    url = [NSURL URLWithString:str];
     NSDictionary *feed = [self urlForJSONToDictionary:url];
     // 記事を解析し保存
     [self saveFeed:feed];
@@ -62,8 +66,8 @@
     //取得したレスポンスをJSONパース
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&e];
     
-    NSLog(@"%@", dict);
-    NSLog(@"responseText = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+//    NSLog(@"%@", dict);
+//    NSLog(@"responseText = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     
     return dict;
 }
@@ -75,8 +79,8 @@
     
     NSArray *categoryArray = (NSArray *)categoryDict;
     
-    NSLog(@"category: %lu", (unsigned long)categoryArray.count);
-    NSLog(@"records: %lu", (unsigned long)records.count);
+//    NSLog(@"category: %lu", (unsigned long)categoryArray.count);
+//    NSLog(@"records: %lu", (unsigned long)records.count);
     
     /* sqlite3のURLを収得 */
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -88,7 +92,7 @@
         @autoreleasepool {
             BOOL *exist = false;
             
-            NSLog(@"label: %@", [categoryArray[i] valueForKey:@"label"]);
+//            NSLog(@"label: %@", [categoryArray[i] valueForKey:@"label"]);
             
             /* データベースに存在しないカテゴリを追加する
                データベースが空の場合を考慮して分岐 */
@@ -102,7 +106,7 @@
                                                            inManagedObjectContext:[AKACoreData sharedCoreData].managedObjectContext];
                     [obj setValue:@"uncategorized" forKey:@"name"];
                     [[AKACoreData sharedCoreData] saveContext];
-                    NSLog(@"hoge");
+//                    NSLog(@"hoge");
                     one = (int *)1;
                 }
                 
@@ -114,17 +118,17 @@
                 // 保存されたデータがある場合は既に存在するかどうかの確認
                 @autoreleasepool {
                     for (NSManagedObject *data in records) {
-                        NSLog(@"name: %@", [data valueForKey:@"name"]);
+//                        NSLog(@"name: %@", [data valueForKey:@"name"]);
                         if ([[data valueForKey:@"name"] isEqualToString:[categoryArray[i] valueForKey:@"label"]]) {
                             exist = true;
-                            NSLog(@"存在した");
+//                            NSLog(@"存在した");
                             break;
                         }
                     }
                 }
                 // 存在しない場合は保存
                 if (exist == false) {
-                    NSLog(@"存在しないから保存");
+//                    NSLog(@"存在しないから保存");
                     id obj = [NSEntityDescription insertNewObjectForEntityForName:@"Category"
                                                            inManagedObjectContext:[AKACoreData sharedCoreData].managedObjectContext];
                     [obj setValue:[categoryArray[i] valueForKey:@"label"] forKey:@"name"];
@@ -169,14 +173,22 @@
 
 //-- feedを収得して保存
 - (void)saveFeed:(NSDictionary *)feedDict {
+    /* 既存のfeedを収得 */
     NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Article"];
+    NSSortDescriptor* timestampSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+    request.sortDescriptors = @[timestampSortDescriptor];
+    request.fetchLimit = 1;
     NSArray* records = [[AKACoreData sharedCoreData].managedObjectContext executeFetchRequest:request error:nil];
+    
+    NSLog(@"%lu", (unsigned long)records.count);
+    for (NSManagedObject *data in records) {
+        NSLog(@"%@", [data valueForKey:@"timestamp"]);
+    }
     
     /* Accountテーブルから現在使っているアカウントデータを抽出する */
     id account = [self currentAccount];
     
     NSDictionary *items = [feedDict valueForKey:@"items"];
-    NSLog(@"%lu", (unsigned long)items.count);
     
     /* feedの保存処理 */
     for (int i=0; i<items.count; i++) {
@@ -189,8 +201,6 @@
             /* 一致するサイトを探す */
             id site = [self currentSite:items :i];
             
-//            NSLog(@"%lld", [[items valueForKey:@"published"][i] longLongValue]);
-            
             /* データベースに存在しないfeedを追加する
                データベースが空の場合を考慮して分岐   */
             if (records.count == 0) {
@@ -201,7 +211,11 @@
                 
                 [obj setValue:[items valueForKey:@"id"][i] forKey:@"id"];                                     // feedのID
                 [obj setValue:[items valueForKey:@"title"][i] forKey:@"title"];                               // feedのタイトル
-                [obj setValue:[[items valueForKey:@"summary"] valueForKey:@"content"][i] forKey:@"detail"];   // feedの詳細
+                if ([[items valueForKey:@"summary"] valueForKey:@"content"][i] == [NSNull null]) {            // feedの詳細
+                    [obj setValue:[[items valueForKey:@"content"] valueForKey:@"content"][i] forKey:@"detail"];
+                } else {
+                    [obj setValue:[[items valueForKey:@"summary"] valueForKey:@"content"][i] forKey:@"detail"];
+                }
                 if ([[items valueForKey:@"alternate"] valueForKey:@"herf"][i] == [NSNull null]) {             // feedのURL
                     [obj setValue:@"nil" forKey:@"url"];
                 } else {
@@ -217,24 +231,34 @@
             } else {
                 // 保存されたデータがある場合は、タイムスタンプを利用して新しいfeedだけを保存
                 
-//                @autoreleasepool {
-//                    for (NSManagedObject *data in records) {
-//                        NSLog(@"name: %@", [data valueForKey:@"name"]);
-//                        if ([[data valueForKey:@"name"] isEqualToString:[categoryArray[i] valueForKey:@"label"]]) {
-//                            exist = true;
-//                            NSLog(@"存在した");
-//                            break;
-//                        }
-//                    }
-//                }
-//                // 存在しない場合は保存
-//                if (exist == false) {
-//                    NSLog(@"存在しないから保存");
-//                    id obj = [NSEntityDescription insertNewObjectForEntityForName:@"Category"
-//                                                           inManagedObjectContext:[AKACoreData sharedCoreData].managedObjectContext];
-//                    [obj setValue:[categoryArray[i] valueForKey:@"label"] forKey:@"name"];
-//                    [[AKACoreData sharedCoreData] saveContext];
-//                }
+                if ([[items valueForKey:@"published"][i] longLongValue] > [[records[0] valueForKey:@"timestamp"] longLongValue]) {
+                    NSLog(@"新着記事");
+                    id obj = [NSEntityDescription insertNewObjectForEntityForName:@"Article"
+                                                           inManagedObjectContext:[AKACoreData sharedCoreData].managedObjectContext];
+                    
+                    [obj setValue:[items valueForKey:@"id"][i] forKey:@"id"];                                     // feedのID
+                    [obj setValue:[items valueForKey:@"title"][i] forKey:@"title"];                               // feedのタイトル
+                    if ([[items valueForKey:@"summary"] valueForKey:@"content"][i] == [NSNull null]) {            // feedの詳細
+                        [obj setValue:[[items valueForKey:@"content"] valueForKey:@"content"][i] forKey:@"detail"];
+                    } else {
+                        [obj setValue:[[items valueForKey:@"summary"] valueForKey:@"content"][i] forKey:@"detail"];
+                    }
+                    if ([[items valueForKey:@"alternate"] valueForKey:@"herf"][i] == [NSNull null]) {             // feedのURL
+                        [obj setValue:@"nil" forKey:@"url"];
+                    } else {
+                        [obj setValue:[[items valueForKey:@"alternate"][i][0] valueForKey:@"href"] forKey:@"url"];
+                    }
+                    [obj setValue:[items valueForKey:@"unread"][i] forKey:@"unread"];                             // 未読のフラグ
+                    [obj setValue:[items valueForKey:@"published"][i] forKey:@"timestamp"];                       // タイムスタンプ
+                    [obj setValue:account forKey:@"account"];                                                     // Accountテーブルとの関連付け
+                    [obj setValue:category forKey:@"category"];                                                   // Categoryテーブルとの関連付け
+                    [obj setValue:site forKey:@"site"];                                                           // Siteテーブルとの関連付け
+                    
+                    [[AKACoreData sharedCoreData] saveContext];
+                } else {
+                    NSLog(@"no");
+                    break;
+                }
             }
         }
     }
@@ -327,6 +351,18 @@
     }
     
     return site;
+}
+
+- (NSString *)checkUnreadCount {
+    NSURL *url = [NSURL URLWithString:UNREAD_COUNT];
+    NSDictionary *unreadDict = [self urlForJSONToDictionary:url];
+    NSArray *unreadArray = [unreadDict valueForKey:@"unreadcounts"];
+    NSLog(@"%@", unreadArray[0]);
+    
+    NSString *str = @"100";
+    NSLog(@"%@", str);
+    
+    return str;
 }
 
 @end

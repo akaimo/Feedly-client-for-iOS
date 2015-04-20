@@ -72,17 +72,4 @@ static NSString *const kOauth2ClientKeyChainGroup = @"Feedly";                  
     
 }
 
-//-- JsonからStringに変更し、余分な文字を除去
-- (NSString *)jsonToString:(id)json {
-    // jsonをdataに変更
-    NSData *json_check = [NSJSONSerialization dataWithJSONObject:json options:kNilOptions error:nil];
-    // dataをstringに変更
-    NSString *s1= [[NSString alloc] initWithData:json_check encoding:NSUTF8StringEncoding];
-    // 余分な文字を除去
-    s1 = [s1 stringByReplacingOccurrencesOfString:@"[" withString:@""];
-    s1 = [s1 stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-    s1 = [s1 stringByReplacingOccurrencesOfString:@"]" withString:@""];
-    return s1;
-}
-
 @end

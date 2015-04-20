@@ -16,8 +16,5 @@ extern NSString * const kOauth2ClientAccountType;
 @property (nonatomic, assign) NXOAuth2Account *account;
 @property (strong, nonatomic) UIWindow *window;
 
-
-- (NSString *)jsonToString:(id)json;
-
 @end
 
