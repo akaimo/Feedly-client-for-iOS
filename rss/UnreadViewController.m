@@ -73,7 +73,38 @@
 //-- 同期
 - (void)synchro {
     AKASynchronized *synchronized = [[AKASynchronized alloc] init];
-    [synchronized synchro];
+    /* sqlite3のURLを収得 */
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = paths[0];
+    NSLog(@"sqlite3: %@", documentsPath);
+    
+    /* アカウントの照合 */
+    [synchronized checkAccount];
+    
+    /* カテゴリ一覧を収得 */
+    NSURL *url = [NSURL URLWithString:CATEGORY];
+    NSDictionary *category = [synchronized urlForJSONToDictionary:url];
+    /* カテゴリを解析し保存 */
+    [synchronized saveCategory:category];
+    
+    /* 未読数を収得して、その数だけ記事を収得 */
+    NSString *str = [FEED stringByAppendingString:[synchronized checkUnreadCount]];
+    NSLog(@"%@", str);
+    url = [NSURL URLWithString:str];
+    NSDictionary *feed = [synchronized urlForJSONToDictionary:url];
+    /* 記事を解析し保存 */
+    [synchronized saveFeed:feed];
+    
+    /* お気に入りを収得 */
+    url = [NSURL URLWithString:SAVED];
+    NSDictionary *save = [synchronized urlForJSONToDictionary:url];
+    /* お気に入りを解析し保存 */
+    [synchronized saveSaved:save];
+    
+    /* データベースの整合性のチェック */
+    
+    /* 過去のfeedを削除 */
+    [synchronized deleteFeed];
 }
 
 
