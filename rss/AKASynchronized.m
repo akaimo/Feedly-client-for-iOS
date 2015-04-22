@@ -25,25 +25,33 @@
 
 //-- 同期処理
 - (void)synchro {
-    // アカウントの照合
+    /* アカウントの照合 */
     [self checkAccount:_userData];
-    // カテゴリ一覧を収得
+    
+    /* カテゴリ一覧を収得 */
     NSURL *url = [NSURL URLWithString:CATEGORY];
     NSDictionary *category = [self urlForJSONToDictionary:url];
-    // カテゴリを解析し保存
+    /* カテゴリを解析し保存 */
     [self saveCategory:category];
-    // 未読数を収得して、その数だけ記事を収得
+    
+    /* 未読数を収得して、その数だけ記事を収得 */
     NSString *str = [FEED stringByAppendingString:[self checkUnreadCount]];
     NSLog(@"%@", str);
     url = [NSURL URLWithString:str];
     NSDictionary *feed = [self urlForJSONToDictionary:url];
-    // 記事を解析し保存
+    /* 記事を解析し保存 */
     [self saveFeed:feed];
-    // お気に入りを収得
+    
+    /* お気に入りを収得 */
     url = [NSURL URLWithString:SAVED];
     NSDictionary *save = [self urlForJSONToDictionary:url];
-    // お気に入りを解析し保存
+    /* お気に入りを解析し保存 */
     [self saveSaved:save];
+    
+    /* データベースの整合性のチェック */
+    
+    /* 過去のfeedを削除 */
+    [self deleteFeed];
 }
 
 
@@ -51,10 +59,10 @@
 - (NSDictionary *)urlForJSONToDictionary:(NSURL *)url {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     
-    // ヘッダー情報を追加する。
+    /* ヘッダー情報を追加する。 */
     [request setValue:_account.accessToken.accessToken forHTTPHeaderField:@"Authorization"];
     
-    // リクエスト送信
+    /* リクエスト送信 */
     NSURLResponse *response = nil;
     NSError *error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -65,11 +73,11 @@
     }
     
     NSError *e = nil;    
-    //取得したレスポンスをJSONパース
+    /* 取得したレスポンスをJSONパース */
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&e];
     
-    NSLog(@"%@", dict);
-    NSLog(@"responseText = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+//    NSLog(@"%@", dict);
+//    NSLog(@"responseText = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     
     return dict;
 }
@@ -102,7 +110,7 @@
                 // 空の場合
                 NSLog(@"count 0");
                 
-                // 初回はuncategorizedを作成する
+                /* 初回はuncategorizedを作成する */
                 if (one == (int *)0) {
                     id obj = [NSEntityDescription insertNewObjectForEntityForName:@"Category"
                                                            inManagedObjectContext:[AKACoreData sharedCoreData].managedObjectContext];
@@ -117,7 +125,7 @@
                 [obj setValue:[categoryArray[i] valueForKey:@"label"] forKey:@"name"];
                 [[AKACoreData sharedCoreData] saveContext];
             } else {
-                // 保存されたデータがある場合は既に存在するかどうかの確認
+                /* 保存されたデータがある場合は既に存在するかどうかの確認 */
                 @autoreleasepool {
                     for (NSManagedObject *data in records) {
 //                        NSLog(@"name: %@", [data valueForKey:@"name"]);
@@ -128,7 +136,7 @@
                         }
                     }
                 }
-                // 存在しない場合は保存
+                /* 存在しない場合は保存 */
                 if (exist == false) {
 //                    NSLog(@"存在しないから保存");
                     id obj = [NSEntityDescription insertNewObjectForEntityForName:@"Category"
@@ -232,6 +240,16 @@
                 NSLog(@"records: %lld", [[records[0] valueForKey:@"timestamp"] longLongValue]);
                 NSLog(@"%@", [items valueForKey:@"title"][i]);
                 NSLog(@"%@", [records[0] valueForKey:@"title"]);
+                
+                NSDate *date = [NSDate dateWithTimeIntervalSince1970:[[items valueForKey:@"crawled"][i] longLongValue] /1000.0];
+                NSLog(@"item: %@", date);
+                
+                date = [NSDate dateWithTimeIntervalSince1970:[[records[0] valueForKey:@"timestamp"] longLongValue] /1000.0];
+                NSLog(@"record: %@", date);
+                
+                NSDate *now = [NSDate date];
+                NSLog(@"now: %@", now);
+                
                 if ([[items valueForKey:@"crawled"][i] longLongValue] > [[records[0] valueForKey:@"timestamp"] longLongValue]) {
                     NSLog(@"新着記事");
                     id obj = [NSEntityDescription insertNewObjectForEntityForName:@"Article"
@@ -400,21 +418,26 @@
                 if ([[items valueForKey:@"id"][i] isEqualToString:[data valueForKey:@"id"]]) {
                     NSLog(@"一致");
                     exist = true;
-                    /* データベースのfeedがsavedになっていなかったら、savedにする */
+                    /* データベースのfeedがsavedになっていなかったら、savedにする
+                       他のアプリでsavedにした時に、整合性を保つための処理 */
                     if ([[data valueForKey:@"saved"] isEqualToNumber:[NSNumber numberWithBool:NO]]) {
                         NSLog(@"savedにして保存");
                         NSNumber *num = [NSNumber numberWithBool:YES];
                         [data setValue:num forKey:@"saved"];
                         [[AKACoreData sharedCoreData] saveContext];
                     } else {
+                        /* データベースに存在するfeedをsavedにした場合は、サーバーにsavedの処理を投げたと同時に
+                           データベースも更新するので、基本的には既にsavedになっていると考えられる */
                         NSLog(@"既にsaved");
                     }
                     break;
                 }
             }
-            /* データベースにfeedがなかった場合は保存 */
+            /* データベースにfeedがなかった場合は保存
+               主に、初めて同期したときに行われる処理
+               昔にsavedにした（最近のfeedしか読み込まないため）feedを保存することが目的 */
             if (exist == false) {
-                NSLog(@"hoge");
+                NSLog(@"savedのfeedとして保存");
                 /* Accountテーブルから現在使っているアカウントデータを抽出する */
                 id account = [self currentAccount];
                 /* 一致するカテゴリを探す */
@@ -448,7 +471,8 @@
             }
         }
     }
-    /* savedを解除されたfeedが存在しないかをチェック */
+    /* savedを解除されたfeedが存在しないかをチェック
+       他のアプリでsavedを解除した時の整合性を保つための処理 */
     request.predicate = [NSPredicate predicateWithFormat:@"saved == 1"];
     records = [[AKACoreData sharedCoreData].managedObjectContext executeFetchRequest:request error:nil];
     
@@ -472,6 +496,34 @@
             [data setValue:num forKey:@"saved"];
             [[AKACoreData sharedCoreData] saveContext];
         }
+    }
+}
+
+//-- 過去のfeedを削除
+- (void)deleteFeed {
+    NSDate *now = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSLog(@"now: %@", now);
+    NSDateComponents *comps = [[NSDateComponents alloc]init];
+    comps.day = -7;
+    NSDate *result = [calendar dateByAddingComponents:comps toDate:now options:0];
+    NSLog(@"7日前：%@", result);
+    double unixtime = [result timeIntervalSince1970];
+    NSLog(@"%f", unixtime * 1000);
+    
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Article"];
+    request.predicate = [NSPredicate predicateWithFormat:@"timestamp <= %f", unixtime * 1000 && @"saved == 0"];
+    NSArray* records = [[AKACoreData sharedCoreData].managedObjectContext executeFetchRequest:request error:nil];
+    
+    if (records.count != 0) {
+        for (NSManagedObject *data in records) {
+//            NSLog(@"%@", [data valueForKey:@"timestamp"]);
+            [[[AKACoreData sharedCoreData] managedObjectContext] deleteObject:data];
+        }
+        [[AKACoreData sharedCoreData] saveContext];
+        NSLog(@"削除");
+    } else {
+        NSLog(@"削除なし");
     }
 }
 

@@ -38,7 +38,7 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.categoryCount;
+    return _categoryCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -66,7 +66,7 @@
 
 //-- タイトルを設定
 - (void)setTitle {
-    NSDictionary *dict = [self.account userData];
+    NSDictionary *dict = [_account userData];
     self.title = [[dict valueForKey:@"logins"][0] valueForKey:@"id"];
 }
 
@@ -79,9 +79,9 @@
 
 //-- カテゴリーを習得
 - (void)feedCategory {
-    NSURL *url = [NSURL URLWithString:FEED];
+    NSURL *url = [NSURL URLWithString:SYNCHRO];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    [request setValue:self.account.accessToken.accessToken forHTTPHeaderField:@"Authorization"];
+    [request setValue:_account.accessToken.accessToken forHTTPHeaderField:@"Authorization"];
     
     // 非同期通信
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -111,7 +111,7 @@
                 
                 // メインスレッドでの処理
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.unreadTableView reloadData];
+                    [_unreadTableView reloadData];
                 });
             }
         }
