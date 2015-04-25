@@ -21,6 +21,7 @@
 		99A0A2E71AE110A000A3A592 /* AKACoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A0A2E61AE110A000A3A592 /* AKACoreData.m */; };
 		99A0A2EA1AE1153F00A3A592 /* AKASynchronized.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A0A2E91AE1153F00A3A592 /* AKASynchronized.m */; };
 		99FB28EE1AE7CFE60062214D /* AKACurrentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FB28ED1AE7CFE60062214D /* AKACurrentData.m */; };
+		99FBE9071AEB431D0022B1F0 /* AKAFetchFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FBE9061AEB431D0022B1F0 /* AKAFetchFeed.m */; };
 		EAA96D513CBE9BB0827511BE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C231D427ABBCDAB4D87DB76F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,8 @@
 		99A0A2E91AE1153F00A3A592 /* AKASynchronized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKASynchronized.m; sourceTree = "<group>"; };
 		99FB28EC1AE7CFE60062214D /* AKACurrentData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKACurrentData.h; sourceTree = "<group>"; };
 		99FB28ED1AE7CFE60062214D /* AKACurrentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKACurrentData.m; sourceTree = "<group>"; };
+		99FBE9051AEB431D0022B1F0 /* AKAFetchFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKAFetchFeed.h; sourceTree = "<group>"; };
+		99FBE9061AEB431D0022B1F0 /* AKAFetchFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKAFetchFeed.m; sourceTree = "<group>"; };
 		C231D427ABBCDAB4D87DB76F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA8E5499C38816703E582A9E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +143,8 @@
 				9906062A1ACBA8660014964E /* ViewController.h */,
 				9906062B1ACBA8660014964E /* ViewController.m */,
 				9906068F1ACE869C0014964E /* UnreadViewController.h */,
+				99FBE9051AEB431D0022B1F0 /* AKAFetchFeed.h */,
+				99FBE9061AEB431D0022B1F0 /* AKAFetchFeed.m */,
 				990606901ACE869C0014964E /* UnreadViewController.m */,
 				997E43E91AD3D4BB002CB3BB /* OAuthWebViewController.h */,
 				997E43EA1AD3D4BB002CB3BB /* OAuthWebViewController.m */,
@@ -321,6 +326,7 @@
 				990606291ACBA8660014964E /* AppDelegate.m in Sources */,
 				990606261ACBA8660014964E /* main.m in Sources */,
 				99FB28EE1AE7CFE60062214D /* AKACurrentData.m in Sources */,
+				99FBE9071AEB431D0022B1F0 /* AKAFetchFeed.m in Sources */,
 				997E43EB1AD3D4BB002CB3BB /* OAuthWebViewController.m in Sources */,
 				990606911ACE869C0014964E /* UnreadViewController.m in Sources */,
 				999BEA2C1ADFF0CB0087D51A /* Model.xcdatamodeld in Sources */,

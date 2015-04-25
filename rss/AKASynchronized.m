@@ -162,6 +162,9 @@
     
     NSArray *items = [feedDict valueForKey:@"items"];
     
+    /* savedのフラグ */
+    NSNumber *save = [NSNumber numberWithBool:NO];
+    
     /* feedの保存処理 */
     for (int i=0; i<items.count; i++) {
         @autoreleasepool {
@@ -178,7 +181,7 @@
             if (records.count == 0) {
                 // 空の場合はすべてのfeedを保存
                 
-                [self saveItem:items account:account category:category site:site count:i];
+                [self saveItem:items account:account category:category site:site save:save count:i];
             } else {
                 // 保存されたデータがある場合は、タイムスタンプを利用して新しいfeedだけを保存
                 
@@ -199,7 +202,7 @@
                 if ([[items valueForKey:@"crawled"][i] longLongValue] > [[records[0] valueForKey:@"timestamp"] longLongValue]) {
                     NSLog(@"新着記事");
                     /* 保存 */
-                    [self saveItem:items account:account category:category site:site count:i];
+                    [self saveItem:items account:account category:category site:site save:save count:i];
                 } else {
                     NSLog(@"no");
                     break;
@@ -282,14 +285,16 @@
                 id category = [currentData currentCategory:items :i];
                 /* 一致するサイトを探す */
                 id site = [currentData currentSite:items :i];
+                /* savedのフラグ */
+                NSNumber *num = [NSNumber numberWithBool:YES];
                 /* 保存 */
-                [self saveItem:items account:account category:category site:site count:i];
+                [self saveItem:items account:account category:category site:site save:num count:i];
             }
         }
     }
     /* savedを解除されたfeedが存在しないかをチェック
        他のアプリでsavedを解除した時の整合性を保つための処理 */
-    request.predicate = [NSPredicate predicateWithFormat:@"saved == 1"];
+    request.predicate = [NSPredicate predicateWithFormat:@"saved == %@", [NSNumber numberWithBool:YES]];
     records = [[AKACoreData sharedCoreData].managedObjectContext executeFetchRequest:request error:nil];
     
     for (NSManagedObject *data in records) {
@@ -328,12 +333,13 @@
     NSLog(@"%f", unixtime * 1000);
     
     NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Article"];
-    request.predicate = [NSPredicate predicateWithFormat:@"timestamp <= %f", unixtime * 1000 && @"saved == 0"];
+    request.predicate = [NSPredicate predicateWithFormat:@"saved == %@ && timestamp <= %f",[NSNumber numberWithBool:NO], unixtime * 1000];
     NSArray* records = [[AKACoreData sharedCoreData].managedObjectContext executeFetchRequest:request error:nil];
     
     if (records.count != 0) {
         for (NSManagedObject *data in records) {
-//            NSLog(@"%@", [data valueForKey:@"timestamp"]);
+            NSLog(@"%@", [data valueForKey:@"title"]);
+            NSLog(@"%@", [data valueForKey:@"timestamp"]);
             [[[AKACoreData sharedCoreData] managedObjectContext] deleteObject:data];
         }
         [[AKACoreData sharedCoreData] saveContext];
@@ -344,7 +350,7 @@
 }
 
 //-- feedの保存処理
-- (void)saveItem:(NSArray *)items account:(id)account category:(id)category site:(id)site count:(int)i {
+- (void)saveItem:(NSArray *)items account:(id)account category:(id)category site:(id)site save:(id)save count:(int)i {
     id obj = [NSEntityDescription insertNewObjectForEntityForName:@"Article"
                                            inManagedObjectContext:[AKACoreData sharedCoreData].managedObjectContext];
     
@@ -361,6 +367,7 @@
         [obj setValue:[[items valueForKey:@"alternate"][i][0] valueForKey:@"href"] forKey:@"url"];
     }
     [obj setValue:[items valueForKey:@"unread"][i] forKey:@"unread"];                             // 未読のフラグ
+    [obj setValue:save forKey:@"saved"];
     [obj setValue:[items valueForKey:@"crawled"][i] forKey:@"timestamp"];                       // タイムスタンプ
     [obj setValue:account forKey:@"account"];                                                     // Accountテーブルとの関連付け
     [obj setValue:category forKey:@"category"];                                                   // Categoryテーブルとの関連付け

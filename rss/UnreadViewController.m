@@ -9,12 +9,15 @@
 #import "UnreadViewController.h"
 #import "AppDelegate.h"
 #import "AKASynchronized.h"
+#import "AKACoreData.h"
+#import "AKAFetchFeed.h"
 
 @interface UnreadViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *unreadTableView;
-@property (nonatomic, assign) NSInteger * categoryCount;
-
-@property (nonatomic, assign) NXOAuth2Account *account;
+//@property (nonatomic, assign) NSInteger *categoryCount;
+@property (nonatomic, retain) NSArray *feed;
+@property (nonatomic, retain) NSArray *allFeed;
+@property (nonatomic, retain) NXOAuth2Account *account;
 
 @end
 
@@ -24,10 +27,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    /* sqlite3のURLを収得 */
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = paths[0];
+    NSLog(@"sqlite3: %@", documentsPath);
+    
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    self.account = delegate.account;
+    _account = delegate.account;
     [self setTitle];
     [self synchro];
+    
+    AKAFetchFeed *fechFeed = [[AKAFetchFeed alloc] init];
+    _feed = [fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:YES]];
+    _allFeed = [fechFeed fechAllFeedUnread:[NSNumber numberWithBool:YES]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,7 +50,14 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _categoryCount;
+    NSInteger count = 0;
+    for (int i=0; i<_feed.count; i++) {
+        if ([_feed[i] count] != 0) {
+            count = count + 1;
+        }
+    }
+//    NSLog(@"categoryCount: %ld", (long)count);
+    return count + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -47,11 +66,21 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier:cellId];
+        switch(indexPath.row) {
+            case 0:
+                cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier:cellId];
+                cell.textLabel.text = @"hogehoge";
+                tableView.rowHeight = 66.0;
+                break;
+            default:
+                cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier:cellId];
+                cell.textLabel.text = @"hoge";
+                tableView.rowHeight = 44.0;
+                break;
+        }
     }
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text = @"hoge";
     
     return cell;
 }
@@ -73,11 +102,6 @@
 //-- 同期
 - (void)synchro {
     AKASynchronized *synchronized = [[AKASynchronized alloc] init];
-    /* sqlite3のURLを収得 */
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = paths[0];
-    NSLog(@"sqlite3: %@", documentsPath);
-    
     /* アカウントの照合 */
     [synchronized checkAccount];
     
@@ -107,46 +131,5 @@
     [synchronized deleteFeed];
 }
 
-
-//-- カテゴリーを習得
-- (void)feedCategory {
-    NSURL *url = [NSURL URLWithString:SYNCHRO];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    [request setValue:_account.accessToken.accessToken forHTTPHeaderField:@"Authorization"];
-    
-    // 非同期通信
-    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        
-        if (error) {
-            if (error.code == -1003) {
-                NSLog(@"not found hostname. targetURL=%@", url);
-            } else if (-1019) {
-                NSLog(@"auth error. reason=%@", error);
-            } else {
-                NSLog(@"unknown error occurred. reason = %@", error);
-            }
-        } else {
-            int httpStatusCode = ((NSHTTPURLResponse *)response).statusCode;
-            if (httpStatusCode == 404) {
-                NSLog(@"404 NOT FOUND ERROR. targetURL=%@", url);
-            } else {
-                NSLog(@"success request!!");
-                NSLog(@"statusCode = %ld", (long)((NSHTTPURLResponse *)response).statusCode);
-                
-                NSError *e = nil;
-                NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&e];
-                NSLog(@"%@", dict);
-                NSLog(@"responseText = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-                
-                self.categoryCount = [[dict valueForKey:@"unreadcounts"] count];
-                
-                // メインスレッドでの処理
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [_unreadTableView reloadData];
-                });
-            }
-        }
-    }];
-}
 
 @end
