@@ -100,4 +100,66 @@
     return site;
 }
 
+//-- 一致するカテゴリーを探す(saved)
+- (id)currentCategorySavedWithAccount:(NXOAuth2Account *)account items:(NSDictionary *)items count:(int)count {
+    /* tag:savedで収得するとcategoryが収得できないため、
+       entryIDを利用してもう一度収得する */
+    NSString* inputString = [items valueForKey:@"id"][count];
+    NSString *encodedText = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(
+                                                                                                  NULL,
+                                                                                                  (__bridge CFStringRef)inputString, //元の文字列
+                                                                                                  NULL,
+                                                                                                  CFSTR("!*'();:@&=+$,/?%#[]"),
+                                                                                                  CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
+    NSString *urlString = [@"https://sandbox.feedly.com/v3/entries/" stringByAppendingString:encodedText];
+    NSLog(@"%@", urlString);
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:url];
+    /* ヘッダー情報を追加する。 */
+    [urlRequest setValue:account.accessToken.accessToken forHTTPHeaderField:@"Authorization"];
+    
+    /* リクエスト送信 */
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    
+    if (error != nil) {
+        NSLog(@"Error!");
+    }
+    
+    NSError *e = nil;
+    /* 取得したレスポンスをJSONパース */
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&e];
+    
+//    NSLog(@"%@", dict);
+//    NSLog(@"responseText = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+
+    
+    /* Categoryテーブルを関連付けるために、Categoryテーブルを収得する */
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Category"];
+    NSArray* records = [[AKACoreData sharedCoreData].managedObjectContext executeFetchRequest:request error:nil];
+    
+    /* 一致するカテゴリを探す */
+    id category;
+    for (NSManagedObject *data in records) {
+        /* カテゴリ登録されていない場合は[categories][label]が存在しないため、nullになる */
+        if ([[dict valueForKey:@"categories"] valueForKey:@"label"][0] == [NSNull null]) {
+            //            NSLog(@"uncategorized");
+            /* 1周目だからUncategorizedになる */
+            category = data;
+            break;
+        } else {
+            /* [categories][label]が存在した場合、必ず一致するカテゴリが存在する */
+            if ([[data valueForKey:@"name"] isEqualToString:[[dict valueForKey:@"categories"][0][0] valueForKey:@"label"]]) {
+                //                NSLog(@"存在した: %@", [[items valueForKey:@"categories"][count][0] valueForKey:@"label"]);
+                category = data;
+                break;
+            }
+        }
+    }
+    
+    return category;
+}
+
 @end

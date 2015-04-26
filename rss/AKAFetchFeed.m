@@ -41,6 +41,20 @@
 //            }
         }
     }
+    
+    /* 空のカテゴリーを取り除く */
+    for (int i=0; i<feed.count; i++) {
+        if ([feed[i] count] == 0) {
+//            NSLog(@"hoge: %d", i);
+            [feed removeObjectAtIndex:i];
+            i--;
+        } else {
+//            NSLog(@"count: %lu", (unsigned long)[feed[i] count]);
+        }
+    }
+    
+    /* uncategorized */
+    
     return feed;
 }
 
@@ -56,7 +70,7 @@
         request.predicate = [NSPredicate predicateWithFormat:@"unread == %@",unread];
 //        NSLog(@"unread: %@", unread);
     }
-    NSArray* records = [[AKACoreData sharedCoreData].managedObjectContext executeFetchRequest:request error:nil];
+    NSArray *records = [[AKACoreData sharedCoreData].managedObjectContext executeFetchRequest:request error:nil];
 //    for (NSManagedObject *datas in records) {
 //        NSLog(@"%@: %@", [[datas valueForKey:@"category"] valueForKey:@"name"], [datas valueForKey:@"title"]);
 //    }

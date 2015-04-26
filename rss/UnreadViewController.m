@@ -69,12 +69,12 @@
         switch(indexPath.row) {
             case 0:
                 cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier:cellId];
-                cell.textLabel.text = @"hogehoge";
+                cell.textLabel.text = @"Unread";
                 tableView.rowHeight = 66.0;
                 break;
             default:
                 cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier:cellId];
-                cell.textLabel.text = @"hoge";
+                cell.textLabel.text = [self capitalizeFirstLetter:[[_feed[indexPath.row - 1][0] valueForKey:@"category"] valueForKey:@"name"]];
                 tableView.rowHeight = 44.0;
                 break;
         }
@@ -129,6 +129,18 @@
     
     /* 過去のfeedを削除 */
     [synchronized deleteFeed];
+}
+
+//-- 最初の文字だけ大文字にする
+-(NSString *)capitalizeFirstLetter:(NSString *)string{
+    NSString *capitalisedSentence = [string stringByReplacingCharactersInRange:NSMakeRange(0,1)
+                                                                    withString:[[string  substringToIndex:1] capitalizedString]];
+    return capitalisedSentence;
+}
+
+//-- test
+- (void)testRequest {
+
 }
 
 

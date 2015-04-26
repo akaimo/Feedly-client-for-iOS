@@ -28,7 +28,6 @@
 //-- URLを受け取ってJSONを収得し、辞書に変換して返す
 - (NSDictionary *)urlForJSONToDictionary:(NSURL *)url {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    
     /* ヘッダー情報を追加する。 */
     [request setValue:_account.accessToken.accessToken forHTTPHeaderField:@"Authorization"];
     
@@ -282,8 +281,9 @@
                 /* Accountテーブルから現在使っているアカウントデータを抽出する */
                 id account = [currentData currentAccount:_userData];
                 /* 一致するカテゴリを探す */
-                id category = [currentData currentCategory:items :i];
-                /* 一致するサイトを探す */
+                id category = [currentData currentCategorySavedWithAccount:_account items:items count:i];
+//                id category = [currentData currentCategory:items :i];
+                /* 一致するサイトを探す 要変更 */
                 id site = [currentData currentSite:items :i];
                 /* savedのフラグ */
                 NSNumber *num = [NSNumber numberWithBool:YES];
@@ -298,7 +298,7 @@
     records = [[AKACoreData sharedCoreData].managedObjectContext executeFetchRequest:request error:nil];
     
     for (NSManagedObject *data in records) {
-        NSLog(@"%@", [data valueForKey:@"title"]);
+        NSLog(@"%@: %@: %@",[[data valueForKey:@"category"] valueForKey:@"name"], [[data valueForKey:@"site"] valueForKey:@"title"], [data valueForKey:@"title"]);
     }
     
     for (NSManagedObject *data in records) {
