@@ -24,6 +24,8 @@
             NSManagedObject *data = records[i];
             
             NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Article"];
+            NSSortDescriptor* timestampSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+            request.sortDescriptors = @[timestampSortDescriptor];
             
             if (unread == nil) {
                 /* すべてのfeed */
@@ -61,6 +63,8 @@
 //-- すべてのfeedを収得
 - (NSArray *)fechAllFeedUnread:(NSNumber *)unread {
     NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Article"];
+    NSSortDescriptor* timestampSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+    request.sortDescriptors = @[timestampSortDescriptor];
     
     if (unread == nil) {
         /* すべてのfeedを収得 */

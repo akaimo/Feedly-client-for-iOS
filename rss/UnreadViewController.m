@@ -11,12 +11,14 @@
 #import "AKASynchronized.h"
 #import "AKACoreData.h"
 #import "AKAFetchFeed.h"
+#import "AKAFeedViewController.h"
+#import "AKATopCustomCell.h"
 
 @interface UnreadViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *unreadTableView;
 //@property (nonatomic, assign) NSInteger *categoryCount;
 @property (nonatomic, retain) NSArray *feed;
-@property (nonatomic, retain) NSArray *allFeed;
+@property (nonatomic, retain) NSDictionary *allFeed;
 @property (nonatomic, retain) NXOAuth2Account *account;
 
 @end
@@ -27,6 +29,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    /* カスタムセルの定義 */
+    UINib *nib = [UINib nibWithNibName:@"AKATopCustomCell" bundle:nil];
+    [self.unreadTableView registerNib:nib forCellReuseIdentifier:@"Top"];
+    UINib *nib2 = [UINib nibWithNibName:@"AKASecondCustomCell" bundle:nil];
+    [self.unreadTableView registerNib:nib2 forCellReuseIdentifier:@"Second"];
+    
     /* sqlite3のURLを収得 */
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = paths[0];
@@ -35,11 +43,35 @@
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     _account = delegate.account;
     [self setTitle];
-    [self synchro];
     
+    /* 同期処理 */
+//    [self synchro];
+    
+    /* fetch処理 */
     AKAFetchFeed *fechFeed = [[AKAFetchFeed alloc] init];
     _feed = [fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:YES]];
     _allFeed = [fechFeed fechAllFeedUnread:[NSNumber numberWithBool:YES]];
+    
+    /* マルチスレッド */
+    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+        /* 同期処理 */
+        [self synchro];
+        
+        /* fetch処理 */
+        AKAFetchFeed *fechFeed = [[AKAFetchFeed alloc] init];
+        _feed = [fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:YES]];
+        _allFeed = [fechFeed fechAllFeedUnread:[NSNumber numberWithBool:YES]];
+        
+        /* メインスレッドでの処理 */
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.unreadTableView reloadData];
+        });
+    }];
+    
+    /* 次のViewの戻るボタンの設定 */
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] init];
+    barButton.title = @"";
+    self.navigationItem.backBarButtonItem = barButton;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,24 +93,27 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellId = @"accountViewCell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    
-    if (!cell) {
-        switch(indexPath.row) {
-            case 0:
-                cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier:cellId];
-                cell.textLabel.text = @"Unread";
-                tableView.rowHeight = 66.0;
-                break;
-            default:
-                cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier:cellId];
-                cell.textLabel.text = [self capitalizeFirstLetter:[[_feed[indexPath.row - 1][0] valueForKey:@"category"] valueForKey:@"name"]];
-                tableView.rowHeight = 44.0;
-                break;
-        }
+    NSString *identifier;
+    NSString *title;
+    NSString *unreadCount;
+    switch (indexPath.row) {
+        case 0:
+            identifier = @"Top";
+            title = @"Unread";
+            unreadCount = [NSString stringWithFormat:@"%lu", (unsigned long)[_allFeed count]];
+            break;
+            
+        default:
+            identifier = @"Second";
+            title = [[_feed[indexPath.row -1] valueForKey:@"category"] valueForKey:@"name"][0];
+            unreadCount = [NSString stringWithFormat:@"%lu", (unsigned long)[_feed[indexPath.row -1] count]];
+            break;
     }
+    
+    AKATopCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    
+    cell.title.text = title;
+    cell.unreadCount.text = unreadCount;
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -87,7 +122,32 @@
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if (indexPath.row == 0) {
+        [self performSegueWithIdentifier:@"Feed" sender:_allFeed];
+    } else {
+        [self performSegueWithIdentifier:@"Feed" sender:_feed[indexPath.row-1]];
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"Feed"]) {
+//        if ([sender isKindOfClass:[NSManagedObject class]]) {
+            AKAFeedViewController *feedViewController = (AKAFeedViewController *)[segue destinationViewController];
+            feedViewController.feed = sender;
+//        }
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.row) {
+        case 0:
+            return [AKATopCustomCell topRowHeight];
+            break;
+            
+        default:
+            return [AKATopCustomCell secondRowHeight];
+            break;
+    }
 }
 
 

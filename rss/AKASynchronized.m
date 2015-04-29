@@ -36,10 +36,10 @@
     NSError *error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
-    if (error != nil) {
-        NSLog(@"Error!");
-        return nil;
-    }
+//    if (error != nil) {
+//        NSLog(@"Error!");
+//        return nil;
+//    }
     
     NSError *e = nil;    
     /* 取得したレスポンスをJSONパース */
@@ -326,9 +326,9 @@
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSLog(@"now: %@", now);
     NSDateComponents *comps = [[NSDateComponents alloc]init];
-    comps.day = -1;
+    comps.day = -3;
     NSDate *result = [calendar dateByAddingComponents:comps toDate:now options:0];
-    NSLog(@"1日前：%@", result);
+    NSLog(@"3日前：%@", result);
     double unixtime = [result timeIntervalSince1970];
     NSLog(@"%f", unixtime * 1000);
     

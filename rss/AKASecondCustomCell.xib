@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Second" rowHeight="44" id="E6x-UV-J4X" customClass="AKATopCustomCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E6x-UV-J4X" id="1Xe-oW-WRd">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kB4-LQ-u1n">
+                        <rect key="frame" x="10" y="11" width="33" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L45-c3-7ub">
+                        <rect key="frame" x="290" y="11" width="20" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="centerY" secondItem="L45-c3-7ub" secondAttribute="centerY" id="CBt-rh-V9c"/>
+                    <constraint firstAttribute="trailing" secondItem="L45-c3-7ub" secondAttribute="trailing" constant="10" id="S5D-Wi-od0"/>
+                    <constraint firstItem="kB4-LQ-u1n" firstAttribute="leading" secondItem="1Xe-oW-WRd" secondAttribute="leading" constant="10" id="dAT-xj-Rbk"/>
+                    <constraint firstAttribute="centerY" secondItem="kB4-LQ-u1n" secondAttribute="centerY" id="jk2-M8-KJZ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="title" destination="kB4-LQ-u1n" id="jYw-lm-BKz"/>
+                <outlet property="unreadCount" destination="L45-c3-7ub" id="YaR-m3-TOf"/>
+            </connections>
+            <point key="canvasLocation" x="656" y="403"/>
+        </tableViewCell>
+    </objects>
+</document>

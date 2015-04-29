@@ -67,6 +67,7 @@
     
     cell.detailTextLabel.text = account.identifier;
     
+    // 右端に>を表示
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;

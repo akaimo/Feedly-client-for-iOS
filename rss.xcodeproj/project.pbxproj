@@ -22,6 +22,10 @@
 		99A0A2EA1AE1153F00A3A592 /* AKASynchronized.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A0A2E91AE1153F00A3A592 /* AKASynchronized.m */; };
 		99FB28EE1AE7CFE60062214D /* AKACurrentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FB28ED1AE7CFE60062214D /* AKACurrentData.m */; };
 		99FBE9071AEB431D0022B1F0 /* AKAFetchFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FBE9061AEB431D0022B1F0 /* AKAFetchFeed.m */; };
+		99FBE90A1AEDFAC70022B1F0 /* AKAFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FBE9091AEDFAC70022B1F0 /* AKAFeedViewController.m */; };
+		99FBE9191AEFB7F50022B1F0 /* AKATopCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FBE9171AEFB7F40022B1F0 /* AKATopCustomCell.m */; };
+		99FBE91A1AEFB7F50022B1F0 /* AKATopCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99FBE9181AEFB7F40022B1F0 /* AKATopCustomCell.xib */; };
+		99FBE91D1AF0BD580022B1F0 /* AKASecondCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99FBE91C1AF0BD580022B1F0 /* AKASecondCustomCell.xib */; };
 		EAA96D513CBE9BB0827511BE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C231D427ABBCDAB4D87DB76F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +70,12 @@
 		99FB28ED1AE7CFE60062214D /* AKACurrentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKACurrentData.m; sourceTree = "<group>"; };
 		99FBE9051AEB431D0022B1F0 /* AKAFetchFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKAFetchFeed.h; sourceTree = "<group>"; };
 		99FBE9061AEB431D0022B1F0 /* AKAFetchFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKAFetchFeed.m; sourceTree = "<group>"; };
+		99FBE9081AEDFAC70022B1F0 /* AKAFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKAFeedViewController.h; sourceTree = "<group>"; };
+		99FBE9091AEDFAC70022B1F0 /* AKAFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKAFeedViewController.m; sourceTree = "<group>"; };
+		99FBE9161AEFB7F40022B1F0 /* AKATopCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKATopCustomCell.h; sourceTree = "<group>"; };
+		99FBE9171AEFB7F40022B1F0 /* AKATopCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKATopCustomCell.m; sourceTree = "<group>"; };
+		99FBE9181AEFB7F40022B1F0 /* AKATopCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKATopCustomCell.xib; sourceTree = "<group>"; };
+		99FBE91C1AF0BD580022B1F0 /* AKASecondCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKASecondCustomCell.xib; sourceTree = "<group>"; };
 		C231D427ABBCDAB4D87DB76F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA8E5499C38816703E582A9E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,22 +142,11 @@
 			isa = PBXGroup;
 			children = (
 				997E43EC1AD673EF002CB3BB /* Define.h */,
-				99A0A2E51AE110A000A3A592 /* AKACoreData.h */,
-				99A0A2E61AE110A000A3A592 /* AKACoreData.m */,
-				99FB28EC1AE7CFE60062214D /* AKACurrentData.h */,
-				99FB28ED1AE7CFE60062214D /* AKACurrentData.m */,
-				99FBE9051AEB431D0022B1F0 /* AKAFetchFeed.h */,
-				99FBE9061AEB431D0022B1F0 /* AKAFetchFeed.m */,
 				990606271ACBA8660014964E /* AppDelegate.h */,
 				990606281ACBA8660014964E /* AppDelegate.m */,
-				99A0A2E81AE1153F00A3A592 /* AKASynchronized.h */,
-				99A0A2E91AE1153F00A3A592 /* AKASynchronized.m */,
-				9906062A1ACBA8660014964E /* ViewController.h */,
-				9906062B1ACBA8660014964E /* ViewController.m */,
-				9906068F1ACE869C0014964E /* UnreadViewController.h */,
-				990606901ACE869C0014964E /* UnreadViewController.m */,
-				997E43E91AD3D4BB002CB3BB /* OAuthWebViewController.h */,
-				997E43EA1AD3D4BB002CB3BB /* OAuthWebViewController.m */,
+				99FBE9151AEFB71F0022B1F0 /* CoreData */,
+				99FBE9141AEFB6DC0022B1F0 /* View */,
+				99FBE91B1AEFB8720022B1F0 /* Cell */,
 				9906062D1ACBA8660014964E /* Main.storyboard */,
 				990606301ACBA8660014964E /* Images.xcassets */,
 				990606321ACBA8660014964E /* LaunchScreen.xib */,
@@ -182,6 +181,47 @@
 				9906063E1ACBA8660014964E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		99FBE9141AEFB6DC0022B1F0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9906062A1ACBA8660014964E /* ViewController.h */,
+				9906062B1ACBA8660014964E /* ViewController.m */,
+				9906068F1ACE869C0014964E /* UnreadViewController.h */,
+				990606901ACE869C0014964E /* UnreadViewController.m */,
+				99FBE9081AEDFAC70022B1F0 /* AKAFeedViewController.h */,
+				99FBE9091AEDFAC70022B1F0 /* AKAFeedViewController.m */,
+				997E43E91AD3D4BB002CB3BB /* OAuthWebViewController.h */,
+				997E43EA1AD3D4BB002CB3BB /* OAuthWebViewController.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		99FBE9151AEFB71F0022B1F0 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				99FB28EC1AE7CFE60062214D /* AKACurrentData.h */,
+				99A0A2E51AE110A000A3A592 /* AKACoreData.h */,
+				99A0A2E61AE110A000A3A592 /* AKACoreData.m */,
+				99FB28ED1AE7CFE60062214D /* AKACurrentData.m */,
+				99FBE9051AEB431D0022B1F0 /* AKAFetchFeed.h */,
+				99FBE9061AEB431D0022B1F0 /* AKAFetchFeed.m */,
+				99A0A2E81AE1153F00A3A592 /* AKASynchronized.h */,
+				99A0A2E91AE1153F00A3A592 /* AKASynchronized.m */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		99FBE91B1AEFB8720022B1F0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				99FBE9161AEFB7F40022B1F0 /* AKATopCustomCell.h */,
+				99FBE9171AEFB7F40022B1F0 /* AKATopCustomCell.m */,
+				99FBE9181AEFB7F40022B1F0 /* AKATopCustomCell.xib */,
+				99FBE91C1AF0BD580022B1F0 /* AKASecondCustomCell.xib */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,6 +307,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99FBE91A1AEFB7F50022B1F0 /* AKATopCustomCell.xib in Resources */,
+				99FBE91D1AF0BD580022B1F0 /* AKASecondCustomCell.xib in Resources */,
 				9906062F1ACBA8660014964E /* Main.storyboard in Resources */,
 				990606341ACBA8660014964E /* LaunchScreen.xib in Resources */,
 				990606311ACBA8660014964E /* Images.xcassets in Resources */,
@@ -323,6 +365,8 @@
 				9906062C1ACBA8660014964E /* ViewController.m in Sources */,
 				99A0A2EA1AE1153F00A3A592 /* AKASynchronized.m in Sources */,
 				99A0A2E71AE110A000A3A592 /* AKACoreData.m in Sources */,
+				99FBE90A1AEDFAC70022B1F0 /* AKAFeedViewController.m in Sources */,
+				99FBE9191AEFB7F50022B1F0 /* AKATopCustomCell.m in Sources */,
 				990606291ACBA8660014964E /* AppDelegate.m in Sources */,
 				990606261ACBA8660014964E /* main.m in Sources */,
 				99FB28EE1AE7CFE60062214D /* AKACurrentData.m in Sources */,
