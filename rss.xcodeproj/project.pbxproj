@@ -26,6 +26,10 @@
 		99FBE9191AEFB7F50022B1F0 /* AKATopCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FBE9171AEFB7F40022B1F0 /* AKATopCustomCell.m */; };
 		99FBE91A1AEFB7F50022B1F0 /* AKATopCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99FBE9181AEFB7F40022B1F0 /* AKATopCustomCell.xib */; };
 		99FBE91D1AF0BD580022B1F0 /* AKASecondCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99FBE91C1AF0BD580022B1F0 /* AKASecondCustomCell.xib */; };
+		99FBE9211AF0E4B10022B1F0 /* AKAImgCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FBE91F1AF0E4B10022B1F0 /* AKAImgCustomCell.m */; };
+		99FBE9221AF0E4B10022B1F0 /* AKAImgCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99FBE9201AF0E4B10022B1F0 /* AKAImgCustomCell.xib */; };
+		99FBE9261AF10BA30022B1F0 /* AKANoImgCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99FBE9251AF10BA30022B1F0 /* AKANoImgCustomCell.xib */; };
+		99FBE9291AF1D2850022B1F0 /* AKADetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FBE9281AF1D2850022B1F0 /* AKADetailViewController.m */; };
 		EAA96D513CBE9BB0827511BE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C231D427ABBCDAB4D87DB76F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +80,12 @@
 		99FBE9171AEFB7F40022B1F0 /* AKATopCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKATopCustomCell.m; sourceTree = "<group>"; };
 		99FBE9181AEFB7F40022B1F0 /* AKATopCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKATopCustomCell.xib; sourceTree = "<group>"; };
 		99FBE91C1AF0BD580022B1F0 /* AKASecondCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKASecondCustomCell.xib; sourceTree = "<group>"; };
+		99FBE91E1AF0E4B10022B1F0 /* AKAImgCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKAImgCustomCell.h; sourceTree = "<group>"; };
+		99FBE91F1AF0E4B10022B1F0 /* AKAImgCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKAImgCustomCell.m; sourceTree = "<group>"; };
+		99FBE9201AF0E4B10022B1F0 /* AKAImgCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKAImgCustomCell.xib; sourceTree = "<group>"; };
+		99FBE9251AF10BA30022B1F0 /* AKANoImgCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKANoImgCustomCell.xib; sourceTree = "<group>"; };
+		99FBE9271AF1D2850022B1F0 /* AKADetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKADetailViewController.h; sourceTree = "<group>"; };
+		99FBE9281AF1D2850022B1F0 /* AKADetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKADetailViewController.m; sourceTree = "<group>"; };
 		C231D427ABBCDAB4D87DB76F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA8E5499C38816703E582A9E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -192,6 +202,8 @@
 				990606901ACE869C0014964E /* UnreadViewController.m */,
 				99FBE9081AEDFAC70022B1F0 /* AKAFeedViewController.h */,
 				99FBE9091AEDFAC70022B1F0 /* AKAFeedViewController.m */,
+				99FBE9271AF1D2850022B1F0 /* AKADetailViewController.h */,
+				99FBE9281AF1D2850022B1F0 /* AKADetailViewController.m */,
 				997E43E91AD3D4BB002CB3BB /* OAuthWebViewController.h */,
 				997E43EA1AD3D4BB002CB3BB /* OAuthWebViewController.m */,
 			);
@@ -220,6 +232,10 @@
 				99FBE9171AEFB7F40022B1F0 /* AKATopCustomCell.m */,
 				99FBE9181AEFB7F40022B1F0 /* AKATopCustomCell.xib */,
 				99FBE91C1AF0BD580022B1F0 /* AKASecondCustomCell.xib */,
+				99FBE91E1AF0E4B10022B1F0 /* AKAImgCustomCell.h */,
+				99FBE91F1AF0E4B10022B1F0 /* AKAImgCustomCell.m */,
+				99FBE9201AF0E4B10022B1F0 /* AKAImgCustomCell.xib */,
+				99FBE9251AF10BA30022B1F0 /* AKANoImgCustomCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -309,6 +325,8 @@
 			files = (
 				99FBE91A1AEFB7F50022B1F0 /* AKATopCustomCell.xib in Resources */,
 				99FBE91D1AF0BD580022B1F0 /* AKASecondCustomCell.xib in Resources */,
+				99FBE9221AF0E4B10022B1F0 /* AKAImgCustomCell.xib in Resources */,
+				99FBE9261AF10BA30022B1F0 /* AKANoImgCustomCell.xib in Resources */,
 				9906062F1ACBA8660014964E /* Main.storyboard in Resources */,
 				990606341ACBA8660014964E /* LaunchScreen.xib in Resources */,
 				990606311ACBA8660014964E /* Images.xcassets in Resources */,
@@ -365,9 +383,11 @@
 				9906062C1ACBA8660014964E /* ViewController.m in Sources */,
 				99A0A2EA1AE1153F00A3A592 /* AKASynchronized.m in Sources */,
 				99A0A2E71AE110A000A3A592 /* AKACoreData.m in Sources */,
+				99FBE9291AF1D2850022B1F0 /* AKADetailViewController.m in Sources */,
 				99FBE90A1AEDFAC70022B1F0 /* AKAFeedViewController.m in Sources */,
 				99FBE9191AEFB7F50022B1F0 /* AKATopCustomCell.m in Sources */,
 				990606291ACBA8660014964E /* AppDelegate.m in Sources */,
+				99FBE9211AF0E4B10022B1F0 /* AKAImgCustomCell.m in Sources */,
 				990606261ACBA8660014964E /* main.m in Sources */,
 				99FB28EE1AE7CFE60062214D /* AKACurrentData.m in Sources */,
 				99FBE9071AEB431D0022B1F0 /* AKAFetchFeed.m in Sources */,

@@ -105,7 +105,7 @@
             
         default:
             identifier = @"Second";
-            title = [[_feed[indexPath.row -1] valueForKey:@"category"] valueForKey:@"name"][0];
+            title = [self capitalizeFirstLetter:[[_feed[indexPath.row -1] valueForKey:@"category"] valueForKey:@"name"][0]];
             unreadCount = [NSString stringWithFormat:@"%lu", (unsigned long)[_feed[indexPath.row -1] count]];
             break;
     }
@@ -123,18 +123,19 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        [self performSegueWithIdentifier:@"Feed" sender:_allFeed];
+        NSArray *array = [NSArray arrayWithObjects:@"All Items", _allFeed, nil];
+        [self performSegueWithIdentifier:@"Feed" sender:array];
     } else {
-        [self performSegueWithIdentifier:@"Feed" sender:_feed[indexPath.row-1]];
+        NSArray *array = [NSArray arrayWithObjects:[[_feed[indexPath.row-1] valueForKey:@"category"] valueForKey:@"name"][0], _feed[indexPath.row-1], nil];
+        [self performSegueWithIdentifier:@"Feed" sender:array];
     }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"Feed"]) {
-//        if ([sender isKindOfClass:[NSManagedObject class]]) {
-            AKAFeedViewController *feedViewController = (AKAFeedViewController *)[segue destinationViewController];
-            feedViewController.feed = sender;
-//        }
+        AKAFeedViewController *feedViewController = (AKAFeedViewController *)[segue destinationViewController];
+        feedViewController.title = sender[0];
+        feedViewController.feed = sender[1];
     }
 }
 

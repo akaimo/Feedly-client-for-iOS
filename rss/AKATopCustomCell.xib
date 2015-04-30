@@ -14,22 +14,22 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XJG-bE-BzR">
-                        <rect key="frame" x="10" y="11" width="33" height="21"/>
+                        <rect key="frame" x="15" y="11" width="33" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ZW-C7-KWk">
-                        <rect key="frame" x="290" y="11" width="20" height="21"/>
+                        <rect key="frame" x="300" y="11" width="20" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="0ZW-C7-KWk" secondAttribute="trailing" id="00J-C0-3tl"/>
                     <constraint firstAttribute="centerY" secondItem="XJG-bE-BzR" secondAttribute="centerY" id="7xl-UQ-tLf"/>
-                    <constraint firstAttribute="trailing" secondItem="0ZW-C7-KWk" secondAttribute="trailing" constant="10" id="OYf-1P-ao0"/>
-                    <constraint firstItem="XJG-bE-BzR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="R08-lH-Ydh"/>
+                    <constraint firstItem="XJG-bE-BzR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="eOJ-Ka-kgX"/>
                     <constraint firstAttribute="centerY" secondItem="0ZW-C7-KWk" secondAttribute="centerY" id="plw-Os-wl2"/>
                 </constraints>
             </tableViewCellContentView>

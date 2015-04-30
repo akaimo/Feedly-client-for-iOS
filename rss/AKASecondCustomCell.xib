@@ -13,13 +13,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kB4-LQ-u1n">
-                        <rect key="frame" x="10" y="11" width="33" height="21"/>
+                        <rect key="frame" x="15" y="11" width="33" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L45-c3-7ub">
-                        <rect key="frame" x="290" y="11" width="20" height="21"/>
+                        <rect key="frame" x="300" y="11" width="20" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -27,9 +27,9 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="centerY" secondItem="L45-c3-7ub" secondAttribute="centerY" id="CBt-rh-V9c"/>
-                    <constraint firstAttribute="trailing" secondItem="L45-c3-7ub" secondAttribute="trailing" constant="10" id="S5D-Wi-od0"/>
-                    <constraint firstItem="kB4-LQ-u1n" firstAttribute="leading" secondItem="1Xe-oW-WRd" secondAttribute="leading" constant="10" id="dAT-xj-Rbk"/>
                     <constraint firstAttribute="centerY" secondItem="kB4-LQ-u1n" secondAttribute="centerY" id="jk2-M8-KJZ"/>
+                    <constraint firstItem="kB4-LQ-u1n" firstAttribute="leading" secondItem="1Xe-oW-WRd" secondAttribute="leading" constant="15" id="upa-b2-y00"/>
+                    <constraint firstAttribute="trailing" secondItem="L45-c3-7ub" secondAttribute="trailing" id="wh5-4G-W9q"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

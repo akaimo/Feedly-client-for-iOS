@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Img" rowHeight="132" id="KGk-i7-Jjw" customClass="AKAImgCustomCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="132"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="anX-Ch-2nv">
+                        <rect key="frame" x="10" y="9" width="112" height="112"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="112" id="Ila-lY-d4u"/>
+                            <constraint firstAttribute="height" constant="112" id="bdQ-Jz-VYd"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5WY-tm-upS">
+                        <rect key="frame" x="132" y="10" width="178" height="18"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNN-wa-oov">
+                        <rect key="frame" x="132" y="38" width="178" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="siteTitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ptS-rB-jdu">
+                        <rect key="frame" x="132" y="104" width="178" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="gNN-wa-oov" secondAttribute="trailing" constant="10" id="3lg-vZ-MeE"/>
+                    <constraint firstAttribute="bottom" secondItem="ptS-rB-jdu" secondAttribute="bottom" constant="10" id="4Bp-ev-g99"/>
+                    <constraint firstItem="anX-Ch-2nv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="Erx-nt-cVg"/>
+                    <constraint firstItem="anX-Ch-2nv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="HUV-wL-R1c"/>
+                    <constraint firstAttribute="trailing" secondItem="5WY-tm-upS" secondAttribute="trailing" constant="10" id="Hai-cx-slM"/>
+                    <constraint firstItem="ptS-rB-jdu" firstAttribute="leading" secondItem="anX-Ch-2nv" secondAttribute="trailing" constant="10" id="Nhb-nv-YmK"/>
+                    <constraint firstAttribute="bottom" secondItem="anX-Ch-2nv" secondAttribute="bottom" constant="10" id="OX5-bV-hTR"/>
+                    <constraint firstItem="5WY-tm-upS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="RdT-0m-pdN"/>
+                    <constraint firstItem="gNN-wa-oov" firstAttribute="leading" secondItem="anX-Ch-2nv" secondAttribute="trailing" constant="10" id="ldd-Xs-ocb"/>
+                    <constraint firstAttribute="trailing" secondItem="ptS-rB-jdu" secondAttribute="trailing" constant="10" id="uxW-tI-rb5"/>
+                    <constraint firstItem="gNN-wa-oov" firstAttribute="top" secondItem="5WY-tm-upS" secondAttribute="bottom" constant="10" id="v9l-FD-Dhm"/>
+                    <constraint firstItem="5WY-tm-upS" firstAttribute="leading" secondItem="anX-Ch-2nv" secondAttribute="trailing" constant="10" id="zAF-n4-OIH"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="detail" destination="gNN-wa-oov" id="brP-X5-42u"/>
+                <outlet property="image" destination="anX-Ch-2nv" id="OoT-Nv-NG9"/>
+                <outlet property="siteTitle" destination="ptS-rB-jdu" id="CAf-Bv-5He"/>
+                <outlet property="title" destination="5WY-tm-upS" id="ORb-op-sHn"/>
+            </connections>
+            <point key="canvasLocation" x="499" y="586"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -10,6 +10,6 @@
 
 @interface AKAFeedViewController : UIViewController
 
-@property (nonatomic, retain) NSDictionary *feed;
+@property (nonatomic, retain) NSArray *feed;
 
 @end
