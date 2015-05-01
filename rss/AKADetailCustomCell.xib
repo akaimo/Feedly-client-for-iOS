@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Detail" id="KGk-i7-Jjw" customClass="AKADetailCustomCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXu-5N-4lH">
+                        <rect key="frame" x="30" y="30" width="260" height="21"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WKn-ur-Nil">
+                        <rect key="frame" x="30" y="81" width="260" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="WKn-ur-Nil" secondAttribute="trailing" constant="30" id="Gdm-sj-Ise"/>
+                    <constraint firstItem="vXu-5N-4lH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="J7q-rA-Up1"/>
+                    <constraint firstItem="WKn-ur-Nil" firstAttribute="top" secondItem="vXu-5N-4lH" secondAttribute="bottom" constant="30" id="KFO-qI-kD9"/>
+                    <constraint firstAttribute="trailing" secondItem="vXu-5N-4lH" secondAttribute="trailing" constant="30" id="NDw-aq-4TM"/>
+                    <constraint firstItem="WKn-ur-Nil" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="OUl-yf-j1i"/>
+                    <constraint firstItem="vXu-5N-4lH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="qZQ-Ke-M3r"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="detail" destination="WKn-ur-Nil" id="rcx-sK-pSb"/>
+                <outlet property="title" destination="vXu-5N-4lH" id="qEJ-AH-F2D"/>
+            </connections>
+            <point key="canvasLocation" x="288" y="38"/>
+        </tableViewCell>
+    </objects>
+</document>
