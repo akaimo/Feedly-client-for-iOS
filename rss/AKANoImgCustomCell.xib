@@ -12,36 +12,44 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DTH-fP-bBF" id="jem-b7-jmM">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlf-w4-ad3">
+                        <rect key="frame" x="15" y="33" width="295" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SiteTitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uv-nX-u3G">
+                        <rect key="frame" x="15" y="105" width="295" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLz-Xm-Adp">
                         <rect key="frame" x="15" y="10" width="295" height="18"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SiteTitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uv-nX-u3G">
-                        <rect key="frame" x="15" y="104" width="295" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlf-w4-ad3">
-                        <rect key="frame" x="10" y="38" width="300" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="MLz-Xm-Adp" firstAttribute="leading" secondItem="jem-b7-jmM" secondAttribute="leading" constant="15" id="7L5-8c-kto"/>
-                    <constraint firstItem="hlf-w4-ad3" firstAttribute="leading" secondItem="jem-b7-jmM" secondAttribute="leading" constant="10" id="9PD-L4-e3i"/>
+                    <constraint firstItem="hlf-w4-ad3" firstAttribute="leading" secondItem="jem-b7-jmM" secondAttribute="leading" constant="15" id="9PD-L4-e3i"/>
+                    <constraint firstItem="hlf-w4-ad3" firstAttribute="top" secondItem="MLz-Xm-Adp" secondAttribute="bottom" constant="5" id="Anv-eq-LwO"/>
                     <constraint firstAttribute="trailing" secondItem="hlf-w4-ad3" secondAttribute="trailing" constant="10" id="CXB-CY-XpR"/>
                     <constraint firstAttribute="trailing" secondItem="5uv-nX-u3G" secondAttribute="trailing" constant="10" id="GUz-5h-dc9"/>
                     <constraint firstItem="MLz-Xm-Adp" firstAttribute="top" secondItem="jem-b7-jmM" secondAttribute="top" constant="10" id="Hyx-mW-Njz"/>
+                    <constraint firstItem="5uv-nX-u3G" firstAttribute="top" secondItem="hlf-w4-ad3" secondAttribute="bottom" constant="10" id="LtZ-Kg-XVY"/>
                     <constraint firstItem="hlf-w4-ad3" firstAttribute="top" secondItem="MLz-Xm-Adp" secondAttribute="bottom" constant="10" id="RI8-9A-pf3"/>
                     <constraint firstAttribute="trailing" secondItem="MLz-Xm-Adp" secondAttribute="trailing" constant="10" id="byh-74-luP"/>
                     <constraint firstAttribute="bottom" secondItem="5uv-nX-u3G" secondAttribute="bottom" constant="10" id="sMN-nO-Z5I"/>
                     <constraint firstItem="5uv-nX-u3G" firstAttribute="leading" secondItem="jem-b7-jmM" secondAttribute="leading" constant="15" id="uxZ-Eu-Sft"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="RI8-9A-pf3"/>
+                        <exclude reference="LtZ-Kg-XVY"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="detail" destination="hlf-w4-ad3" id="dLM-YB-5xd"/>

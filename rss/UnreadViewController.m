@@ -74,6 +74,11 @@
     self.navigationItem.backBarButtonItem = barButton;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    // footer on
+    [self.navigationController setToolbarHidden:NO animated:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

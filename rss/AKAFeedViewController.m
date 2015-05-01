@@ -8,6 +8,8 @@
 
 #import "AKAFeedViewController.h"
 #import "AKAImgCustomCell.h"
+#import "AKADetailViewController.h"
+#import "AKARegularExpression.h"
 
 @interface AKAFeedViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
@@ -26,10 +28,15 @@
     UINib *nib2 = [UINib nibWithNibName:@"AKANoImgCustomCell" bundle:nil];
     [self.feedTableView registerNib:nib2 forCellReuseIdentifier:@"NoImg"];
     
+    /* 次のViewの戻るボタンの設定 */
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] init];
+    barButton.title = @"";
+    self.navigationItem.backBarButtonItem = barButton;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
     /* footer off */
     [self.navigationController setToolbarHidden:YES animated:YES];
-    
-//    self.title = [[_feed valueForKey:@"category"] valueForKey:@"name"][0];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,7 +47,8 @@
 #pragma mark - UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSArray *img = [self imagesWithFeed:[_feed valueForKey:@"detail"][indexPath.row]];
+    AKARegularExpression *regularExpression = [[AKARegularExpression alloc] init];
+    NSArray *img = [regularExpression imagesWithFeed:[_feed valueForKey:@"detail"][indexPath.row]];
     NSString *identifier;
     
     if (img.count == 0) {
@@ -53,7 +61,7 @@
     
     cell.title.text = [NSString stringWithFormat:[_feed valueForKey:@"title"][indexPath.row]];
     
-    NSString *notag = [self noTagWithFeed:[_feed valueForKey:@"detail"][indexPath.row]];
+    NSString *notag = [regularExpression noTagWithFeed:[_feed valueForKey:@"detail"][indexPath.row]];
     if (notag.length != 0) {
         cell.detail.text = notag;
     } else {
@@ -91,53 +99,18 @@
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"Detail" sender:_feed[indexPath.row]];
+    NSArray *array = [NSArray arrayWithObjects:_feed, indexPath, nil];
+    [self performSegueWithIdentifier:@"Detail" sender:array];
 }
 
-
-//-- feedからimgのsrcを取り出す
-- (NSArray *)imagesWithFeed:(NSString *)feed {
-        if (!feed){
-            return nil;
-        }
-    
-    NSMutableArray *results = [NSMutableArray new];
-        NSString* pattern = @"(<img.*?src=\\\")(?!.*rss.rssad.jp)(.*?)(\\\".*?>)";
-    
-        NSError* error = nil;
-        NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
-    
-        if (error == nil){
-            NSArray *matches = [regex matchesInString:feed options:0 range:NSMakeRange(0, feed.length)];
-            for (NSTextCheckingResult *match in matches){
-//                NSLog(@"hoge: %@", [feed substringWithRange:[match rangeAtIndex:2]]);
-                [results addObject:[feed substringWithRange:[match rangeAtIndex:2]]];
-            }
-        }
-    
-    return results;
-}
-
-//-- feedからHTMLタグを取り除く
-- (NSString *)noTagWithFeed:(NSString *)feed {
-    if (!feed){
-        return nil;
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"Detail"]) {
+        AKADetailViewController *detailViewController = (AKADetailViewController *)[segue destinationViewController];
+        detailViewController.title = self.title;
+        detailViewController.feed = sender[0];
+        detailViewController.feedRow = [sender[1] row];
     }
-    
-    NSString* noteTitle = feed;
-    NSLog(@"除去前：%@", noteTitle);
-    /* 改行を除去 */
-    NSString* regPattern = @"(\r|(\r?\n))";
-    NSRegularExpression* regExp = [NSRegularExpression regularExpressionWithPattern:regPattern options:0 error:nil];
-    noteTitle = [regExp stringByReplacingMatchesInString:noteTitle options:0 range:NSMakeRange(0, noteTitle.length) withTemplate:@""];
-    NSLog(@"除去後：%@", noteTitle);
-    /* HTMLタグを除去 */
-    regPattern = @"<(\\\"[^\\\"]*\\\"|'[^']*'|[^'\\\">])*>";
-    regExp = [NSRegularExpression regularExpressionWithPattern:regPattern options:1 error:nil];
-    noteTitle = [regExp stringByReplacingMatchesInString:noteTitle options:0 range:NSMakeRange(0, noteTitle.length) withTemplate:@""];
-    NSLog(@"除去後2：%@", noteTitle);
-    
-    return noteTitle;
 }
+
 
 @end

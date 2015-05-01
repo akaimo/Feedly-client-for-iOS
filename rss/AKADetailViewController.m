@@ -7,8 +7,10 @@
 //
 
 #import "AKADetailViewController.h"
+#import "AKARegularExpression.h"
 
-@interface AKADetailViewController ()
+@interface AKADetailViewController () <UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -17,6 +19,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+//    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init]
+//                                                  forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
+//    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    /* footer on */
+    [self.navigationController setToolbarHidden:NO animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +36,56 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - UITableViewDataSource
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    AKARegularExpression *regularExpression = [[AKARegularExpression alloc] init];
+    NSArray *img = [regularExpression imagesWithFeed:[_feed valueForKey:@"detail"][_feedRow]];
+
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Feed"];
+    
+    UILabel *label1 = (UILabel*)[cell viewWithTag:1];
+    UILabel *label2 = (UILabel*)[cell viewWithTag:2];
+    UIImageView *imageView = (UIImageView *)[cell viewWithTag:3];
+    
+    label1.text = [_feed valueForKey:@"title"][_feedRow];
+    label2.text = [regularExpression noTagWithFeed:[_feed valueForKey:@"detail"][_feedRow]];
+    if (img.count != 0) {
+        dispatch_queue_t q_global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_queue_t q_main = dispatch_get_main_queue();
+        imageView.image = nil;
+        dispatch_async(q_global, ^{
+            NSString *imageURL = img[0];
+            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL: [NSURL URLWithString: imageURL]]];
+            
+            dispatch_async(q_main, ^{
+                imageView.image = image;
+                [cell layoutSubviews];
+            });
+        });
+    }
+    
+    return cell;
 }
-*/
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    NSArray *array = [NSArray arrayWithObjects:_feed, indexPath, nil];
+//    [self performSegueWithIdentifier:@"Detail" sender:array];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    if ([[segue identifier] isEqualToString:@"Detail"]) {
+//        AKADetailViewController *detailViewController = (AKADetailViewController *)[segue destinationViewController];
+//        detailViewController.title = self.title;
+//        detailViewController.feed = sender[0];
+//        detailViewController.feedRow = [sender[1] row];
+//    }
+}
 
 @end

@@ -10,4 +10,7 @@
 
 @interface AKADetailViewController : UIViewController
 
+@property (nonatomic, retain) NSArray *feed;
+@property (nonatomic, assign) int feedRow;
+
 @end
