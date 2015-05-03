@@ -42,6 +42,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     /* footer off */
     [self.navigationController setToolbarHidden:YES animated:YES];
+    
+    [_feedTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,6 +115,19 @@
     return _feed.count;
 }
 
+- (void)updateCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    AKAImgCustomCell *customeCell = (AKAImgCustomCell *)cell;
+    if ([[_feed valueForKey:@"unread"][indexPath.row] isEqualToNumber:[NSNumber numberWithBool:NO]]) {
+        customeCell.title.textColor = [UIColor lightGrayColor];
+        customeCell.detail.textColor = [UIColor lightGrayColor];
+        customeCell.siteTitle.textColor = [UIColor lightGrayColor];
+    } else {
+        customeCell.title.textColor = [UIColor blackColor];
+        customeCell.detail.textColor = [UIColor darkGrayColor];
+        customeCell.siteTitle.textColor = [UIColor darkGrayColor];
+    }
+}
+
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -124,8 +139,15 @@
     }];
     
     /* 配列内のデータも既読にする */
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//    NSLog(@"前: %@", [delegate.feed[_categoryRow] valueForKey:@"unread"][indexPath.row]);
+    [delegate.feed[_categoryRow][indexPath.row] setValue:[NSNumber numberWithBool:NO] forKey:@"unread"];
+//    NSLog(@"後: %@", [delegate.feed[_categoryRow] valueForKey:@"unread"][indexPath.row]);
     
-//    NSArray *feedArray = [NSArray arrayWithObjects:_feed, indexPath, nil];
+    /* Cellを更新する */
+    _feed = delegate.feed[_categoryRow];
+    [_feedTableView reloadData];
+    
     [self performSegueWithIdentifier:@"Detail" sender:indexPath];
 }
 

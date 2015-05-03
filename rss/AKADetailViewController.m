@@ -100,7 +100,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat height;
     CGFloat img;
-    CGFloat pad = 30.0 + 5.0 + 20.0 + 10.0 + 30.0 + 20.0;
+    CGFloat pad = 30.0 + 5.0 + 20.0 + 10.0 + 30.0;
     
     /* Titleの高さを取得 */
     CGFloat viewMargin = 30.0f;
@@ -121,15 +121,10 @@
         img = 200.0;
     }
     
-    height = boundingRectTitle.size.height + img + boundingRectDetail.size.height + pad;
+    height = boundingRectTitle.size.height + 20.0 + img + boundingRectDetail.size.height + pad;
     
     return height;
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return 600;
-//}
 
 
 #pragma mark - UITableViewDelegate
@@ -151,4 +146,5 @@
         [markersFeed keepUnread:array];
     }];
 }
+
 @end

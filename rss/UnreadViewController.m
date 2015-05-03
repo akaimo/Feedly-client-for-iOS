@@ -17,8 +17,8 @@
 @interface UnreadViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *unreadTableView;
 //@property (nonatomic, assign) NSInteger *categoryCount;
-@property (nonatomic, retain) NSArray *feed;
-@property (nonatomic, retain) NSDictionary *allFeed;
+@property (nonatomic, retain) NSMutableArray *feed;
+@property (nonatomic, retain) NSMutableDictionary *allFeed;
 @property (nonatomic, retain) NXOAuth2Account *account;
 
 @end
@@ -117,7 +117,7 @@
         case 0:
             identifier = @"Top";
             title = @"Unread";
-            unreadCount = [NSString stringWithFormat:@"%lu", (unsigned long)[delegate.feed count]];
+            unreadCount = [NSString stringWithFormat:@"%lu", (unsigned long)[delegate.feed[indexPath.row] count]];
             break;
             
         default:
@@ -191,7 +191,10 @@
     [synchronized saveCategory:category];
     
     /* 未読数を収得して、その数だけ記事を収得 */
-    NSString *str = [FEED stringByAppendingString:[synchronized checkUnreadCount]];
+    NSDictionary *userData = [_account userData];
+    NSString *str = [STREAMS stringByAppendingString:[userData valueForKey:@"id"]];
+    str = [str stringByAppendingString:FEED];
+    str = [str stringByAppendingString:[synchronized checkUnreadCount]];
     NSLog(@"%@", str);
     url = [NSURL URLWithString:str];
     NSDictionary *feed = [synchronized urlForJSONToDictionary:url];
@@ -199,7 +202,9 @@
     [synchronized saveFeed:feed];
     
     /* お気に入りを収得 */
-    url = [NSURL URLWithString:SAVED];
+    str = [STREAMS stringByAppendingString:[userData valueForKey:@"id"]];
+    str = [str stringByAppendingString:SAVED];
+    url = [NSURL URLWithString:str];
     NSDictionary *save = [synchronized urlForJSONToDictionary:url];
     /* お気に入りを解析し保存 */
     [synchronized saveSaved:save];
