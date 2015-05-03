@@ -13,6 +13,7 @@ extern NSString * const kOauth2ClientAccountType;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (nonatomic, retain) NSMutableArray *feed;
 @property (nonatomic, assign) NXOAuth2Account *account;
 @property (strong, nonatomic) UIWindow *window;
 

@@ -20,4 +20,13 @@
     // Configure the view for the selected state
 }
 
+-(CGFloat) height {
+    CGFloat bodyLabelW = _title.bounds.size.height;
+    CGSize bodySize = [_title.attributedText boundingRectWithSize:CGSizeMake(bodyLabelW, MAXFLOAT)
+                                                                  options:NSStringDrawingUsesLineFragmentOrigin
+                                                                  context:nil].size;
+    
+    return bodySize.height;
+}
+
 @end

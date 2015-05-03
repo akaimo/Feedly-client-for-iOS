@@ -10,6 +10,8 @@
 #import "AKAImgCustomCell.h"
 #import "AKADetailViewController.h"
 #import "AKARegularExpression.h"
+#import "AKAMarkersFeed.h"
+#import "AppDelegate.h"
 
 @interface AKAFeedViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
@@ -21,6 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    _feed = delegate.feed[_categoryRow];
     
     /* カスタムセルの定義 */
     UINib *nib = [UINib nibWithNibName:@"AKAImgCustomCell" bundle:nil];
@@ -89,6 +94,18 @@
         });
     }
     
+    if ([[_feed valueForKey:@"unread"][indexPath.row] isEqualToNumber:[NSNumber numberWithBool:NO]]) {
+//        NSLog(@"read");
+        cell.title.textColor = [UIColor lightGrayColor];
+        cell.detail.textColor = [UIColor lightGrayColor];
+        cell.siteTitle.textColor = [UIColor lightGrayColor];
+    } else {
+//        NSLog(@"unread");
+        cell.title.textColor = [UIColor blackColor];
+        cell.detail.textColor = [UIColor darkGrayColor];
+        cell.siteTitle.textColor = [UIColor darkGrayColor];
+    }
+    
     return cell;
 }
 
@@ -99,16 +116,26 @@
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSArray *array = [NSArray arrayWithObjects:_feed, indexPath, nil];
-    [self performSegueWithIdentifier:@"Detail" sender:array];
+    /* 開いたときに既読にする */
+    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+        NSArray *array = [NSArray arrayWithObjects:[_feed valueForKey:@"id"][indexPath.row], nil];
+        AKAMarkersFeed *markersFeed = [[AKAMarkersFeed alloc] init];
+        [markersFeed markAsRead:array];
+    }];
+    
+    /* 配列内のデータも既読にする */
+    
+//    NSArray *feedArray = [NSArray arrayWithObjects:_feed, indexPath, nil];
+    [self performSegueWithIdentifier:@"Detail" sender:indexPath];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     if ([[segue identifier] isEqualToString:@"Detail"]) {
         AKADetailViewController *detailViewController = (AKADetailViewController *)[segue destinationViewController];
         detailViewController.title = self.title;
-        detailViewController.feed = sender[0];
-        detailViewController.feedRow = [sender[1] row];
+        detailViewController.feed = delegate.feed[_categoryRow];
+        detailViewController.feedRow = [sender row];
     }
 }
 

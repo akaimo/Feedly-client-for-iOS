@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DetailImg" rowHeight="419" id="Nba-SU-tY1" customClass="AKADetailCustomCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="419"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nba-SU-tY1" id="YpX-VM-IFW">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0eC-ma-FU9">
+                        <rect key="frame" x="30" y="30" width="260" height="21"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kFB-vz-4kK">
+                        <rect key="frame" x="30" y="82" width="260" height="200"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="200" id="Odj-Ka-o19"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jnq-bv-cQr">
+                        <rect key="frame" x="30" y="292" width="260" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5p7-Pk-XC3">
+                        <rect key="frame" x="261" y="56" width="29" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="kFB-vz-4kK" secondAttribute="trailing" constant="30" id="1Yg-xi-EUu"/>
+                    <constraint firstAttribute="trailing" secondItem="5p7-Pk-XC3" secondAttribute="trailing" constant="30" id="Bvz-Sb-JTU"/>
+                    <constraint firstItem="0eC-ma-FU9" firstAttribute="top" secondItem="YpX-VM-IFW" secondAttribute="top" constant="30" id="DJD-7a-8Q3"/>
+                    <constraint firstItem="kFB-vz-4kK" firstAttribute="top" secondItem="0eC-ma-FU9" secondAttribute="bottom" constant="30" id="DXD-Rc-egx"/>
+                    <constraint firstAttribute="trailing" secondItem="0eC-ma-FU9" secondAttribute="trailing" constant="30" id="JQ5-7k-Lhs"/>
+                    <constraint firstItem="kFB-vz-4kK" firstAttribute="top" secondItem="5p7-Pk-XC3" secondAttribute="bottom" constant="10" id="bPQ-Tg-4Wl"/>
+                    <constraint firstAttribute="trailing" secondItem="Jnq-bv-cQr" secondAttribute="trailing" constant="30" id="eUr-Dn-wCc"/>
+                    <constraint firstItem="Jnq-bv-cQr" firstAttribute="leading" secondItem="YpX-VM-IFW" secondAttribute="leading" constant="30" id="fDU-VJ-8FG"/>
+                    <constraint firstItem="0eC-ma-FU9" firstAttribute="leading" secondItem="YpX-VM-IFW" secondAttribute="leading" constant="30" id="ihg-Uh-766"/>
+                    <constraint firstItem="5p7-Pk-XC3" firstAttribute="top" secondItem="0eC-ma-FU9" secondAttribute="bottom" constant="5" id="nTl-MR-tuY"/>
+                    <constraint firstItem="kFB-vz-4kK" firstAttribute="leading" secondItem="YpX-VM-IFW" secondAttribute="leading" constant="30" id="oOS-KP-4CA"/>
+                    <constraint firstItem="Jnq-bv-cQr" firstAttribute="top" secondItem="kFB-vz-4kK" secondAttribute="bottom" constant="10" id="sMM-gD-31U"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="DXD-Rc-egx"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="date" destination="5p7-Pk-XC3" id="kNb-w9-VgG"/>
+                <outlet property="detail" destination="Jnq-bv-cQr" id="IIF-qk-oi5"/>
+                <outlet property="detailImageView" destination="kFB-vz-4kK" id="rzH-f9-ORp"/>
+                <outlet property="title" destination="0eC-ma-FU9" id="U1c-4v-G3l"/>
+            </connections>
+            <point key="canvasLocation" x="1071" y="431.5"/>
+        </tableViewCell>
+    </objects>
+</document>

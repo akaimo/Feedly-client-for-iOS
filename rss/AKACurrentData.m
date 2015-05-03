@@ -111,7 +111,7 @@
                                                                                                   NULL,
                                                                                                   CFSTR("!*'();:@&=+$,/?%#[]"),
                                                                                                   CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
-    NSString *urlString = [@"https://sandbox.feedly.com/v3/entries/" stringByAppendingString:encodedText];
+    NSString *urlString = [ENTRY stringByAppendingString:encodedText];
     NSLog(@"%@", urlString);
     NSURL *url = [NSURL URLWithString:urlString];
     

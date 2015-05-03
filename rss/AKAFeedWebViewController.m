@@ -9,6 +9,7 @@
 #import "AKAFeedWebViewController.h"
 
 @interface AKAFeedWebViewController ()
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end
 
@@ -17,6 +18,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    NSURL *url = [NSURL URLWithString:[_feed valueForKey:@"url"]];
+    [_webView loadRequest:[NSURLRequest requestWithURL:url]];
+    
+    self.title = [_feed valueForKey:@"title"];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    /* footer off */
+    [self.navigationController setToolbarHidden:YES animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -50,17 +50,20 @@
     /* fetch処理 */
     AKAFetchFeed *fechFeed = [[AKAFetchFeed alloc] init];
     _feed = [fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:YES]];
-    _allFeed = [fechFeed fechAllFeedUnread:[NSNumber numberWithBool:YES]];
+    _allFeed = [fechFeed fechAllFeedUnread:[NSNumber numberWithBool:NO]];
+    delegate.feed = [NSMutableArray arrayWithObject:_allFeed];
+    for (NSDictionary *dic in _feed) {
+        [delegate.feed addObject:dic];
+    }
     
     /* マルチスレッド */
     [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
         /* 同期処理 */
         [self synchro];
         
-        /* fetch処理 */
         AKAFetchFeed *fechFeed = [[AKAFetchFeed alloc] init];
         _feed = [fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:YES]];
-        _allFeed = [fechFeed fechAllFeedUnread:[NSNumber numberWithBool:YES]];
+        _allFeed = [fechFeed fechAllFeedUnread:[NSNumber numberWithBool:NO]];
         
         /* メインスレッドでの処理 */
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -77,6 +80,20 @@
 - (void)viewWillAppear:(BOOL)animated {
     // footer on
     [self.navigationController setToolbarHidden:NO animated:YES];
+    
+    /* fetch処理 */
+    AKAFetchFeed *fechFeed = [[AKAFetchFeed alloc] init];
+    _feed = [fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:YES]];
+    _allFeed = [fechFeed fechAllFeedUnread:[NSNumber numberWithBool:NO]];
+
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    delegate.feed = [NSMutableArray arrayWithObject:_allFeed];
+    for (NSDictionary *dic in _feed) {
+        [delegate.feed addObject:dic];
+    }
+    
+    /* テーブルの更新 */
+    [self.unreadTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,17 +104,12 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger count = 0;
-    for (int i=0; i<_feed.count; i++) {
-        if ([_feed[i] count] != 0) {
-            count = count + 1;
-        }
-    }
-//    NSLog(@"categoryCount: %ld", (long)count);
-    return count + 1;
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    return delegate.feed.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSString *identifier;
     NSString *title;
     NSString *unreadCount;
@@ -105,13 +117,13 @@
         case 0:
             identifier = @"Top";
             title = @"Unread";
-            unreadCount = [NSString stringWithFormat:@"%lu", (unsigned long)[_allFeed count]];
+            unreadCount = [NSString stringWithFormat:@"%lu", (unsigned long)[delegate.feed count]];
             break;
             
         default:
             identifier = @"Second";
-            title = [self capitalizeFirstLetter:[[_feed[indexPath.row -1] valueForKey:@"category"] valueForKey:@"name"][0]];
-            unreadCount = [NSString stringWithFormat:@"%lu", (unsigned long)[_feed[indexPath.row -1] count]];
+            title = [self capitalizeFirstLetter:[[delegate.feed[indexPath.row] valueForKey:@"category"] valueForKey:@"name"][0]];
+            unreadCount = [NSString stringWithFormat:@"%lu", (unsigned long)[delegate.feed[indexPath.row] count]];
             break;
     }
     
@@ -127,11 +139,12 @@
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     if (indexPath.row == 0) {
-        NSArray *array = [NSArray arrayWithObjects:@"All Items", _allFeed, nil];
+        NSArray *array = [NSArray arrayWithObjects:@"All Items", indexPath, nil];
         [self performSegueWithIdentifier:@"Feed" sender:array];
     } else {
-        NSArray *array = [NSArray arrayWithObjects:[[_feed[indexPath.row-1] valueForKey:@"category"] valueForKey:@"name"][0], _feed[indexPath.row-1], nil];
+        NSArray *array = [NSArray arrayWithObjects:[[delegate.feed[indexPath.row] valueForKey:@"category"] valueForKey:@"name"][0], indexPath, nil];
         [self performSegueWithIdentifier:@"Feed" sender:array];
     }
 }
@@ -140,7 +153,7 @@
     if ([[segue identifier] isEqualToString:@"Feed"]) {
         AKAFeedViewController *feedViewController = (AKAFeedViewController *)[segue destinationViewController];
         feedViewController.title = sender[0];
-        feedViewController.feed = sender[1];
+        feedViewController.categoryRow = [sender[1] row];
     }
 }
 

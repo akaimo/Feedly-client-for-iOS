@@ -356,15 +356,17 @@
     
     [obj setValue:[items valueForKey:@"id"][i] forKey:@"id"];                                     // feedのID
     [obj setValue:[items valueForKey:@"title"][i] forKey:@"title"];                               // feedのタイトル
-    if ([[items valueForKey:@"summary"] valueForKey:@"content"][i] == [NSNull null]) {            // feedの詳細
+    if ([[items valueForKey:@"summary"] valueForKey:@"content"][i] != [NSNull null]) {            // feedの詳細
+        [obj setValue:[[items valueForKey:@"summary"] valueForKey:@"content"][i] forKey:@"detail"];
+    } else if ([[items valueForKey:@"content"] valueForKey:@"content"][i] != [NSNull null]) {
         [obj setValue:[[items valueForKey:@"content"] valueForKey:@"content"][i] forKey:@"detail"];
     } else {
-        [obj setValue:[[items valueForKey:@"summary"] valueForKey:@"content"][i] forKey:@"detail"];
+        [obj setValue:@"" forKey:@"detail"];
     }
-    if ([[items valueForKey:@"alternate"] valueForKey:@"herf"][i] == [NSNull null]) {             // feedのURL
-        [obj setValue:@"nil" forKey:@"url"];
-    } else {
+    if ([[items valueForKey:@"alternate"] valueForKey:@"herf"][i] != [NSNull null]) {             // feedのURL
         [obj setValue:[[items valueForKey:@"alternate"][i][0] valueForKey:@"href"] forKey:@"url"];
+    } else {
+        [obj setValue:@"" forKey:@"url"];
     }
     [obj setValue:[items valueForKey:@"unread"][i] forKey:@"unread"];                             // 未読のフラグ
     [obj setValue:save forKey:@"saved"];

@@ -10,4 +10,6 @@
 
 @interface AKAFeedWebViewController : UIViewController
 
+@property NSDictionary *feed;
+
 @end

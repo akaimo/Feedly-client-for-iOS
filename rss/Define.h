@@ -12,3 +12,9 @@
 
 //-- キャッシュの整合性を保つために、他のアプリで開かれたフィードの情報を収得
 #define SYNCHRO  @"https://sandbox.feedly.com/v3/markers/reads"
+
+//-- エントリーIDでfeedを取得
+#define ENTRY @"https://sandbox.feedly.com/v3/entries/"
+
+//-- Markers
+#define MARKERS @"https://sandbox.feedly.com/v3/markers"

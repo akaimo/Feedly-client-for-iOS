@@ -197,25 +197,25 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Feed" rowHeight="200" id="Mx5-Ld-JaX">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Feed" id="Mx5-Ld-JaX">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mx5-Ld-JaX" id="Nxt-dV-FH8">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Qg-uX-4be">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Qg-uX-4be">
                                                     <rect key="frame" x="30" y="30" width="540" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fMn-ep-Vyy">
+                                                <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fMn-ep-Vyy">
                                                     <rect key="frame" x="30" y="81" width="540" height="200"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="200" id="n0K-Wc-qTJ"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Detail" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyM-xi-gUA">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyM-xi-gUA">
                                                     <rect key="frame" x="30" y="291" width="540" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -243,7 +243,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="iQH-Es-Jjm" kind="push" id="oRO-pP-2uO"/>
+                                            <segue destination="iQH-Es-Jjm" kind="push" identifier="Web" id="oRO-pP-2uO"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -261,6 +261,13 @@
                             <constraint firstItem="cH5-GQ-Zde" firstAttribute="top" secondItem="NGs-zE-hCb" secondAttribute="top" id="wOm-GN-pl9"/>
                         </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem systemItem="add" id="sUa-bX-rwA">
+                            <connections>
+                                <action selector="unRead:" destination="iHh-eU-Bho" id="Otk-2U-24R"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="TuU-Ze-GqZ"/>
                     <connections>
                         <outlet property="tableView" destination="cH5-GQ-Zde" id="NKf-Iy-7rA"/>
@@ -296,6 +303,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="PSK-r8-ReY"/>
+                    <connections>
+                        <outlet property="webView" destination="7br-Bz-akw" id="wHk-g0-JuF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DPe-HS-X6F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
