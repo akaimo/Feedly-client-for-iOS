@@ -76,7 +76,18 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"MM/dd HH:mm";
     NSString *date24 = [dateFormatter stringFromDate:date];
+    
+    /*
+    savedの確認のために一時的に表示
+    本来ならば以下に1行
     cell.date.text = [NSString stringWithFormat:@"%@\n%@",date24, [[_feed valueForKey:@"site"] valueForKey:@"title"][_feedRow]];
+     */
+    if ([[_feed valueForKey:@"saved"][_feedRow] isEqualToNumber:[NSNumber numberWithBool:NO]]) {
+        cell.date.text = [NSString stringWithFormat:@"%@\n%@",date24, [[_feed valueForKey:@"site"] valueForKey:@"title"][_feedRow]];
+    } else {
+        cell.date.text = [NSString stringWithFormat:@"★ %@\n%@",date24, [[_feed valueForKey:@"site"] valueForKey:@"title"][_feedRow]];
+    }
+    //-- ここまで
     
     if (img.count != 0) {
         dispatch_queue_t q_global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -146,16 +157,61 @@
 
 //-- savedを管理する
 - (IBAction)staoSaved:(id)sender {
-    AKAPopupViewController *popUpView = [[AKAPopupViewController alloc]initWithNibName:@"AKAPopupViewController" bundle:nil];
-    [self presentPopupViewController:popUpView animationType:MJPopupViewAnimationSlideTopTop];
+    NSString *nibName;
+    NSArray *array = [NSArray arrayWithObjects:[_feed valueForKey:@"id"][_feedRow], nil];
+    AKAMarkersFeed *markersFeed = [[AKAMarkersFeed alloc] init];
+    
+    if ([[_feed valueForKey:@"saved"][_feedRow] isEqualToNumber:[NSNumber numberWithBool:NO]]) {
+        nibName = @"AKAPopupViewController";
+        [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+            [markersFeed markAsSaved:array];
+            NSLog(@"markAsSaved");
+        }];
+    } else {
+        nibName = @"AKAUnsavedPopupViewController";
+        [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+            [markersFeed markAsUnsaved:array];
+            NSLog(@"markAsUnsaved");
+        }];
+    }
+    
+    AKAPopupViewController *popUpView = [[AKAPopupViewController alloc]initWithNibName:nibName bundle:nil];
+    [self presentPopupViewController:popUpView animationType:MJPopupViewAnimationFade];
+    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+        sleep(1);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+        });
+    }];
 }
 
 //-- unreadを管理する
 - (IBAction)tapUnread:(id)sender {
+    NSString *nibName;
+    NSArray *array = [NSArray arrayWithObjects:[_feed valueForKey:@"id"][_feedRow], nil];
+    AKAMarkersFeed *markersFeed = [[AKAMarkersFeed alloc] init];
+    
+    if ([[_feed valueForKey:@"unread"][_feedRow] isEqualToNumber:[NSNumber numberWithBool:NO]]) {
+        nibName = @"AKAUnreadPopupViewController";
+        [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+            [markersFeed keepUnread:array];
+            NSLog(@"keepUnread");
+        }];
+    } else {
+        nibName = @"AKAReadPopupViewController";
+        [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+            [markersFeed markAsRead:array];
+            NSLog(@"markAsRead");
+        }];
+    }
+    
+    AKAPopupViewController *popUpView = [[AKAPopupViewController alloc]initWithNibName:nibName bundle:nil];
+    [self presentPopupViewController:popUpView animationType:MJPopupViewAnimationFade];
     [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
-        NSArray *array = [NSArray arrayWithObjects:[_feed valueForKey:@"id"][_feedRow], nil];
-        AKAMarkersFeed *markersFeed = [[AKAMarkersFeed alloc] init];
-        [markersFeed keepUnread:array];
+        sleep(1);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+        });
     }];
 }
 

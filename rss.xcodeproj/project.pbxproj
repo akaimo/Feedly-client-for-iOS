@@ -21,6 +21,9 @@
 		9987E77C1AF4895C002622EE /* AKAMarkersFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 9987E77B1AF4895C002622EE /* AKAMarkersFeed.m */; };
 		9987E7801AF7459C002622EE /* AKAPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9987E77E1AF7459C002622EE /* AKAPopupViewController.m */; };
 		9987E7811AF7459C002622EE /* AKAPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9987E77F1AF7459C002622EE /* AKAPopupViewController.xib */; };
+		9987E7851AF7A0C6002622EE /* AKAUnreadPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9987E7841AF7A0C6002622EE /* AKAUnreadPopupViewController.xib */; };
+		9987E7871AF7A21B002622EE /* AKAUnsavedPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9987E7861AF7A21B002622EE /* AKAUnsavedPopupViewController.xib */; };
+		9987E7891AF7A297002622EE /* AKAReadPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9987E7881AF7A297002622EE /* AKAReadPopupViewController.xib */; };
 		999BEA2C1ADFF0CB0087D51A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 999BEA2A1ADFF0CB0087D51A /* Model.xcdatamodeld */; };
 		99A0A2DE1AE10DC100A3A592 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99A0A2DD1AE10DC100A3A592 /* CoreData.framework */; };
 		99A0A2E71AE110A000A3A592 /* AKACoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A0A2E61AE110A000A3A592 /* AKACoreData.m */; };
@@ -80,6 +83,9 @@
 		9987E77D1AF7459C002622EE /* AKAPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKAPopupViewController.h; sourceTree = "<group>"; };
 		9987E77E1AF7459C002622EE /* AKAPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKAPopupViewController.m; sourceTree = "<group>"; };
 		9987E77F1AF7459C002622EE /* AKAPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKAPopupViewController.xib; sourceTree = "<group>"; };
+		9987E7841AF7A0C6002622EE /* AKAUnreadPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKAUnreadPopupViewController.xib; sourceTree = "<group>"; };
+		9987E7861AF7A21B002622EE /* AKAUnsavedPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKAUnsavedPopupViewController.xib; sourceTree = "<group>"; };
+		9987E7881AF7A297002622EE /* AKAReadPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKAReadPopupViewController.xib; sourceTree = "<group>"; };
 		999BEA2B1ADFF0CB0087D51A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		99A0A2DD1AE10DC100A3A592 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		99A0A2E51AE110A000A3A592 /* AKACoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKACoreData.h; sourceTree = "<group>"; };
@@ -225,6 +231,9 @@
 				9987E77D1AF7459C002622EE /* AKAPopupViewController.h */,
 				9987E77E1AF7459C002622EE /* AKAPopupViewController.m */,
 				9987E77F1AF7459C002622EE /* AKAPopupViewController.xib */,
+				9987E7861AF7A21B002622EE /* AKAUnsavedPopupViewController.xib */,
+				9987E7841AF7A0C6002622EE /* AKAUnreadPopupViewController.xib */,
+				9987E7881AF7A297002622EE /* AKAReadPopupViewController.xib */,
 			);
 			name = Popup;
 			sourceTree = "<group>";
@@ -376,9 +385,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				99FBE91A1AEFB7F50022B1F0 /* AKATopCustomCell.xib in Resources */,
+				9987E7851AF7A0C6002622EE /* AKAUnreadPopupViewController.xib in Resources */,
 				99FBE91D1AF0BD580022B1F0 /* AKASecondCustomCell.xib in Resources */,
 				99FBE9221AF0E4B10022B1F0 /* AKAImgCustomCell.xib in Resources */,
+				9987E7871AF7A21B002622EE /* AKAUnsavedPopupViewController.xib in Resources */,
 				99FBE9331AF35D730022B1F0 /* AKADetailCustomCell.xib in Resources */,
+				9987E7891AF7A297002622EE /* AKAReadPopupViewController.xib in Resources */,
 				99FBE9261AF10BA30022B1F0 /* AKANoImgCustomCell.xib in Resources */,
 				9906062F1ACBA8660014964E /* Main.storyboard in Resources */,
 				990606341ACBA8660014964E /* LaunchScreen.xib in Resources */,

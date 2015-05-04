@@ -32,7 +32,7 @@
     for (NSMutableData *data in records) {
         [data setValue:unread forKey:@"unread"];
         [[AKACoreData sharedCoreData] saveContext];
-        NSLog(@"更新完了");
+//        NSLog(@"DBへ反映(un)read");
     }
 }
 
@@ -45,7 +45,7 @@
     for (NSMutableData *data in records) {
         [data setValue:saved forKey:@"saved"];
         [[AKACoreData sharedCoreData] saveContext];
-        NSLog(@"更新完了");
+//        NSLog(@"DBへ反映(un)saved");
     }
 }
 
