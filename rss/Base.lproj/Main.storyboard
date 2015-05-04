@@ -262,11 +262,19 @@
                         </constraints>
                     </view>
                     <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="qr2-Le-yKi"/>
                         <barButtonItem systemItem="add" id="sUa-bX-rwA">
                             <connections>
-                                <action selector="unRead:" destination="iHh-eU-Bho" id="Otk-2U-24R"/>
+                                <action selector="tapUnread:" destination="iHh-eU-Bho" id="Qaa-eR-TsW"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="6Q7-G0-J8j"/>
+                        <barButtonItem systemItem="save" id="khd-nu-hiq">
+                            <connections>
+                                <action selector="staoSaved:" destination="iHh-eU-Bho" id="3p6-wa-4Uc"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="muh-kZ-Vg1"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="TuU-Ze-GqZ"/>
                     <connections>

@@ -19,6 +19,8 @@
 		9987E7771AF36FCE002622EE /* AKAFeedWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9987E7761AF36FCE002622EE /* AKAFeedWebViewController.m */; };
 		9987E7791AF3AA39002622EE /* AKADetailImgCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9987E7781AF3AA39002622EE /* AKADetailImgCustomCell.xib */; };
 		9987E77C1AF4895C002622EE /* AKAMarkersFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 9987E77B1AF4895C002622EE /* AKAMarkersFeed.m */; };
+		9987E7801AF7459C002622EE /* AKAPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9987E77E1AF7459C002622EE /* AKAPopupViewController.m */; };
+		9987E7811AF7459C002622EE /* AKAPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9987E77F1AF7459C002622EE /* AKAPopupViewController.xib */; };
 		999BEA2C1ADFF0CB0087D51A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 999BEA2A1ADFF0CB0087D51A /* Model.xcdatamodeld */; };
 		99A0A2DE1AE10DC100A3A592 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99A0A2DD1AE10DC100A3A592 /* CoreData.framework */; };
 		99A0A2E71AE110A000A3A592 /* AKACoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A0A2E61AE110A000A3A592 /* AKACoreData.m */; };
@@ -75,6 +77,9 @@
 		9987E7781AF3AA39002622EE /* AKADetailImgCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKADetailImgCustomCell.xib; sourceTree = "<group>"; };
 		9987E77A1AF4895C002622EE /* AKAMarkersFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKAMarkersFeed.h; sourceTree = "<group>"; };
 		9987E77B1AF4895C002622EE /* AKAMarkersFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKAMarkersFeed.m; sourceTree = "<group>"; };
+		9987E77D1AF7459C002622EE /* AKAPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKAPopupViewController.h; sourceTree = "<group>"; };
+		9987E77E1AF7459C002622EE /* AKAPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKAPopupViewController.m; sourceTree = "<group>"; };
+		9987E77F1AF7459C002622EE /* AKAPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKAPopupViewController.xib; sourceTree = "<group>"; };
 		999BEA2B1ADFF0CB0087D51A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		99A0A2DD1AE10DC100A3A592 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		99A0A2E51AE110A000A3A592 /* AKACoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKACoreData.h; sourceTree = "<group>"; };
@@ -178,7 +183,6 @@
 				9987E77B1AF4895C002622EE /* AKAMarkersFeed.m */,
 				99FBE9151AEFB71F0022B1F0 /* CoreData */,
 				99FBE9141AEFB6DC0022B1F0 /* View */,
-				99FBE91B1AEFB8720022B1F0 /* Cell */,
 				9906062D1ACBA8660014964E /* Main.storyboard */,
 				990606301ACBA8660014964E /* Images.xcassets */,
 				990606321ACBA8660014964E /* LaunchScreen.xib */,
@@ -215,6 +219,27 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		9987E7821AF74965002622EE /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				9987E77D1AF7459C002622EE /* AKAPopupViewController.h */,
+				9987E77E1AF7459C002622EE /* AKAPopupViewController.m */,
+				9987E77F1AF7459C002622EE /* AKAPopupViewController.xib */,
+			);
+			name = Popup;
+			sourceTree = "<group>";
+		};
+		9987E7831AF74997002622EE /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				997E43E91AD3D4BB002CB3BB /* OAuthWebViewController.h */,
+				997E43EA1AD3D4BB002CB3BB /* OAuthWebViewController.m */,
+				9987E7751AF36FCE002622EE /* AKAFeedWebViewController.h */,
+				9987E7761AF36FCE002622EE /* AKAFeedWebViewController.m */,
+			);
+			name = Web;
+			sourceTree = "<group>";
+		};
 		99FBE9141AEFB6DC0022B1F0 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,10 +251,9 @@
 				99FBE9091AEDFAC70022B1F0 /* AKAFeedViewController.m */,
 				99FBE9271AF1D2850022B1F0 /* AKADetailViewController.h */,
 				99FBE9281AF1D2850022B1F0 /* AKADetailViewController.m */,
-				997E43E91AD3D4BB002CB3BB /* OAuthWebViewController.h */,
-				997E43EA1AD3D4BB002CB3BB /* OAuthWebViewController.m */,
-				9987E7751AF36FCE002622EE /* AKAFeedWebViewController.h */,
-				9987E7761AF36FCE002622EE /* AKAFeedWebViewController.m */,
+				9987E7831AF74997002622EE /* Web */,
+				9987E7821AF74965002622EE /* Popup */,
+				99FBE91B1AEFB8720022B1F0 /* Cell */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -360,6 +384,7 @@
 				990606341ACBA8660014964E /* LaunchScreen.xib in Resources */,
 				990606311ACBA8660014964E /* Images.xcassets in Resources */,
 				9987E7791AF3AA39002622EE /* AKADetailImgCustomCell.xib in Resources */,
+				9987E7811AF7459C002622EE /* AKAPopupViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +452,7 @@
 				99FBE9071AEB431D0022B1F0 /* AKAFetchFeed.m in Sources */,
 				997E43EB1AD3D4BB002CB3BB /* OAuthWebViewController.m in Sources */,
 				990606911ACE869C0014964E /* UnreadViewController.m in Sources */,
+				9987E7801AF7459C002622EE /* AKAPopupViewController.m in Sources */,
 				999BEA2C1ADFF0CB0087D51A /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

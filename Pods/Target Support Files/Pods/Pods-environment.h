@@ -6,6 +6,12 @@
 // project.
 
 
+// MJPopupViewController
+#define COCOAPODS_POD_AVAILABLE_MJPopupViewController
+#define COCOAPODS_VERSION_MAJOR_MJPopupViewController 0
+#define COCOAPODS_VERSION_MINOR_MJPopupViewController 4
+#define COCOAPODS_VERSION_PATCH_MJPopupViewController 0
+
 // NXOAuth2Client
 #define COCOAPODS_POD_AVAILABLE_NXOAuth2Client
 #define COCOAPODS_VERSION_MAJOR_NXOAuth2Client 1

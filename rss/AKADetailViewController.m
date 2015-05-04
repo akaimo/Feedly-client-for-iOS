@@ -11,10 +11,13 @@
 #import "AKADetailCustomCell.h"
 #import "AKAFeedWebViewController.h"
 #import "AKAMarkersFeed.h"
+#import "UIViewController+MJPopupViewController.h"
+#import "AKAPopupViewController.h"
 
 @interface AKADetailViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-- (IBAction)unRead:(id)sender;
+- (IBAction)staoSaved:(id)sender;
+- (IBAction)tapUnread:(id)sender;
 
 @end
 
@@ -45,8 +48,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - UITableViewDataSource
 
+#pragma mark - UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AKARegularExpression *regularExpression = [[AKARegularExpression alloc] init];
     NSArray *img = [regularExpression imagesWithFeed:[_feed valueForKey:@"detail"][_feedRow]];
@@ -139,12 +142,22 @@
     }
 }
 
-- (IBAction)unRead:(id)sender {
+
+
+//-- savedを管理する
+- (IBAction)staoSaved:(id)sender {
+    AKAPopupViewController *popUpView = [[AKAPopupViewController alloc]initWithNibName:@"AKAPopupViewController" bundle:nil];
+    [self presentPopupViewController:popUpView animationType:MJPopupViewAnimationSlideTopTop];
+}
+
+//-- unreadを管理する
+- (IBAction)tapUnread:(id)sender {
     [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
         NSArray *array = [NSArray arrayWithObjects:[_feed valueForKey:@"id"][_feedRow], nil];
         AKAMarkersFeed *markersFeed = [[AKAMarkersFeed alloc] init];
         [markersFeed keepUnread:array];
     }];
 }
+
 
 @end

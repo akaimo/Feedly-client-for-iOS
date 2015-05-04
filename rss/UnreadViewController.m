@@ -36,9 +36,9 @@
     [self.unreadTableView registerNib:nib2 forCellReuseIdentifier:@"Second"];
     
     /* sqlite3のURLを収得 */
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = paths[0];
-    NSLog(@"sqlite3: %@", documentsPath);
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsPath = paths[0];
+//    NSLog(@"sqlite3: %@", documentsPath);
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     _account = delegate.account;
@@ -64,6 +64,10 @@
         AKAFetchFeed *fechFeed = [[AKAFetchFeed alloc] init];
         _feed = [fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:YES]];
         _allFeed = [fechFeed fechAllFeedUnread:[NSNumber numberWithBool:NO]];
+        delegate.feed = [NSMutableArray arrayWithObject:_allFeed];
+        for (NSDictionary *dic in _feed) {
+            [delegate.feed addObject:dic];
+        }
         
         /* メインスレッドでの処理 */
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -78,8 +82,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    // footer on
-    [self.navigationController setToolbarHidden:NO animated:YES];
+    // footer off
+    [self.navigationController setToolbarHidden:YES animated:YES];
     
     /* fetch処理 */
     AKAFetchFeed *fechFeed = [[AKAFetchFeed alloc] init];

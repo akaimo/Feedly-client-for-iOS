@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-MJPopupViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-NXOAuth2Client.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>00E3C55D7B3F2A606599DB4B</key>
+		<key>0291011B1E0A681A9C22C70E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8FA262067E2D0A9D9BE4D15C</key>
+		<key>9C2FAAB8B5FD0A16040BDCE0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C7E6D57262FB8C8C102F85BF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -19,4 +19,10 @@
 //-- itemsのfeedを未読にする
 - (void)keepUnread:(NSArray *)items;
 
+//-- itemsをsavedにする
+- (void)markAsSaved:(NSArray *)items;
+
+//-- itemsをunSavedにする
+- (void)markAsUnsaved:(NSArray *)items;
+
 @end
