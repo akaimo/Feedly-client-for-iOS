@@ -143,21 +143,23 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     /* 開いたときに既読にする */
-    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
-        NSArray *array = [NSArray arrayWithObjects:[_feed valueForKey:@"id"][indexPath.row], nil];
-        AKAMarkersFeed *markersFeed = [[AKAMarkersFeed alloc] init];
-        [markersFeed markAsRead:array];
-    }];
-    
-    /* 配列内のデータも既読にする */
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//    NSLog(@"前: %@", [delegate.feed[_categoryRow] valueForKey:@"unread"][indexPath.row]);
-    [delegate.feed[_categoryRow][indexPath.row] setValue:[NSNumber numberWithBool:NO] forKey:@"unread"];
-//    NSLog(@"後: %@", [delegate.feed[_categoryRow] valueForKey:@"unread"][indexPath.row]);
-    
-    /* Cellを更新する */
-    _feed = delegate.feed[_categoryRow];
-    [_feedTableView reloadData];
+    if ([[_feed valueForKey:@"unread"][indexPath.row] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+        [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+            NSArray *array = [NSArray arrayWithObjects:[_feed valueForKey:@"id"][indexPath.row], nil];
+            AKAMarkersFeed *markersFeed = [[AKAMarkersFeed alloc] init];
+            [markersFeed markAsRead:array];
+        }];
+        
+        /* 配列内のデータも既読にする */
+        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//        NSLog(@"前: %@", [delegate.feed[_categoryRow] valueForKey:@"unread"][indexPath.row]);
+        [delegate.feed[_categoryRow][indexPath.row] setValue:[NSNumber numberWithBool:NO] forKey:@"unread"];
+//        NSLog(@"後: %@", [delegate.feed[_categoryRow] valueForKey:@"unread"][indexPath.row]);
+        
+        /* Cellを更新する */
+        _feed = delegate.feed[_categoryRow];
+        [_feedTableView reloadData];
+    }
     
     [self performSegueWithIdentifier:@"Detail" sender:indexPath];
 }

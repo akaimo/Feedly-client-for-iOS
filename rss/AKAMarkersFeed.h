@@ -25,4 +25,7 @@
 //-- itemsをunSavedにする
 - (void)markAsUnsaved:(NSArray *)items;
 
+//-- DBの既読・未読を更新する
+- (void)changeUnreadWithID:(NSString *)feedID unread:(NSNumber *)unread;
+
 @end

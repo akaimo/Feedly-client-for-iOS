@@ -263,13 +263,25 @@
                     </view>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="qr2-Le-yKi"/>
-                        <barButtonItem systemItem="add" id="sUa-bX-rwA">
+                        <barButtonItem title="Unread" id="sUa-bX-rwA">
                             <connections>
                                 <action selector="tapUnread:" destination="iHh-eU-Bho" id="Qaa-eR-TsW"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="VRv-DY-DF1"/>
+                        <barButtonItem title="↑" id="oxv-xO-S8M">
+                            <connections>
+                                <action selector="tapUp:" destination="iHh-eU-Bho" id="uKG-qq-3XP"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="jvt-TG-bm0"/>
+                        <barButtonItem title="↓" id="9pO-9r-Gtg">
+                            <connections>
+                                <action selector="tapDown:" destination="iHh-eU-Bho" id="JYk-4w-DDd"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="6Q7-G0-J8j"/>
-                        <barButtonItem systemItem="save" id="khd-nu-hiq">
+                        <barButtonItem title="Save" id="khd-nu-hiq">
                             <connections>
                                 <action selector="staoSaved:" destination="iHh-eU-Bho" id="3p6-wa-4Uc"/>
                             </connections>
@@ -278,7 +290,11 @@
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="TuU-Ze-GqZ"/>
                     <connections>
+                        <outlet property="downBtn" destination="9pO-9r-Gtg" id="aJn-63-fVz"/>
+                        <outlet property="saveBtn" destination="khd-nu-hiq" id="FQY-zi-Q5Z"/>
                         <outlet property="tableView" destination="cH5-GQ-Zde" id="NKf-Iy-7rA"/>
+                        <outlet property="unreadBtn" destination="sUa-bX-rwA" id="pFc-G0-QEp"/>
+                        <outlet property="upBtn" destination="oxv-xO-S8M" id="XRd-Mi-fdh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uOF-br-c5g" userLabel="First Responder" sceneMemberID="firstResponder"/>

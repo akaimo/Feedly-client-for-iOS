@@ -18,6 +18,12 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)staoSaved:(id)sender;
 - (IBAction)tapUnread:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *unreadBtn;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveBtn;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *upBtn;
+- (IBAction)tapUp:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *downBtn;
+- (IBAction)tapDown:(id)sender;
 
 @end
 
@@ -41,6 +47,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     /* footer on */
     [self.navigationController setToolbarHidden:NO animated:YES];
+    
+    [self reloadUnreadBtn];
+    [self reloadSaveBtn];
+    [self reloadUpDownBtn];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -154,6 +164,40 @@
 }
 
 
+//-- barItemの更新
+- (void)reloadUnreadBtn {
+    if ([[_feed valueForKey:@"unread"][_feedRow] isEqualToNumber:[NSNumber numberWithBool:NO]]) {
+        self.unreadBtn.title = @"Unread";
+    } else {
+        self.unreadBtn.title = @"Read";
+    }
+}
+
+//-- saveBtnの更新
+- (void)reloadSaveBtn {
+    if ([[_feed valueForKey:@"saved"][_feedRow] isEqualToNumber:[NSNumber numberWithBool:NO]]) {
+        self.saveBtn.title = @"Saved";
+    } else {
+        self.saveBtn.title = @"Unsaved";
+    }
+}
+
+//-- up,downBtnの更新
+- (void)reloadUpDownBtn {
+    if (_feedRow == 0) {
+        self.upBtn.enabled = NO;
+    } else {
+        self.upBtn.enabled = YES;
+    }
+    
+    if (_feedRow == _feed.count -1) {
+        self.downBtn.enabled = NO;
+    } else {
+        self.downBtn.enabled = YES;
+    }
+}
+
+
 
 //-- savedを管理する
 - (IBAction)staoSaved:(id)sender {
@@ -167,12 +211,14 @@
             [markersFeed markAsSaved:array];
             NSLog(@"markAsSaved");
         }];
+        self.saveBtn.title = @"Unsaved";
     } else {
         nibName = @"AKAUnsavedPopupViewController";
         [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
             [markersFeed markAsUnsaved:array];
             NSLog(@"markAsUnsaved");
         }];
+        self.saveBtn.title = @"Saved";
     }
     
     AKAPopupViewController *popUpView = [[AKAPopupViewController alloc]initWithNibName:nibName bundle:nil];
@@ -197,12 +243,14 @@
             [markersFeed keepUnread:array];
             NSLog(@"keepUnread");
         }];
+        self.unreadBtn.title = @"Read";
     } else {
         nibName = @"AKAReadPopupViewController";
         [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
             [markersFeed markAsRead:array];
             NSLog(@"markAsRead");
         }];
+        self.unreadBtn.title = @"Unread";
     }
     
     AKAPopupViewController *popUpView = [[AKAPopupViewController alloc]initWithNibName:nibName bundle:nil];
@@ -215,5 +263,46 @@
     }];
 }
 
+//-- 1つ前のfeedを表示する
+- (IBAction)tapUp:(id)sender {
+    if (_feedRow != 0) {
+        _feedRow = _feedRow - 1;
+    } else { return;}
+    
+    /* DB更新 */
+    if ([[_feed valueForKey:@"unread"][_feedRow] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+        [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+            NSArray *array = [NSArray arrayWithObjects:[_feed valueForKey:@"id"][_feedRow], nil];
+            AKAMarkersFeed *markersFeed = [[AKAMarkersFeed alloc] init];
+            [markersFeed markAsRead:array];
+        }];
+    }
+    
+    [self.tableView reloadData];
+    self.unreadBtn.title = @"Unread";
+    [self reloadSaveBtn];
+    [self reloadUpDownBtn];
+}
+
+//-- 1つ後のfeedを表示する
+- (IBAction)tapDown:(id)sender {
+    if (_feedRow != _feed.count -1) {
+        _feedRow = _feedRow + 1;
+    } else { return; }
+    
+    /* DB更新 */
+    if ([[_feed valueForKey:@"unread"][_feedRow] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+        [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+            NSArray *array = [NSArray arrayWithObjects:[_feed valueForKey:@"id"][_feedRow], nil];
+            AKAMarkersFeed *markersFeed = [[AKAMarkersFeed alloc] init];
+            [markersFeed markAsRead:array];
+        }];
+    }
+    
+    [self.tableView reloadData];
+    self.unreadBtn.title = @"Unread";
+    [self reloadSaveBtn];
+    [self reloadUpDownBtn];
+}
 
 @end
