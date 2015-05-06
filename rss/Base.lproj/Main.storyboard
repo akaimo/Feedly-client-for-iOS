@@ -172,7 +172,13 @@
                             <constraint firstItem="TBW-Ri-Uiy" firstAttribute="top" secondItem="9mX-Gy-OCY" secondAttribute="top" id="jWo-8m-S5x"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="i9n-KY-ZMR"/>
+                    <navigationItem key="navigationItem" id="i9n-KY-ZMR">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="g3D-d7-RLn">
+                            <connections>
+                                <action selector="actionBtnTap:" destination="tgs-2S-xfl" id="mZb-Dv-WFL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="feedTableView" destination="TBW-Ri-Uiy" id="fCI-O8-0mp"/>
                     </connections>

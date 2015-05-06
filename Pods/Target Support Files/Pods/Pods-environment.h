@@ -6,6 +6,12 @@
 // project.
 
 
+// MBProgressHUD
+#define COCOAPODS_POD_AVAILABLE_MBProgressHUD
+#define COCOAPODS_VERSION_MAJOR_MBProgressHUD 0
+#define COCOAPODS_VERSION_MINOR_MBProgressHUD 9
+#define COCOAPODS_VERSION_PATCH_MBProgressHUD 1
+
 // MJPopupViewController
 #define COCOAPODS_POD_AVAILABLE_MJPopupViewController
 #define COCOAPODS_VERSION_MAJOR_MJPopupViewController 0

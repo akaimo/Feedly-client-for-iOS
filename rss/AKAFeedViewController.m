@@ -12,9 +12,11 @@
 #import "AKARegularExpression.h"
 #import "AKAMarkersFeed.h"
 #import "AppDelegate.h"
+#import "MBProgressHUD.h"
 
 @interface AKAFeedViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
+- (IBAction)actionBtnTap:(id)sender;
 
 @end
 
@@ -174,5 +176,55 @@
     }
 }
 
+
+- (IBAction)actionBtnTap:(id)sender {
+    // コントローラを生成
+    UIAlertController * ac =
+    [UIAlertController alertControllerWithTitle:nil
+                                        message:@"Mark all items from this list as read?"
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    // Cancel用のアクションを生成
+    UIAlertAction * cancelAction =
+    [UIAlertAction actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleCancel
+                           handler:^(UIAlertAction * action) {
+                               // ボタンタップ時の処理
+                           }];
+    
+    // Destructive用のアクションを生成
+    UIAlertAction * destructiveAction =
+    [UIAlertAction actionWithTitle:@"Mark All as Read"
+                             style:UIAlertActionStyleDestructive
+                           handler:^(UIAlertAction * action) {
+                               /* ボタンタップ時の処理
+                                
+                                  インジケータ表示     */
+                               [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                               dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                                   /* 処理内容 */
+                                   NSMutableArray *array = [NSMutableArray array];
+                                   for (NSManagedObject *data in _feed) {
+                                       [array addObject:[data valueForKey:@"id"]];
+                                   }
+                                   AKAMarkersFeed *markersFeed = [[AKAMarkersFeed alloc] init];
+                                   [markersFeed markAsRead:array];
+                                   NSLog(@"finish");
+                                   
+                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                       [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                       [self.navigationController popViewControllerAnimated:YES];
+                                   });
+                               });
+                               
+                           }];
+    
+    // コントローラにアクションを追加
+    [ac addAction:cancelAction];
+    [ac addAction:destructiveAction];
+    
+    // アクションシート表示処理
+    [self presentViewController:ac animated:YES completion:nil];
+}
 
 @end

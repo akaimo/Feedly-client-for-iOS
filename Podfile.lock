@@ -1,12 +1,15 @@
 PODS:
+  - MBProgressHUD (0.9.1)
   - MJPopupViewController (0.4)
   - NXOAuth2Client (1.2.8)
 
 DEPENDENCIES:
+  - MBProgressHUD (~> 0.9.1)
   - MJPopupViewController (~> 0.4)
   - NXOAuth2Client
 
 SPEC CHECKSUMS:
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MJPopupViewController: e9ad553a3145eb8126ba2748e872ae7fb25cc605
   NXOAuth2Client: 98c4d4c594edd2b289cfc34a8928653e1dab7adf
 
