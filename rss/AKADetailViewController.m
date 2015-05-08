@@ -42,6 +42,11 @@
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] init];
     barButton.title = @"";
     self.navigationItem.backBarButtonItem = barButton;
+    
+    // スワイプジェスチャー
+    UISwipeGestureRecognizer* swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipeCell:)];
+    swipeGesture.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.tableView addGestureRecognizer:swipeGesture];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -194,6 +199,14 @@
         self.downBtn.enabled = NO;
     } else {
         self.downBtn.enabled = YES;
+    }
+}
+
+//-- スワイプジェスチャー
+- (void)didSwipeCell:(UISwipeGestureRecognizer*)swipeRecognizer {
+    if (swipeRecognizer.direction == UISwipeGestureRecognizerDirectionRight) {
+        // 右スワイプ
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

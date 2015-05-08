@@ -39,6 +39,14 @@
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] init];
     barButton.title = @"";
     self.navigationItem.backBarButtonItem = barButton;
+    
+    // スワイプジェスチャー
+    UISwipeGestureRecognizer* swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipeCell:)];
+    swipeGesture.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.feedTableView addGestureRecognizer:swipeGesture];
+    swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipeCell:)];
+    swipeGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.feedTableView addGestureRecognizer:swipeGesture];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -53,8 +61,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - UITableViewDataSource
 
+
+#pragma mark - UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AKARegularExpression *regularExpression = [[AKARegularExpression alloc] init];
     NSArray *img = [regularExpression imagesWithFeed:[_feed valueForKey:@"detail"][indexPath.row]];
@@ -146,21 +155,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     /* 開いたときに既読にする */
     if ([[_feed valueForKey:@"unread"][indexPath.row] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
-        [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
-            NSArray *array = [NSArray arrayWithObjects:[_feed valueForKey:@"id"][indexPath.row], nil];
-            AKAMarkersFeed *markersFeed = [[AKAMarkersFeed alloc] init];
-            [markersFeed markAsRead:array];
-        }];
-        
-        /* 配列内のデータも既読にする */
-        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//        NSLog(@"前: %@", [delegate.feed[_categoryRow] valueForKey:@"unread"][indexPath.row]);
-        [delegate.feed[_categoryRow][indexPath.row] setValue:[NSNumber numberWithBool:NO] forKey:@"unread"];
-//        NSLog(@"後: %@", [delegate.feed[_categoryRow] valueForKey:@"unread"][indexPath.row]);
-        
-        /* Cellを更新する */
-        _feed = delegate.feed[_categoryRow];
-        [_feedTableView reloadData];
+        [self changeUnreadWithIndexPath:indexPath unread:[NSNumber numberWithBool:NO]];
     }
     
     [self performSegueWithIdentifier:@"Detail" sender:indexPath];
@@ -175,6 +170,84 @@
         detailViewController.feedRow = [sender row];
     }
 }
+
+
+
+- (void)didSwipeCell:(UISwipeGestureRecognizer*)swipeRecognizer {
+    CGPoint loc = [swipeRecognizer locationInView:self.feedTableView];
+    NSIndexPath* indexPath = [self.feedTableView indexPathForRowAtPoint:loc];
+//    AKAImgCustomCell *cell = (AKAImgCustomCell *)[self.feedTableView cellForRowAtIndexPath:indexPath];
+    
+    if (swipeRecognizer.direction == UISwipeGestureRecognizerDirectionRight) {
+        // 右スワイプ
+        if ([[_feed valueForKey:@"unread"][indexPath.row] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+            // 既読にする
+            [self changeUnreadWithIndexPath:indexPath unread:[NSNumber numberWithBool:NO]];
+        } else {
+            // 未読にする
+            [self changeUnreadWithIndexPath:indexPath unread:[NSNumber numberWithBool:YES]];
+        }
+    } else if (swipeRecognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
+        // 左スワイプ
+        if ([[_feed valueForKey:@"saved"][indexPath.row] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+            NSLog(@"this feed is saved");
+            // unsavedにする
+            [self changeSavedWithIndexPath:indexPath saved:[NSNumber numberWithBool:NO]];
+            
+        } else {
+            NSLog(@"this feed is unsaved");
+            // savedにする
+            [self changeSavedWithIndexPath:indexPath saved:[NSNumber numberWithBool:YES]];
+        }
+    }
+}
+
+//-- 既読・未読の処理
+- (void)changeUnreadWithIndexPath:(NSIndexPath *)indexPath unread:(NSNumber *)unread {
+    /* feedlyへPOST */
+    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+        NSArray *array = [NSArray arrayWithObjects:[_feed valueForKey:@"id"][indexPath.row], nil];
+        AKAMarkersFeed *markersFeed = [[AKAMarkersFeed alloc] init];
+        if ([unread isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+            // 未読にする
+            [markersFeed keepUnread:array];
+        } else {
+            // 既読にする
+            [markersFeed markAsRead:array];
+        }
+    }];
+    
+    /* 配列内のデータも既読にする */
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [delegate.feed[_categoryRow][indexPath.row] setValue:unread forKey:@"unread"];
+//    NSLog(@"%@", [_feed valueForKey:@"unread"][indexPath.row]);
+    
+    /* Cellを更新する */
+    _feed = delegate.feed[_categoryRow];
+    [_feedTableView reloadData];
+}
+
+//-- saved, unsavedの処理
+- (void)changeSavedWithIndexPath:(NSIndexPath *)indexPath saved:(NSNumber *)saved {
+    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+        NSArray *array = [NSArray arrayWithObjects:[_feed valueForKey:@"id"][indexPath.row], nil];
+        AKAMarkersFeed *markersFeed = [[AKAMarkersFeed alloc] init];
+        if ([saved isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+            // savedにする
+            [markersFeed markAsSaved:array];
+        } else {
+            // unsavedにする
+            [markersFeed markAsUnsaved:array];
+        }
+    }];
+    
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [delegate.feed[_categoryRow][indexPath.row] setValue:saved forKey:@"saved"];
+    
+    _feed = delegate.feed[_categoryRow];
+    [_feedTableView reloadData];
+}
+
 
 
 - (IBAction)actionBtnTap:(id)sender {
