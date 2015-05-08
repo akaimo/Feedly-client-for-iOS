@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-FCVerticalMenu-FCVerticalMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-FCVerticalMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>17AE17424A10FBC2694E6724</key>
+		<key>0F51E8C35ACFC32F58CCFF39</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2732BE83F4EC69E8D2E47C80</key>
+		<key>13C420468F2B162ED2B2423C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>962891405834E1D5FAB96DAD</key>
+		<key>2F2AFED1699B5A84A768E664</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F66E5D284867C4F94B1C664C</key>
+		<key>633FEF53E7D2D6B10779DD02</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>68DB99559FE7C5315F5C6787</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EA6FCE73D812E7BE6B8CC50C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
