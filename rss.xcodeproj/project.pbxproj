@@ -24,6 +24,7 @@
 		9987E7851AF7A0C6002622EE /* AKAUnreadPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9987E7841AF7A0C6002622EE /* AKAUnreadPopupViewController.xib */; };
 		9987E7871AF7A21B002622EE /* AKAUnsavedPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9987E7861AF7A21B002622EE /* AKAUnsavedPopupViewController.xib */; };
 		9987E7891AF7A297002622EE /* AKAReadPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9987E7881AF7A297002622EE /* AKAReadPopupViewController.xib */; };
+		998A2EC71AFCF0A200967A77 /* AKANavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998A2EC61AFCF0A200967A77 /* AKANavigationController.m */; };
 		999BEA2C1ADFF0CB0087D51A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 999BEA2A1ADFF0CB0087D51A /* Model.xcdatamodeld */; };
 		99A0A2DE1AE10DC100A3A592 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99A0A2DD1AE10DC100A3A592 /* CoreData.framework */; };
 		99A0A2E71AE110A000A3A592 /* AKACoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A0A2E61AE110A000A3A592 /* AKACoreData.m */; };
@@ -86,6 +87,8 @@
 		9987E7841AF7A0C6002622EE /* AKAUnreadPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKAUnreadPopupViewController.xib; sourceTree = "<group>"; };
 		9987E7861AF7A21B002622EE /* AKAUnsavedPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKAUnsavedPopupViewController.xib; sourceTree = "<group>"; };
 		9987E7881AF7A297002622EE /* AKAReadPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKAReadPopupViewController.xib; sourceTree = "<group>"; };
+		998A2EC51AFCF0A200967A77 /* AKANavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKANavigationController.h; sourceTree = "<group>"; };
+		998A2EC61AFCF0A200967A77 /* AKANavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKANavigationController.m; sourceTree = "<group>"; };
 		999BEA2B1ADFF0CB0087D51A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		99A0A2DD1AE10DC100A3A592 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		99A0A2E51AE110A000A3A592 /* AKACoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKACoreData.h; sourceTree = "<group>"; };
@@ -252,6 +255,8 @@
 		99FBE9141AEFB6DC0022B1F0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				998A2EC51AFCF0A200967A77 /* AKANavigationController.h */,
+				998A2EC61AFCF0A200967A77 /* AKANavigationController.m */,
 				9906062A1ACBA8660014964E /* ViewController.h */,
 				9906062B1ACBA8660014964E /* ViewController.m */,
 				9906068F1ACE869C0014964E /* UnreadViewController.h */,
@@ -453,6 +458,7 @@
 				99A0A2E71AE110A000A3A592 /* AKACoreData.m in Sources */,
 				99FBE9291AF1D2850022B1F0 /* AKADetailViewController.m in Sources */,
 				99FBE90A1AEDFAC70022B1F0 /* AKAFeedViewController.m in Sources */,
+				998A2EC71AFCF0A200967A77 /* AKANavigationController.m in Sources */,
 				99FBE92C1AF31BAB0022B1F0 /* AKARegularExpression.m in Sources */,
 				99FBE9191AEFB7F50022B1F0 /* AKATopCustomCell.m in Sources */,
 				9987E77C1AF4895C002622EE /* AKAMarkersFeed.m in Sources */,

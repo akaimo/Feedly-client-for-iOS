@@ -75,7 +75,7 @@
         <!--Unread View Controller-->
         <scene sceneID="DC5-cY-FP6">
             <objects>
-                <viewController id="O2t-RL-F2R" customClass="UnreadViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UnreadViewController" id="O2t-RL-F2R" customClass="UnreadViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EUf-tk-gdC"/>
                         <viewControllerLayoutGuide type="bottom" id="MlS-cr-AIE"/>
@@ -381,7 +381,7 @@
         <!--Navigation Controller-->
         <scene sceneID="YrO-FS-xFh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NZE-g6-Em2" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NZE-g6-Em2" customClass="AKANavigationController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="B6I-hI-yGB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

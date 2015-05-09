@@ -12,10 +12,16 @@
 extern NSString * const kOauth2ClientAccountType;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (nonatomic, retain) NSMutableArray *feed;
-@property (nonatomic, assign) NXOAuth2Account *account;
 @property (strong, nonatomic) UIWindow *window;
+
+//-- feedが保存されている
+@property (nonatomic, retain) NSMutableArray *feed;
+
+//-- feedの状態を管理
+@property (nonatomic) char feedStatus;
+
+//-- アカウント情報を管理
+@property (nonatomic, assign) NXOAuth2Account *account;
 
 @end
 
