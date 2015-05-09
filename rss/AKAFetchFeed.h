@@ -10,10 +10,16 @@
 
 @interface AKAFetchFeed : NSObject
 
-//-- DBからカテゴリーごとにfeedを収得
+//-- DBからカテゴリーごとにfeedを収得(unread)
 - (NSArray *)fechCategoryFeedUnread:(NSNumber *)unread;
 
-//-- DBからすべてのfeedを収得
+//-- DBからすべてのfeedを収得(unread)
 - (NSArray *)fechAllFeedUnread:(NSNumber *)unread;
+
+//-- DBからカテゴリーごとにfeedを取得(saved)
+- (NSArray *)fechCategoryFeedSaved:(NSNumber *)saved;
+
+//-- DBからすべてのfeedを収得(saved)
+- (NSArray *)fechAllFeedSaved:(NSNumber *)saved;
 
 @end

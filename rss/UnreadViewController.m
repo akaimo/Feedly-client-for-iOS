@@ -13,12 +13,11 @@
 #import "AKAFetchFeed.h"
 #import "AKAFeedViewController.h"
 #import "AKATopCustomCell.h"
+#import "AKANavigationController.h"
 
 @interface UnreadViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *unreadTableView;
 //@property (nonatomic, assign) NSInteger *categoryCount;
-@property (nonatomic, retain) NSMutableArray *feed;
-@property (nonatomic, retain) NSMutableDictionary *allFeed;
 @property (nonatomic, retain) NXOAuth2Account *account;
 
 @end
@@ -28,6 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    /* Menu追加 */
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(openVerticalMenu:)];
     
     /* カスタムセルの定義 */
     UINib *nib = [UINib nibWithNibName:@"AKATopCustomCell" bundle:nil];
@@ -44,36 +45,35 @@
     _account = delegate.account;
     [self setTitle];
     
-    /* 同期処理 */
-//    [self synchro];
-    
-    /* fetch処理 */
-    AKAFetchFeed *fechFeed = [[AKAFetchFeed alloc] init];
-    _feed = [fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:YES]];
-    _allFeed = [fechFeed fechAllFeedUnread:[NSNumber numberWithBool:NO]];
-    delegate.feed = [NSMutableArray arrayWithObject:_allFeed];
-    for (NSDictionary *dic in _feed) {
-        [delegate.feed addObject:dic];
-    }
-    
-    /* マルチスレッド */
-    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+    /* Menuから生成された場合は行わない */
+    if (!delegate.feedStatus) {
         /* 同期処理 */
-        [self synchro];
+        //    [self synchro];
         
+        /* fetch処理 */
         AKAFetchFeed *fechFeed = [[AKAFetchFeed alloc] init];
-        _feed = [fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:YES]];
-        _allFeed = [fechFeed fechAllFeedUnread:[NSNumber numberWithBool:NO]];
-        delegate.feed = [NSMutableArray arrayWithObject:_allFeed];
-        for (NSDictionary *dic in _feed) {
+        delegate.feed = [NSMutableArray arrayWithObject:[fechFeed fechAllFeedUnread:[NSNumber numberWithBool:YES]]];
+        for (NSDictionary *dic in [NSMutableArray arrayWithArray:[fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:YES]]]) {
             [delegate.feed addObject:dic];
         }
         
-        /* メインスレッドでの処理 */
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.unreadTableView reloadData];
-        });
-    }];
+        /* マルチスレッド */
+        [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+            /* 同期処理 */
+            [self synchro];
+            
+            AKAFetchFeed *fechFeed = [[AKAFetchFeed alloc] init];
+            delegate.feed = [NSMutableArray arrayWithObject:[fechFeed fechAllFeedUnread:[NSNumber numberWithBool:YES]]];
+            for (NSDictionary *dic in [NSMutableArray arrayWithArray:[fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:YES]]]) {
+                [delegate.feed addObject:dic];
+            }
+            
+            /* メインスレッドでの処理 */
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.unreadTableView reloadData];
+            });
+        }];
+    }
     
     /* 次のViewの戻るボタンの設定 */
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] init];
@@ -86,17 +86,45 @@
     [self.navigationController setToolbarHidden:YES animated:YES];
     
     /* fetch処理 */
-    AKAFetchFeed *fechFeed = [[AKAFetchFeed alloc] init];
-    _feed = [fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:YES]];
-    _allFeed = [fechFeed fechAllFeedUnread:[NSNumber numberWithBool:NO]];
-
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    delegate.feed = [NSMutableArray arrayWithObject:_allFeed];
-    for (NSDictionary *dic in _feed) {
-        [delegate.feed addObject:dic];
+    AKAFetchFeed *fechFeed = [[AKAFetchFeed alloc] init];
+    switch (delegate.feedStatus) {
+        case UnreadItems:
+            delegate.feed = [NSMutableArray arrayWithObject:[fechFeed fechAllFeedUnread:[NSNumber numberWithBool:YES]]];
+            for (NSDictionary *dic in [NSMutableArray arrayWithArray:[fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:YES]]]) {
+                [delegate.feed addObject:dic];
+            }
+            break;
+            
+        case SavedItems:
+            delegate.feed = [NSMutableArray arrayWithObject:[fechFeed fechAllFeedSaved:[NSNumber numberWithBool:YES]]];
+            for (NSDictionary *dic in [NSMutableArray arrayWithArray:[fechFeed fechCategoryFeedSaved:[NSNumber numberWithBool:YES]]]) {
+                [delegate.feed addObject:dic];
+            }
+            break;
+            
+        case ReadItems:
+            delegate.feed = [NSMutableArray arrayWithObject:[fechFeed fechAllFeedUnread:[NSNumber numberWithBool:NO]]];
+            for (NSDictionary *dic in [NSMutableArray arrayWithArray:[fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:NO]]]) {
+                [delegate.feed addObject:dic];
+            }
+            break;
+            
+        case AllItems:
+            delegate.feed = [NSMutableArray arrayWithObject:[fechFeed fechAllFeedUnread:nil]];
+            for (NSDictionary *dic in [NSMutableArray arrayWithArray:[fechFeed fechCategoryFeedUnread:nil]]) {
+                [delegate.feed addObject:dic];
+            }
+            break;
+            
+        default:
+            delegate.feed = [NSMutableArray arrayWithObject:[fechFeed fechAllFeedUnread:[NSNumber numberWithBool:YES]]];
+            for (NSDictionary *dic in [NSMutableArray arrayWithArray:[fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:YES]]]) {
+                [delegate.feed addObject:dic];
+            }
+            break;
     }
     
-    /* テーブルの更新 */
     [self.unreadTableView reloadData];
 }
 
@@ -117,18 +145,53 @@
     NSString *identifier;
     NSString *title;
     NSString *unreadCount;
-    switch (indexPath.row) {
-        case 0:
-            identifier = @"Top";
-            title = @"Unread";
-            unreadCount = [NSString stringWithFormat:@"%lu", (unsigned long)[delegate.feed[indexPath.row] count]];
-            break;
-            
-        default:
-            identifier = @"Second";
-            title = [self capitalizeFirstLetter:[[delegate.feed[indexPath.row] valueForKey:@"category"] valueForKey:@"name"][0]];
-            unreadCount = [NSString stringWithFormat:@"%lu", (unsigned long)[delegate.feed[indexPath.row] count]];
-            break;
+    if (indexPath.row == 0) {
+        identifier = @"Top";
+        switch (delegate.feedStatus) {
+            case UnreadItems:
+                title = @"Unread Items";
+                break;
+                
+            case SavedItems:
+                title = @"Saved Items";
+                break;
+                
+            case ReadItems:
+                title = @"Read Items";
+                break;
+                
+            case AllItems:
+                title = @"All Items";
+                break;
+                
+            default:
+                title = @"Unread Items";
+                break;
+        }
+        
+        /* 未読数をカウント */
+        int count = 0;
+        for (NSDictionary *dic in delegate.feed[indexPath.row]) {
+            if ([[dic valueForKey:@"unread"] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+                count++;
+            }
+        }
+        /* 未読数が0なら表示しない */
+        if (count == 0) unreadCount = @"";
+        else            unreadCount = [NSString stringWithFormat:@"%d", count];
+        
+    } else {
+        identifier = @"Second";
+        title = [self capitalizeFirstLetter:[[delegate.feed[indexPath.row] valueForKey:@"category"] valueForKey:@"name"][0]];
+        int count = 0;
+        for (NSDictionary *dic in delegate.feed[indexPath.row]) {
+            if ([[dic valueForKey:@"unread"] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+                count++;
+            }
+        }
+        if (count == 0) unreadCount = @"";
+        else            unreadCount = [NSString stringWithFormat:@"%d", count];
+        
     }
     
     AKATopCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
