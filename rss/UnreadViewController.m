@@ -36,6 +36,11 @@
     UINib *nib2 = [UINib nibWithNibName:@"AKASecondCustomCell" bundle:nil];
     [self.unreadTableView registerNib:nib2 forCellReuseIdentifier:@"Second"];
     
+    /* RefreshControl */
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.unreadTableView addSubview:refreshControl];
+    
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     _account = delegate.account;
     NSDictionary *dict = [_account userData];
@@ -215,6 +220,18 @@
             return [AKATopCustomCell secondRowHeight];
             break;
     }
+}
+
+
+#pragma mark - RefreshControl
+- (void)onRefresh:(UIRefreshControl *) refreshControl {
+    [refreshControl beginRefreshing];
+    
+    AKASynchronized *synchronized = [[AKASynchronized alloc] init];
+    [synchronized synchro:_unreadTableView];
+    
+    [refreshControl endRefreshing];
+    
 }
 
 

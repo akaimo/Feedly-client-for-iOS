@@ -86,7 +86,6 @@
         NSLog(@"test element 5");
     };
     item6.actionBlock = ^{
-        NSLog(@"test element 6");
         UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UnreadViewController"];
         AKASynchronized *synchronized = [[AKASynchronized alloc] init];
         [synchronized synchro:vc.unreadTableView];
