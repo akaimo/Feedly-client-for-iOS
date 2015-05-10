@@ -40,17 +40,17 @@
         _imageTintColor = [UIColor whiteColor];
         _highlightedImageTintColor = _imageTintColor;
         
-        _highlightedBackgroundColor = [UIColor colorWithRed:155.0/255.0 green:155.0/255.0 blue:155.0/255.0 alpha:1.0];
+        _highlightedBackgroundColor = [UIColor colorWithRed:26/255.0 green:77/255.0 blue:255/255.0 alpha:1.0];
         _highlightedTextColor = [UIColor colorWithRed:128/255.0 green:126/255.0 blue:124/255.0 alpha:1.0];
         _highlightedTextShadowColor = [UIColor blackColor];
 
         _borderWidth = 0.5;
         _borderColor = [UIColor whiteColor];
         
-        _backgroundAlpha = 0.95;
-        _backgroundColor = [UIColor colorWithRed:53/255.0 green:53/255.0 blue:52/255.0 alpha:1.0];
+        _backgroundAlpha = 0.85;
+        _backgroundColor = [UIColor colorWithRed:61/255.0 green:153/255.0 blue:194/255.0 alpha:1.0];
         _liveBlurTintColor = nil;
-        _liveBlur = YES;
+        _liveBlur = NO;
 
         _animationDuration = 0.3;
         _closeAnimationDuration = 0.2;
