@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "38E658196EC1BA4209C6FD87"
-               BuildableName = "libPods-FCVerticalMenu.a"
-               BlueprintName = "Pods-FCVerticalMenu"
+               BlueprintIdentifier = "6077B5C945B0DB4B31FC3A10"
+               BuildableName = "libPods-JDStatusBarNotification.a"
+               BlueprintName = "Pods-JDStatusBarNotification"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
