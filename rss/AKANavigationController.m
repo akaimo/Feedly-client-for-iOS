@@ -9,6 +9,7 @@
 #import "AKANavigationController.h"
 #import "AppDelegate.h"
 #import "UnreadViewController.h"
+#import "AKASynchronized.h"
 
 @interface AKANavigationController ()
 
@@ -50,6 +51,9 @@
     FCVerticalMenuItem *item5 = [[FCVerticalMenuItem alloc] initWithTitle:@"Settings"
                                                              andIconImage:[UIImage imageNamed:@"settingIcon"]];
     
+    FCVerticalMenuItem *item6 = [[FCVerticalMenuItem alloc] initWithTitle:@"Sync"
+                                                             andIconImage:nil];
+    
     item1.actionBlock = ^{
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         delegate.feedStatus = UnreadItems;
@@ -81,9 +85,16 @@
     item5.actionBlock = ^{
         NSLog(@"test element 5");
     };
+    item6.actionBlock = ^{
+        NSLog(@"test element 6");
+        UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UnreadViewController"];
+        AKASynchronized *synchronized = [[AKASynchronized alloc] init];
+        [synchronized synchro:vc.unreadTableView];
+        
+    };
     
     
-    _verticalMenu = [[FCVerticalMenu alloc] initWithItems:@[item1, item2, item3, item4, item5]];
+    _verticalMenu = [[FCVerticalMenu alloc] initWithItems:@[item1, item2, item3, item4, item5, item6]];
     _verticalMenu.appearsBehindNavigationBar = YES;
     
 }

@@ -10,6 +10,9 @@
 #import "AppDelegate.h"
 #import "AKACoreData.h"
 #import "AKACurrentData.h"
+#import "JDStatusBarNotification.h"
+#import "AKAFetchFeed.h"
+#import "AKANavigationController.h"
 
 @implementation AKASynchronized
 
@@ -22,6 +25,128 @@
         _userData = [_account userData];
     }
     return self;
+}
+
+//-- 同期処理
+- (void)synchro:(UITableView *)tableView {
+    /* sqlite3のURLを収得 */
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsPath = paths[0];
+//    NSLog(@"sqlite3: %@", documentsPath);
+    
+    [JDStatusBarNotification showWithStatus:@"Syscing..."];
+    
+    /* マルチスレッド */
+    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+        /* 同期処理 */
+        /* アカウントの照合 */
+        [self checkAccount];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [JDStatusBarNotification showProgress:0.1];
+        });
+        
+        
+        /* カテゴリ一覧を収得 */
+        NSURL *url = [NSURL URLWithString:CATEGORY];
+        NSDictionary *category = [self urlForJSONToDictionary:url];
+        /* カテゴリを解析し保存 */
+        [self saveCategory:category];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [JDStatusBarNotification showProgress:0.2];
+        });
+        
+        
+        /* 未読数を収得して、その数だけ記事を収得 */
+        NSString *str = [STREAMS stringByAppendingString:[_userData valueForKey:@"id"]];
+        str = [str stringByAppendingString:FEED];
+        str = [str stringByAppendingString:[self checkUnreadCount]];
+        NSLog(@"%@", str);
+        url = [NSURL URLWithString:str];
+        NSDictionary *feed = [self urlForJSONToDictionary:url];
+        /* 記事を解析し保存 */
+        [self saveFeed:feed];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [JDStatusBarNotification showProgress:0.5];
+        });
+        
+        
+        /* お気に入りを収得 */
+        str = [STREAMS stringByAppendingString:[_userData valueForKey:@"id"]];
+        str = [str stringByAppendingString:SAVED];
+        url = [NSURL URLWithString:str];
+        NSDictionary *save = [self urlForJSONToDictionary:url];
+        /* お気に入りを解析し保存 */
+        [self saveSaved:save];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [JDStatusBarNotification showProgress:0.6];
+        });
+        
+        
+        /* データベースの整合性のチェック */
+        // 未実装
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [JDStatusBarNotification showProgress:0.8];
+        });
+        
+        
+        /* 過去のfeedを削除 */
+        [self deleteFeed];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [JDStatusBarNotification showProgress:1.0];
+        });
+        
+        
+        /* fech */
+        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        AKAFetchFeed *fechFeed = [[AKAFetchFeed alloc] init];
+        switch (delegate.feedStatus) {
+            case UnreadItems:
+                delegate.feed = [NSMutableArray arrayWithObject:[fechFeed fechAllFeedUnread:[NSNumber numberWithBool:YES]]];
+                for (NSDictionary *dic in [NSMutableArray arrayWithArray:[fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:YES]]]) {
+                    [delegate.feed addObject:dic];
+                }
+                break;
+                
+            case SavedItems:
+                delegate.feed = [NSMutableArray arrayWithObject:[fechFeed fechAllFeedSaved:[NSNumber numberWithBool:YES]]];
+                for (NSDictionary *dic in [NSMutableArray arrayWithArray:[fechFeed fechCategoryFeedSaved:[NSNumber numberWithBool:YES]]]) {
+                    [delegate.feed addObject:dic];
+                }
+                break;
+                
+            case ReadItems:
+                delegate.feed = [NSMutableArray arrayWithObject:[fechFeed fechAllFeedUnread:[NSNumber numberWithBool:NO]]];
+                for (NSDictionary *dic in [NSMutableArray arrayWithArray:[fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:NO]]]) {
+                    [delegate.feed addObject:dic];
+                }
+                break;
+                
+            case AllItems:
+                delegate.feed = [NSMutableArray arrayWithObject:[fechFeed fechAllFeedUnread:nil]];
+                for (NSDictionary *dic in [NSMutableArray arrayWithArray:[fechFeed fechCategoryFeedUnread:nil]]) {
+                    [delegate.feed addObject:dic];
+                }
+                break;
+                
+            default:
+                delegate.feed = [NSMutableArray arrayWithObject:[fechFeed fechAllFeedUnread:[NSNumber numberWithBool:YES]]];
+                for (NSDictionary *dic in [NSMutableArray arrayWithArray:[fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:YES]]]) {
+                    [delegate.feed addObject:dic];
+                }
+                break;
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [tableView reloadData];
+            [JDStatusBarNotification showWithStatus:@"Sync Success!" dismissAfter:1.5 styleName:JDStatusBarStyleSuccess];
+        });
+    }];
 }
 
 

@@ -11,4 +11,6 @@
 
 @interface UnreadViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITableView *unreadTableView;
+
 @end

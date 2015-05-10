@@ -18,7 +18,6 @@
 #import "JDStatusBarNotification.h"
 
 @interface UnreadViewController () <UITableViewDataSource, UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *unreadTableView;
 //@property (nonatomic, assign) NSInteger *categoryCount;
 @property (nonatomic, retain) NXOAuth2Account *account;
 
@@ -28,7 +27,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     /* Menu追加 */
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(openVerticalMenu:)];
     
@@ -38,11 +36,6 @@
     UINib *nib2 = [UINib nibWithNibName:@"AKASecondCustomCell" bundle:nil];
     [self.unreadTableView registerNib:nib2 forCellReuseIdentifier:@"Second"];
     
-    /* sqlite3のURLを収得 */
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsPath = paths[0];
-//    NSLog(@"sqlite3: %@", documentsPath);
-    
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     _account = delegate.account;
     NSDictionary *dict = [_account userData];
@@ -50,35 +43,16 @@
     
     /* Menuから生成された場合は行わない */
     if (!delegate.feedStatus) {
-        /* 同期処理 */
-        //    [self synchro];
-        
         /* fetch処理 */
-//        AKAFetchFeed *fechFeed = [[AKAFetchFeed alloc] init];
-//        delegate.feed = [NSMutableArray arrayWithObject:[fechFeed fechAllFeedUnread:[NSNumber numberWithBool:YES]]];
-//        for (NSDictionary *dic in [NSMutableArray arrayWithArray:[fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:YES]]]) {
-//            [delegate.feed addObject:dic];
-//        }
+        AKAFetchFeed *fechFeed = [[AKAFetchFeed alloc] init];
+        delegate.feed = [NSMutableArray arrayWithObject:[fechFeed fechAllFeedUnread:[NSNumber numberWithBool:YES]]];
+        for (NSDictionary *dic in [NSMutableArray arrayWithArray:[fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:YES]]]) {
+            [delegate.feed addObject:dic];
+        }
         
-        [JDStatusBarNotification showWithStatus:@"Syscing..."];
-        /* マルチスレッド */
-        [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
-            /* 同期処理 */
-            [self synchro];
-            
-            AKAFetchFeed *fechFeed = [[AKAFetchFeed alloc] init];
-            delegate.feed = [NSMutableArray arrayWithObject:[fechFeed fechAllFeedUnread:[NSNumber numberWithBool:YES]]];
-            for (NSDictionary *dic in [NSMutableArray arrayWithArray:[fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:YES]]]) {
-                [delegate.feed addObject:dic];
-            }
-            
-            /* メインスレッドでの処理 */
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.unreadTableView reloadData];
-//                [JDStatusBarNotification dismiss];
-                [JDStatusBarNotification showWithStatus:@"Sync Success!" dismissAfter:1.5 styleName:JDStatusBarStyleSuccess];
-            });
-        }];
+        /* 同期処理 */
+        AKASynchronized *synchronized = [[AKASynchronized alloc] init];
+        [synchronized synchro:_unreadTableView];
     }
     
     /* 次のViewの戻るボタンの設定 */
@@ -245,67 +219,6 @@
 
 
 #pragma mark - PrivateMethods
-//-- 同期
-- (void)synchro {
-    AKASynchronized *synchronized = [[AKASynchronized alloc] init];
-    /* アカウントの照合 */
-    [synchronized checkAccount];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [JDStatusBarNotification showProgress:0.1];
-    });
-    
-    /* カテゴリ一覧を収得 */
-    NSURL *url = [NSURL URLWithString:CATEGORY];
-    NSDictionary *category = [synchronized urlForJSONToDictionary:url];
-    /* カテゴリを解析し保存 */
-    [synchronized saveCategory:category];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [JDStatusBarNotification showProgress:0.2];
-    });
-    
-    /* 未読数を収得して、その数だけ記事を収得 */
-    NSDictionary *userData = [_account userData];
-    NSString *str = [STREAMS stringByAppendingString:[userData valueForKey:@"id"]];
-    str = [str stringByAppendingString:FEED];
-    str = [str stringByAppendingString:[synchronized checkUnreadCount]];
-    NSLog(@"%@", str);
-    url = [NSURL URLWithString:str];
-    NSDictionary *feed = [synchronized urlForJSONToDictionary:url];
-    /* 記事を解析し保存 */
-    [synchronized saveFeed:feed];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [JDStatusBarNotification showProgress:0.5];
-    });
-    
-    /* お気に入りを収得 */
-    str = [STREAMS stringByAppendingString:[userData valueForKey:@"id"]];
-    str = [str stringByAppendingString:SAVED];
-    url = [NSURL URLWithString:str];
-    NSDictionary *save = [synchronized urlForJSONToDictionary:url];
-    /* お気に入りを解析し保存 */
-    [synchronized saveSaved:save];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [JDStatusBarNotification showProgress:0.6];
-    });
-    
-    /* データベースの整合性のチェック */
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [JDStatusBarNotification showProgress:0.8];
-    });
-    
-    /* 過去のfeedを削除 */
-    [synchronized deleteFeed];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [JDStatusBarNotification showProgress:1.0];
-    });
-}
-
 //-- 最初の文字だけ大文字にする
 -(NSString *)capitalizeFirstLetter:(NSString *)string{
     NSString *capitalisedSentence = [string stringByReplacingCharactersInRange:NSMakeRange(0,1)
