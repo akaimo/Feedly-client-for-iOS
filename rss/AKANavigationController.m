@@ -22,9 +22,9 @@
     self.verticalMenu.delegate = self;
     
     self.navigationBar.barStyle = UIBarStyleBlack;
-    self.navigationBar.barTintColor = [UIColor colorWithRed:61/255.0 green:153/255.0 blue:194/255.0 alpha:1.0];
+    self.navigationBar.barTintColor = [UIColor colorWithRed:61/255.0 green:173/255.0 blue:204/255.0 alpha:1.0];
 //    self.verticalMenu.liveBlurBackgroundStyle = self.navigationBar.barStyle;
-    self.navigationBar.tintColor = [UIColor colorWithRed:133/255.0 green:230/255.0 blue:255/255.0 alpha:1.0];
+    self.navigationBar.tintColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning {

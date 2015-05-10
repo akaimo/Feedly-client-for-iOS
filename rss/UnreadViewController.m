@@ -14,6 +14,7 @@
 #import "AKAFeedViewController.h"
 #import "AKATopCustomCell.h"
 #import "AKANavigationController.h"
+#import "MSCellAccessory.h"
 
 @interface UnreadViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *unreadTableView;
@@ -199,7 +200,8 @@
     cell.title.text = title;
     cell.unreadCount.text = unreadCount;
     
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryView = [MSCellAccessory accessoryWithType:DISCLOSURE_INDICATOR color:[UIColor colorWithRed:133/255.0 green:230/255.0 blue:255/255.0 alpha:1.0]];
     
     return cell;
 }

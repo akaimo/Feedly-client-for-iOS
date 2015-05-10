@@ -7,542 +7,572 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03A961B9D08CC0CF0A631B71 /* NSURL+NXOAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAE3F2B2E64117A9107130E /* NSURL+NXOAuth2.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		07598E1526FB938CAFAA573D /* FCVerticalMenuItemCollectionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DBD5D929C4E6441E9278444 /* FCVerticalMenuItemCollectionViewCell.h */; };
-		08368C7A526BB5EEAC92FA65 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E4A8FF5BE6F76A0A793BD3 /* Pods-dummy.m */; };
-		0BB2C08BD349F32A6F847320 /* NXOAuth2Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A45016A315C1D2F1F0A890D /* NXOAuth2Connection.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		0DCBC49397EE26F9C8FCD1C8 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4926B5686C7A86EDC3888BBF /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		16772D474D0EF9D601E49E67 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F2EED164722FF8B50933570 /* CoreGraphics.framework */; };
-		172C836745963DC2AA6286AA /* NXOAuth2PostBodyStream.h in Headers */ = {isa = PBXBuildFile; fileRef = BF010D95A36C9443377B9E31 /* NXOAuth2PostBodyStream.h */; };
-		229041A2857F827EF253B48B /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F582D5E0D25EFBA863ED78B /* MJPopupBackgroundView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		23D80788F17132750B9EA481 /* NXOAuth2Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BAE945656BD0B7DEBFA0DB /* NXOAuth2Client.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		24E5518AFEE048CBB8904212 /* NSData+NXOAuth2.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F4F1A61C54F0D5CDC0C65A6 /* NSData+NXOAuth2.h */; };
-		2513F87038AA63D136325924 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A89BC70664E09319647BEE9 /* Foundation.framework */; };
-		284E9A8857042821C5128EE1 /* NXOAuth2PostBodyPart.h in Headers */ = {isa = PBXBuildFile; fileRef = 055C66C35DA486A70A1C4ACD /* NXOAuth2PostBodyPart.h */; };
-		2BB24B2354BC22B1E67FEF90 /* FCVerticalMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = E033501B83FE9D0B9DBF6789 /* FCVerticalMenu.h */; };
-		2EC00DB9005327D5B14BE55B /* NXOAuth2Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD2FBF5989C1BB1E32C6932 /* NXOAuth2Constants.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		30DE2609C90BCDD16F612026 /* NXOAuth2FileStreamWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BB72158A31C941AA1608347 /* NXOAuth2FileStreamWrapper.h */; };
-		41F9B95F4DED0BA98DB7AC17 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC48CC4E51DE22FEBED91FF /* QuartzCore.framework */; };
-		421595FB2BA436DCC2FE06B2 /* NXOAuth2AccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1B278CB8FA0341AB678FB9 /* NXOAuth2AccountStore.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		4C50DA66822F6648720EA9D7 /* NXOAuth2PostBodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = B54E69DE6E28688F210FA6FA /* NXOAuth2PostBodyPart.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		4D7235D8EB2393AC1605C242 /* NXOAuth2.h in Headers */ = {isa = PBXBuildFile; fileRef = 028E85475697A4AEC1990D38 /* NXOAuth2.h */; };
-		4EA2BE3A1B4737913AB575C1 /* NXOAuth2AccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E03272431EE315441B5AF9B /* NXOAuth2AccessToken.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		55348FEBCB94BD5F10F80BC8 /* FCVerticalMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E1D2D86346A672F0068CA /* FCVerticalMenuItem.m */; };
-		553FF1A096A3C783E058C3C6 /* MJPopupBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = A5CD1F84C059454BE329A2A5 /* MJPopupBackgroundView.h */; };
-		573D50207755C0F10F4FCA2B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A89BC70664E09319647BEE9 /* Foundation.framework */; };
-		628AD5426A4204F9D49E861C /* NXOAuth2Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D699CDACE344BAB6F745365 /* NXOAuth2Account.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		6CD165649E7F987706A9E633 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A89BC70664E09319647BEE9 /* Foundation.framework */; };
-		73677419E0629F1DB99BE18E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A89BC70664E09319647BEE9 /* Foundation.framework */; };
-		80343F12B91773B991FC9D0B /* NXOAuth2AccountStore.h in Headers */ = {isa = PBXBuildFile; fileRef = D90E4E0B934A38F78CEDAB1F /* NXOAuth2AccountStore.h */; };
-		81428C6EC411F8C993D0174E /* FCVerticalMenuItemCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB28FEBE2B6F338B46031F6B /* FCVerticalMenuItemCollectionViewCell.m */; };
-		8A4F17B1E37B409EDDD9AD43 /* NSString+NXOAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = D9DB291CCB634853045F37A2 /* NSString+NXOAuth2.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		8D17CEC91650057FCC64DFF5 /* Pods-MBProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4637D2467A1252B3F9CC8D /* Pods-MBProgressHUD-dummy.m */; };
-		959276DD138BEE5029772067 /* FCVerticalMenuItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C384041D24B7CFA487F8C1D /* FCVerticalMenuItem.h */; };
-		9E414E2F0F6127E330D9D3DD /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CD86CCCD03B6BB84B5BEE7 /* UIViewController+MJPopupViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		A2579800AC1056903A70195C /* NXOAuth2Connection.h in Headers */ = {isa = PBXBuildFile; fileRef = E1D7130E9A014FF187748EDE /* NXOAuth2Connection.h */; };
-		A75FE495F207923A68061910 /* UIViewController+MJPopupViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BA2964C81443DE2E8840BEF6 /* UIViewController+MJPopupViewController.h */; };
-		AA40F7D4F28F142BC9529EF6 /* NSString+NXOAuth2.h in Headers */ = {isa = PBXBuildFile; fileRef = 045E47B7EF768F13DDDD1333 /* NSString+NXOAuth2.h */; };
-		AA802FA1F6273FEB2310216A /* Pods-NXOAuth2Client-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 825FDB08051C828F2940F8BE /* Pods-NXOAuth2Client-dummy.m */; };
-		AC9AA41AAE2E3114611A41EA /* Pods-MJPopupViewController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D43A070E20DA332BE6EF8467 /* Pods-MJPopupViewController-dummy.m */; };
-		AE3A9F9D3873FC388FCE3FDA /* NXOAuth2Account+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EC7A57B6B93BB0F14E950C23 /* NXOAuth2Account+Private.h */; };
-		B1A64D35C69917EE6ECB1EB6 /* NXOAuth2Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 2111F89A3B7B8067F37FAE03 /* NXOAuth2Request.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		B35556CB1CFCF4D4C50A69C4 /* NXOAuth2ClientDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F758DA7719DA198D803007A7 /* NXOAuth2ClientDelegate.h */; };
-		B701600C7B5C29A9B7723075 /* FCVerticalMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = D81759349912781429DE6A4B /* FCVerticalMenu.m */; };
-		B9FAE409974AB0E1BEEE368C /* NXOAuth2Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 714C0844BFDD1B3315DC7A78 /* NXOAuth2Client.h */; };
-		CA09DB89CA1DF2EF4D8717D1 /* NXOAuth2Account.h in Headers */ = {isa = PBXBuildFile; fileRef = 4554A5E1DDE37184EBCE9396 /* NXOAuth2Account.h */; };
-		CEB77424F4A199BB12DB0AA5 /* NSData+NXOAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E8EFD3B3257A8D4943D4D6D /* NSData+NXOAuth2.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		D2CABBA2FC11EF33691E4EDD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A89BC70664E09319647BEE9 /* Foundation.framework */; };
-		D5CCACEBB9845423F8D2207B /* NXOAuth2Request.h in Headers */ = {isa = PBXBuildFile; fileRef = 720EE25F443E497D1331DEB7 /* NXOAuth2Request.h */; };
-		DF1D8AA8EFEBB80CE013B099 /* NSURL+NXOAuth2.h in Headers */ = {isa = PBXBuildFile; fileRef = AB36A44ED37AF80225BD0FE7 /* NSURL+NXOAuth2.h */; };
-		DFF9C9E69E458E59FC178FF8 /* NXOAuth2PostBodyStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 30240834D2ED165DCFB4979C /* NXOAuth2PostBodyStream.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		E5BBBED60F88DEB204DF3EFA /* Pods-FCVerticalMenu-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 740B5A463C1E1DBCCD04B74D /* Pods-FCVerticalMenu-dummy.m */; };
-		E649C3589E42977F5EF837B5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3712D8888C5FCAB5B7DDA24A /* Security.framework */; };
-		ED17ADC57395AA25B4A00EE5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D51189E79177A60A601B3FA /* UIKit.framework */; };
-		EFAAF36ECB9BE8C6DCFAC838 /* NXOAuth2AccessToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E739A2E921691F7C3466629 /* NXOAuth2AccessToken.h */; };
-		F1810A437DA8A32F081FC62F /* MBProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = D589E5404DA3E9222BF1ACE7 /* MBProgressHUD.h */; };
-		F2537CA9878A9C3840C95897 /* NXOAuth2Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 15EC9FDEC47280C1BDD25739 /* NXOAuth2Constants.h */; };
-		F25C7D39002498F40D9CAE0D /* NXOAuth2TrustDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D87E30F87DF5432EC2AF2B18 /* NXOAuth2TrustDelegate.h */; };
-		FA78EC945A12A9639ACF5F67 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC48CC4E51DE22FEBED91FF /* QuartzCore.framework */; };
-		FAD6D8C30FA5C7C8ADE8F847 /* NXOAuth2ConnectionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = C58F1AB334D8CD800EAFE4DD /* NXOAuth2ConnectionDelegate.h */; };
-		FE75BBE26F39FC5D1B39E8D4 /* NXOAuth2FileStreamWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 242864A9B81195C6CDC1C77C /* NXOAuth2FileStreamWrapper.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		02F84018A1EFEE88A9EE304D /* FCVerticalMenuItemCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F292643407D3AB3F34D635B /* FCVerticalMenuItemCollectionViewCell.m */; };
+		058BA149E94EAF3198040A26 /* NXOAuth2PostBodyStream.m in Sources */ = {isa = PBXBuildFile; fileRef = B90432AB7A135745F632B3BD /* NXOAuth2PostBodyStream.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		1465C4494EA47CDD20AD746B /* NXOAuth2AccessToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 42A25DA511050E546FAB5801 /* NXOAuth2AccessToken.h */; };
+		1530EAEB8855CE8D1ED35751 /* NXOAuth2FileStreamWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D7EE84D5AAA36498CB1BE80C /* NXOAuth2FileStreamWrapper.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		15E754ADBA3E82BC16C3E4CF /* NXOAuth2Connection.h in Headers */ = {isa = PBXBuildFile; fileRef = 815501892AD3EFD3E9D6BE93 /* NXOAuth2Connection.h */; };
+		17879158933F3454D6EEB14B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A091C8BB9689B7675D4F40F2 /* QuartzCore.framework */; };
+		1851F0102C4D5148FC464395 /* UIView+AccessViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = D90DB685F00D1786890AC3BD /* UIView+AccessViewController.h */; };
+		1FA38BD018B1F0E3B78A366F /* NXOAuth2Client.h in Headers */ = {isa = PBXBuildFile; fileRef = B91644B7C98104962720E722 /* NXOAuth2Client.h */; };
+		20F9CD5C72EAB177CDA3202A /* MSCellAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5904A0A5C92C7141316D31 /* MSCellAccessory.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		234FED5B332A0846D74604C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCEA5C0CC1D2147EE4BA6C2 /* UIKit.framework */; };
+		2942020FE1AEA0AE7F127218 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D312B035AE894C8BAE7F1B8F /* Foundation.framework */; };
+		34C04C8D206012E527F5FF9B /* NSString+NXOAuth2.h in Headers */ = {isa = PBXBuildFile; fileRef = 70B46C47BBA2E41B36115615 /* NSString+NXOAuth2.h */; };
+		3CA7AECD88ED8B81E5D33CF6 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B90EB30793BDAE1C12B102B /* UIViewController+MJPopupViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		40C233F5A6BF3AFB00642CB2 /* NXOAuth2.h in Headers */ = {isa = PBXBuildFile; fileRef = E584844F9BAC52A36FF7E21A /* NXOAuth2.h */; };
+		47407D48272E5B9FEF09486C /* NXOAuth2Request.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7D32E05F273100B59B16E1 /* NXOAuth2Request.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		4A9849F598D4F558D0B26C6F /* MSCellAccessory.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FC6C0CF09467FF656494155 /* MSCellAccessory.h */; };
+		6165FD1FB9AB7E1935E24768 /* NXOAuth2TrustDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = BBC8054ED127EA0097800981 /* NXOAuth2TrustDelegate.h */; };
+		62E835A615A48D4774FF263E /* NXOAuth2ClientDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 40BD8640B543047D5E4D7AFD /* NXOAuth2ClientDelegate.h */; };
+		684F2310BBE17246038E18E4 /* FCVerticalMenuItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 79FE3411223F83F62E4E03B5 /* FCVerticalMenuItem.h */; };
+		7114F735E6BD1B553C05B382 /* NSData+NXOAuth2.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BDDBBD626D136AC0A91AC9F /* NSData+NXOAuth2.h */; };
+		7493EB17A55B85A4F02DAA97 /* NXOAuth2AccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA57FA24294F9E4D3A9866C /* NXOAuth2AccountStore.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		754CE8D5EBCE1DA30588C7AA /* FCVerticalMenuItemCollectionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 9008B9D994C9314B854A91D9 /* FCVerticalMenuItemCollectionViewCell.h */; };
+		768173F33A499802CE5FAAE3 /* NXOAuth2Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F40E6390B9C673E467C510 /* NXOAuth2Account.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		78D06E016664F3254509463B /* NXOAuth2Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 343FCC2EC6C67212AA892245 /* NXOAuth2Client.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		7ECCABFD38248A6FEFA38AC1 /* FCVerticalMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = F2AC3EF065AF1F13C58F0936 /* FCVerticalMenu.h */; };
+		81E53F1332171602546FBB0C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F7D6BEDFD41A2CB4B2880C /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		854E91AD756B736FD58F1976 /* Pods-FCVerticalMenu-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2A4FD74FCB846A552EE507 /* Pods-FCVerticalMenu-dummy.m */; };
+		86418CEF0E548F94421A38EC /* NXOAuth2AccountStore.h in Headers */ = {isa = PBXBuildFile; fileRef = E00B1DCDAD639694E129DD16 /* NXOAuth2AccountStore.h */; };
+		866F42676EB1663771057985 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D312B035AE894C8BAE7F1B8F /* Foundation.framework */; };
+		8A44F2354856ABB4CCC725CB /* MJPopupBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B99E22F2FD6650DA5E61E47 /* MJPopupBackgroundView.h */; };
+		920B5BC3250658482EEB03B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D312B035AE894C8BAE7F1B8F /* Foundation.framework */; };
+		9360036699BADEAB2E4CDB61 /* NXOAuth2AccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DEB07846526C22134A8DE /* NXOAuth2AccessToken.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		972A261CF4EE1E17EFCCE379 /* NXOAuth2Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = D9BFE6C4EA004F7C426664D7 /* NXOAuth2Constants.h */; };
+		98B923DE6E073B27BFC33EBD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D312B035AE894C8BAE7F1B8F /* Foundation.framework */; };
+		9DC8F95EED74D941D1E2833D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E1F2E43E5DD41E105E39BB4 /* CoreGraphics.framework */; };
+		A6978EBC3FC350BE4A696986 /* NXOAuth2ConnectionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C8B823AD07DCBEECBEDD129 /* NXOAuth2ConnectionDelegate.h */; };
+		A6CA0686458C1621D6A5D717 /* MBProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D52761713E7DF21545ED2B2 /* MBProgressHUD.h */; };
+		AA3F29BAC71F82435017BE5A /* NSURL+NXOAuth2.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B2C70A2BA650CBF0E0BAF6D /* NSURL+NXOAuth2.h */; };
+		AA8462F5BEA5529C7C8F8E4B /* NSData+NXOAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = E90C4F25DF8862FF51F455BB /* NSData+NXOAuth2.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		AD4365DF647208EE0C4029A2 /* NXOAuth2Account.h in Headers */ = {isa = PBXBuildFile; fileRef = 7630D8A4EB80C679C0767487 /* NXOAuth2Account.h */; };
+		AEFD5437C122237ADC364AE1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A091C8BB9689B7675D4F40F2 /* QuartzCore.framework */; };
+		AFC68D6099D0CB9013228A66 /* NXOAuth2FileStreamWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 467D5EBFB7242158DA3DBE48 /* NXOAuth2FileStreamWrapper.h */; };
+		B2876B8E56A8DD2E4710F72C /* NXOAuth2Request.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B78D2BAABE7B87B6825C467 /* NXOAuth2Request.h */; };
+		B29046FEDFE145E33F0909DD /* FCVerticalMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C313481812C1A93BD4E7E24C /* FCVerticalMenuItem.m */; };
+		B3B02743BC8EBE305CC35C4E /* Pods-MJPopupViewController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 011CF85DB11D825D36B28707 /* Pods-MJPopupViewController-dummy.m */; };
+		B5F58883DAE73B97BAB15132 /* Pods-NXOAuth2Client-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B7BEAFD54A4B40C3705EBD5 /* Pods-NXOAuth2Client-dummy.m */; };
+		B80F6970EBE24CAB09876834 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D312B035AE894C8BAE7F1B8F /* Foundation.framework */; };
+		BA4958711A23CBC10521BCD1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D312B035AE894C8BAE7F1B8F /* Foundation.framework */; };
+		BB6F4C1437A7F5C1B13F7D6F /* NXOAuth2Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0BCDBAECF1D615A03D2354 /* NXOAuth2Connection.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		C31346764E1F4499F36306C4 /* NXOAuth2PostBodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C852626BE19FDF8DC7FC43 /* NXOAuth2PostBodyPart.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		C440C5CEABA6AA71D4232E67 /* NXOAuth2PostBodyPart.h in Headers */ = {isa = PBXBuildFile; fileRef = 5970ECAEE21B3C09EB09DF99 /* NXOAuth2PostBodyPart.h */; };
+		C6C14A5F2B275C478D7A3D90 /* FCVerticalMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = AD160B84865C8B70231EA74A /* FCVerticalMenu.m */; };
+		CCA98FEA6E506F1299339527 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A19D64690325A3607EC007 /* Pods-dummy.m */; };
+		CD4DD707C605CE90A97DFBF0 /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A38D4972BBBC5753109D66B /* MJPopupBackgroundView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		D0D7AF6F7C8BE50F4AA84D74 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A87A40CA8A6C14E65DA4D6A3 /* Security.framework */; };
+		D418482B32DF08F8D705D30A /* NXOAuth2Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 61350908256B439152FABEAE /* NXOAuth2Constants.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		D5637D10B98F09FC96E30753 /* NSURL+NXOAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = 17BD60E20E4A2108F6C3FFFA /* NSURL+NXOAuth2.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		DB5DDD27CD1B659A7B4158C7 /* NXOAuth2Account+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 67603EDC97969DD4180C7B43 /* NXOAuth2Account+Private.h */; };
+		DF3B78E32F4582895898B6E7 /* Pods-MBProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D4635E8E8022A03418CAB3 /* Pods-MBProgressHUD-dummy.m */; };
+		F1674A833B12D120E835C913 /* NXOAuth2PostBodyStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA0C08EAA3B6C1A2769D8A6 /* NXOAuth2PostBodyStream.h */; };
+		F1AA20E4C6A8FCB4F7E702AF /* UIViewController+MJPopupViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 29A32544310F6F5ECE569546 /* UIViewController+MJPopupViewController.h */; };
+		F67CC7BF2AD8284D664CED24 /* NSString+NXOAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D149A7D5ACAA5E30CED76A /* NSString+NXOAuth2.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		F7A812534A70F96EF024D94D /* Pods-MSCellAccessory-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AED10EDA2BF9D812F1CB45 /* Pods-MSCellAccessory-dummy.m */; };
+		FF775B1321C19090D260A015 /* UIView+AccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBA99B2E1FBAEC3B09DEC792 /* UIView+AccessViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2293B42D864F8B6A2AEB5B8C /* PBXContainerItemProxy */ = {
+		0905A1E205C5B683AFC17303 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 522C97A00F7BD03B957439E6 /* Project object */;
+			containerPortal = 97C5203E3755406B357609E6 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 633FEF53E7D2D6B10779DD02;
-			remoteInfo = "Pods-MJPopupViewController";
-		};
-		2FC87590D8EA42DADE069EE9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 522C97A00F7BD03B957439E6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 68DB99559FE7C5315F5C6787;
+			remoteGlobalIDString = A182F0457DF1F92D8F391C57;
 			remoteInfo = "Pods-MBProgressHUD";
 		};
-		3254ED77B59EF92FC5E13A08 /* PBXContainerItemProxy */ = {
+		20C82F203E3E86A5C8F76296 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 522C97A00F7BD03B957439E6 /* Project object */;
+			containerPortal = 97C5203E3755406B357609E6 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 13C420468F2B162ED2B2423C;
-			remoteInfo = "Pods-FCVerticalMenu";
+			remoteGlobalIDString = 704E9612E8F0EFB3CF74A6EC;
+			remoteInfo = "Pods-MJPopupViewController";
 		};
-		50F8C9AC8A70BF2D08B38D86 /* PBXContainerItemProxy */ = {
+		6845C22D0C74293E88B95E90 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 522C97A00F7BD03B957439E6 /* Project object */;
+			containerPortal = 97C5203E3755406B357609E6 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 2F2AFED1699B5A84A768E664;
+			remoteGlobalIDString = 22BC59F0AFC3D38061901656;
 			remoteInfo = "Pods-NXOAuth2Client";
 		};
-		C1F2F61D5FBDB5CE8F6880D9 /* PBXContainerItemProxy */ = {
+		97B3742AB0960F9B982240CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 522C97A00F7BD03B957439E6 /* Project object */;
+			containerPortal = 97C5203E3755406B357609E6 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 0F51E8C35ACFC32F58CCFF39;
+			remoteGlobalIDString = 4DEB1781A12FE094675C1937;
+			remoteInfo = "Pods-MSCellAccessory";
+		};
+		E8FFF85C999E8BCE31F5017A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97C5203E3755406B357609E6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2797EBF31D7049A782D8F5ED;
+			remoteInfo = "Pods-FCVerticalMenu";
+		};
+		EAE4B1B95098D9DAC542EEEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97C5203E3755406B357609E6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FFD1B6FDC077823A79738886;
 			remoteInfo = "Pods-FCVerticalMenu-FCVerticalMenu";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0015BBB528F93F2C8261DE6E /* libPods-MBProgressHUD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MBProgressHUD.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		028E85475697A4AEC1990D38 /* NXOAuth2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2.h; path = Sources/OAuth2Client/NXOAuth2.h; sourceTree = "<group>"; };
-		02BAE945656BD0B7DEBFA0DB /* NXOAuth2Client.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2Client.m; path = Sources/OAuth2Client/NXOAuth2Client.m; sourceTree = "<group>"; };
-		045E47B7EF768F13DDDD1333 /* NSString+NXOAuth2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+NXOAuth2.h"; path = "Sources/NSString+NXOAuth2.h"; sourceTree = "<group>"; };
-		055C66C35DA486A70A1C4ACD /* NXOAuth2PostBodyPart.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2PostBodyPart.h; path = Sources/OAuth2Client/NXOAuth2PostBodyPart.h; sourceTree = "<group>"; };
-		15EC9FDEC47280C1BDD25739 /* NXOAuth2Constants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2Constants.h; path = Sources/OAuth2Client/NXOAuth2Constants.h; sourceTree = "<group>"; };
-		1F582D5E0D25EFBA863ED78B /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJPopupBackgroundView.m; path = Source/MJPopupBackgroundView.m; sourceTree = "<group>"; };
-		2111F89A3B7B8067F37FAE03 /* NXOAuth2Request.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2Request.m; path = Sources/OAuth2Client/NXOAuth2Request.m; sourceTree = "<group>"; };
-		242864A9B81195C6CDC1C77C /* NXOAuth2FileStreamWrapper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2FileStreamWrapper.m; path = Sources/OAuth2Client/NXOAuth2FileStreamWrapper.m; sourceTree = "<group>"; };
-		2B45DC4124C5ED9246B9E7BA /* FCVerticalMenu.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FCVerticalMenu.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		2BB72158A31C941AA1608347 /* NXOAuth2FileStreamWrapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2FileStreamWrapper.h; path = Sources/OAuth2Client/NXOAuth2FileStreamWrapper.h; sourceTree = "<group>"; };
-		2D699CDACE344BAB6F745365 /* NXOAuth2Account.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2Account.m; path = Sources/OAuth2Client/NXOAuth2Account.m; sourceTree = "<group>"; };
-		2E8EFD3B3257A8D4943D4D6D /* NSData+NXOAuth2.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+NXOAuth2.m"; path = "Sources/NSData+NXOAuth2.m"; sourceTree = "<group>"; };
-		2F4F1A61C54F0D5CDC0C65A6 /* NSData+NXOAuth2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+NXOAuth2.h"; path = "Sources/NSData+NXOAuth2.h"; sourceTree = "<group>"; };
-		30240834D2ED165DCFB4979C /* NXOAuth2PostBodyStream.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2PostBodyStream.m; path = Sources/OAuth2Client/NXOAuth2PostBodyStream.m; sourceTree = "<group>"; };
-		3712D8888C5FCAB5B7DDA24A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		38A7F8E21A05F0841D075CE5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E739A2E921691F7C3466629 /* NXOAuth2AccessToken.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2AccessToken.h; path = Sources/OAuth2Client/NXOAuth2AccessToken.h; sourceTree = "<group>"; };
-		3FFCA5D60EFA7CD27697EABC /* libPods-NXOAuth2Client.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NXOAuth2Client.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4554A5E1DDE37184EBCE9396 /* NXOAuth2Account.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2Account.h; path = Sources/OAuth2Client/NXOAuth2Account.h; sourceTree = "<group>"; };
-		4926B5686C7A86EDC3888BBF /* MBProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		49E179A4059D66509E61F1C6 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
-		4AD2FBF5989C1BB1E32C6932 /* NXOAuth2Constants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2Constants.m; path = Sources/OAuth2Client/NXOAuth2Constants.m; sourceTree = "<group>"; };
-		4DBD5D929C4E6441E9278444 /* FCVerticalMenuItemCollectionViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FCVerticalMenuItemCollectionViewCell.h; path = Pod/Classes/FCVerticalMenuItemCollectionViewCell.h; sourceTree = "<group>"; };
-		4FC48CC4E51DE22FEBED91FF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
-		54059E3E20742B0740BEB47C /* Pods-NXOAuth2Client-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NXOAuth2Client-Private.xcconfig"; sourceTree = "<group>"; };
-		5534E77DBF5E5E5B818D9FF0 /* Pods-FCVerticalMenu-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-FCVerticalMenu-prefix.pch"; sourceTree = "<group>"; };
-		5773624BCC4A9ADA5E61CE75 /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
-		5E0EB23618391964DB29A5C5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
-		5F2EED164722FF8B50933570 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
-		6A45016A315C1D2F1F0A890D /* NXOAuth2Connection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2Connection.m; path = Sources/OAuth2Client/NXOAuth2Connection.m; sourceTree = "<group>"; };
-		6A744DDA88FEAA6137D5AF8E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
-		6C4B21110DF4E1D8EFED8EAB /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
-		714C0844BFDD1B3315DC7A78 /* NXOAuth2Client.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2Client.h; path = Sources/OAuth2Client/NXOAuth2Client.h; sourceTree = "<group>"; };
-		720EE25F443E497D1331DEB7 /* NXOAuth2Request.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2Request.h; path = Sources/OAuth2Client/NXOAuth2Request.h; sourceTree = "<group>"; };
-		740B5A463C1E1DBCCD04B74D /* Pods-FCVerticalMenu-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-FCVerticalMenu-dummy.m"; sourceTree = "<group>"; };
-		7C384041D24B7CFA487F8C1D /* FCVerticalMenuItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FCVerticalMenuItem.h; path = Pod/Classes/FCVerticalMenuItem.h; sourceTree = "<group>"; };
-		825FDB08051C828F2940F8BE /* Pods-NXOAuth2Client-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NXOAuth2Client-dummy.m"; sourceTree = "<group>"; };
-		85F4ECAA03A1E658C3A172D0 /* Pods-MBProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MBProgressHUD.xcconfig"; sourceTree = "<group>"; };
-		8D51189E79177A60A601B3FA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		982FEA5798CCE9409D7E8D0D /* libPods-FCVerticalMenu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FCVerticalMenu.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A89BC70664E09319647BEE9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		9E03272431EE315441B5AF9B /* NXOAuth2AccessToken.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2AccessToken.m; path = Sources/OAuth2Client/NXOAuth2AccessToken.m; sourceTree = "<group>"; };
-		9F8BE77E6254E4D3347E21A8 /* Pods-MJPopupViewController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MJPopupViewController.xcconfig"; sourceTree = "<group>"; };
-		A449C9F248D493EEB16CE31B /* libPods-MJPopupViewController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MJPopupViewController.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A5CD1F84C059454BE329A2A5 /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJPopupBackgroundView.h; path = Source/MJPopupBackgroundView.h; sourceTree = "<group>"; };
-		AB36A44ED37AF80225BD0FE7 /* NSURL+NXOAuth2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSURL+NXOAuth2.h"; path = "Sources/NSURL+NXOAuth2.h"; sourceTree = "<group>"; };
-		B54E69DE6E28688F210FA6FA /* NXOAuth2PostBodyPart.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2PostBodyPart.m; path = Sources/OAuth2Client/NXOAuth2PostBodyPart.m; sourceTree = "<group>"; };
-		BA2964C81443DE2E8840BEF6 /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+MJPopupViewController.h"; path = "Source/UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
-		BC28BB0888AA16F99D154605 /* Pods-FCVerticalMenu-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FCVerticalMenu-Private.xcconfig"; sourceTree = "<group>"; };
-		BF010D95A36C9443377B9E31 /* NXOAuth2PostBodyStream.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2PostBodyStream.h; path = Sources/OAuth2Client/NXOAuth2PostBodyStream.h; sourceTree = "<group>"; };
-		BF6E1D2D86346A672F0068CA /* FCVerticalMenuItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FCVerticalMenuItem.m; path = Pod/Classes/FCVerticalMenuItem.m; sourceTree = "<group>"; };
-		C58F1AB334D8CD800EAFE4DD /* NXOAuth2ConnectionDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2ConnectionDelegate.h; path = Sources/OAuth2Client/NXOAuth2ConnectionDelegate.h; sourceTree = "<group>"; };
-		C6E4A8FF5BE6F76A0A793BD3 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
-		D0CD86CCCD03B6BB84B5BEE7 /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+MJPopupViewController.m"; path = "Source/UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
-		D361545A76D804BD77533091 /* Pods-FCVerticalMenu.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FCVerticalMenu.xcconfig"; sourceTree = "<group>"; };
-		D371190C48CBC7931A6078E4 /* Pods-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-environment.h"; sourceTree = "<group>"; };
-		D43A070E20DA332BE6EF8467 /* Pods-MJPopupViewController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MJPopupViewController-dummy.m"; sourceTree = "<group>"; };
-		D589E5404DA3E9222BF1ACE7 /* MBProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		D63EC4C01178329BC8F9DA95 /* Pods-MBProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MBProgressHUD-prefix.pch"; sourceTree = "<group>"; };
-		D81759349912781429DE6A4B /* FCVerticalMenu.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FCVerticalMenu.m; path = Pod/Classes/FCVerticalMenu.m; sourceTree = "<group>"; };
-		D87E30F87DF5432EC2AF2B18 /* NXOAuth2TrustDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2TrustDelegate.h; path = Sources/OAuth2Client/NXOAuth2TrustDelegate.h; sourceTree = "<group>"; };
-		D90E4E0B934A38F78CEDAB1F /* NXOAuth2AccountStore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2AccountStore.h; path = Sources/OAuth2Client/NXOAuth2AccountStore.h; sourceTree = "<group>"; };
-		D9DB291CCB634853045F37A2 /* NSString+NXOAuth2.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+NXOAuth2.m"; path = "Sources/NSString+NXOAuth2.m"; sourceTree = "<group>"; };
-		DB28FEBE2B6F338B46031F6B /* FCVerticalMenuItemCollectionViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FCVerticalMenuItemCollectionViewCell.m; path = Pod/Classes/FCVerticalMenuItemCollectionViewCell.m; sourceTree = "<group>"; };
-		DBF1C6B6CED81B61EF28E3DD /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		DDAE3F2B2E64117A9107130E /* NSURL+NXOAuth2.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSURL+NXOAuth2.m"; path = "Sources/NSURL+NXOAuth2.m"; sourceTree = "<group>"; };
-		DE1B278CB8FA0341AB678FB9 /* NXOAuth2AccountStore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2AccountStore.m; path = Sources/OAuth2Client/NXOAuth2AccountStore.m; sourceTree = "<group>"; };
-		DF4637D2467A1252B3F9CC8D /* Pods-MBProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MBProgressHUD-dummy.m"; sourceTree = "<group>"; };
-		E033501B83FE9D0B9DBF6789 /* FCVerticalMenu.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FCVerticalMenu.h; path = Pod/Classes/FCVerticalMenu.h; sourceTree = "<group>"; };
-		E1D7130E9A014FF187748EDE /* NXOAuth2Connection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2Connection.h; path = Sources/OAuth2Client/NXOAuth2Connection.h; sourceTree = "<group>"; };
-		E4C0066B2BE172AC90C7CC85 /* Pods-MJPopupViewController-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MJPopupViewController-Private.xcconfig"; sourceTree = "<group>"; };
-		E655EC0E9DB2A3A9E871A79C /* Pods-NXOAuth2Client-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NXOAuth2Client-prefix.pch"; sourceTree = "<group>"; };
-		EC7A57B6B93BB0F14E950C23 /* NXOAuth2Account+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NXOAuth2Account+Private.h"; sourceTree = "<group>"; };
-		EC882313567EEFACCE534374 /* Pods-MBProgressHUD-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MBProgressHUD-Private.xcconfig"; sourceTree = "<group>"; };
-		F1BB0192180AD3391B7379C8 /* Pods-MJPopupViewController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MJPopupViewController-prefix.pch"; sourceTree = "<group>"; };
-		F2663F0E5FD770D9D93A2D43 /* Pods-NXOAuth2Client.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NXOAuth2Client.xcconfig"; sourceTree = "<group>"; };
-		F758DA7719DA198D803007A7 /* NXOAuth2ClientDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2ClientDelegate.h; path = Sources/OAuth2Client/NXOAuth2ClientDelegate.h; sourceTree = "<group>"; };
+		011CF85DB11D825D36B28707 /* Pods-MJPopupViewController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MJPopupViewController-dummy.m"; sourceTree = "<group>"; };
+		019D6D0FB4922C3B07292FA4 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		027B926BEB6F48892C3F5039 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B2C70A2BA650CBF0E0BAF6D /* NSURL+NXOAuth2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSURL+NXOAuth2.h"; path = "Sources/NSURL+NXOAuth2.h"; sourceTree = "<group>"; };
+		0B99E22F2FD6650DA5E61E47 /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJPopupBackgroundView.h; path = Source/MJPopupBackgroundView.h; sourceTree = "<group>"; };
+		0BF127D81ED53D0B8F01F658 /* FCVerticalMenu.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FCVerticalMenu.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		133E1E3CBB820A48C823813B /* Pods-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-environment.h"; sourceTree = "<group>"; };
+		15BFD4AEB539491A47DA9FE0 /* Pods-NXOAuth2Client-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NXOAuth2Client-Private.xcconfig"; sourceTree = "<group>"; };
+		15D4A898ADD36A20B04EAF76 /* Pods-MJPopupViewController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MJPopupViewController.xcconfig"; sourceTree = "<group>"; };
+		16B5D9174ACF821EEBAC2620 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
+		17A19D64690325A3607EC007 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
+		17BD60E20E4A2108F6C3FFFA /* NSURL+NXOAuth2.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSURL+NXOAuth2.m"; path = "Sources/NSURL+NXOAuth2.m"; sourceTree = "<group>"; };
+		1F292643407D3AB3F34D635B /* FCVerticalMenuItemCollectionViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FCVerticalMenuItemCollectionViewCell.m; path = Pod/Classes/FCVerticalMenuItemCollectionViewCell.m; sourceTree = "<group>"; };
+		24D4635E8E8022A03418CAB3 /* Pods-MBProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MBProgressHUD-dummy.m"; sourceTree = "<group>"; };
+		25D848FBB268A8713AF6419E /* Pods-MJPopupViewController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MJPopupViewController-prefix.pch"; sourceTree = "<group>"; };
+		28F9C4E681A661B96D4A8C1D /* Pods-MSCellAccessory-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MSCellAccessory-Private.xcconfig"; sourceTree = "<group>"; };
+		29A32544310F6F5ECE569546 /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+MJPopupViewController.h"; path = "Source/UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
+		2E1F2E43E5DD41E105E39BB4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		310EB2BD9F312C79A9AAFF36 /* Pods-MJPopupViewController-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MJPopupViewController-Private.xcconfig"; sourceTree = "<group>"; };
+		324F4B0ED04BC91790677D1E /* Pods-MBProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MBProgressHUD.xcconfig"; sourceTree = "<group>"; };
+		343FCC2EC6C67212AA892245 /* NXOAuth2Client.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2Client.m; path = Sources/OAuth2Client/NXOAuth2Client.m; sourceTree = "<group>"; };
+		38AED10EDA2BF9D812F1CB45 /* Pods-MSCellAccessory-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MSCellAccessory-dummy.m"; sourceTree = "<group>"; };
+		3A8ED773158B65186E12F822 /* libPods-NXOAuth2Client.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NXOAuth2Client.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B0BCDBAECF1D615A03D2354 /* NXOAuth2Connection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2Connection.m; path = Sources/OAuth2Client/NXOAuth2Connection.m; sourceTree = "<group>"; };
+		3BA57FA24294F9E4D3A9866C /* NXOAuth2AccountStore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2AccountStore.m; path = Sources/OAuth2Client/NXOAuth2AccountStore.m; sourceTree = "<group>"; };
+		3C30B6639C02404262639667 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
+		3F2A4FD74FCB846A552EE507 /* Pods-FCVerticalMenu-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-FCVerticalMenu-dummy.m"; sourceTree = "<group>"; };
+		3FC6C0CF09467FF656494155 /* MSCellAccessory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MSCellAccessory.h; path = MSCellAccessory/MSCellAccessory.h; sourceTree = "<group>"; };
+		40BD8640B543047D5E4D7AFD /* NXOAuth2ClientDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2ClientDelegate.h; path = Sources/OAuth2Client/NXOAuth2ClientDelegate.h; sourceTree = "<group>"; };
+		42A25DA511050E546FAB5801 /* NXOAuth2AccessToken.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2AccessToken.h; path = Sources/OAuth2Client/NXOAuth2AccessToken.h; sourceTree = "<group>"; };
+		43F40E6390B9C673E467C510 /* NXOAuth2Account.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2Account.m; path = Sources/OAuth2Client/NXOAuth2Account.m; sourceTree = "<group>"; };
+		45C852626BE19FDF8DC7FC43 /* NXOAuth2PostBodyPart.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2PostBodyPart.m; path = Sources/OAuth2Client/NXOAuth2PostBodyPart.m; sourceTree = "<group>"; };
+		467D5EBFB7242158DA3DBE48 /* NXOAuth2FileStreamWrapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2FileStreamWrapper.h; path = Sources/OAuth2Client/NXOAuth2FileStreamWrapper.h; sourceTree = "<group>"; };
+		468D4D60AAFEAC8BAD5AB3C5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
+		4A8C53FBE9B33200B3AC4374 /* Pods-MBProgressHUD-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MBProgressHUD-Private.xcconfig"; sourceTree = "<group>"; };
+		4BCEA5C0CC1D2147EE4BA6C2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		516CA7681C679B72ECA1C0AE /* Pods-FCVerticalMenu-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FCVerticalMenu-Private.xcconfig"; sourceTree = "<group>"; };
+		5338DDD23E38466798FE9590 /* libPods-MSCellAccessory.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MSCellAccessory.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5970ECAEE21B3C09EB09DF99 /* NXOAuth2PostBodyPart.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2PostBodyPart.h; path = Sources/OAuth2Client/NXOAuth2PostBodyPart.h; sourceTree = "<group>"; };
+		5A5904A0A5C92C7141316D31 /* MSCellAccessory.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MSCellAccessory.m; path = MSCellAccessory/MSCellAccessory.m; sourceTree = "<group>"; };
+		5AA0C08EAA3B6C1A2769D8A6 /* NXOAuth2PostBodyStream.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2PostBodyStream.h; path = Sources/OAuth2Client/NXOAuth2PostBodyStream.h; sourceTree = "<group>"; };
+		5B78D2BAABE7B87B6825C467 /* NXOAuth2Request.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2Request.h; path = Sources/OAuth2Client/NXOAuth2Request.h; sourceTree = "<group>"; };
+		5D52761713E7DF21545ED2B2 /* MBProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		61350908256B439152FABEAE /* NXOAuth2Constants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2Constants.m; path = Sources/OAuth2Client/NXOAuth2Constants.m; sourceTree = "<group>"; };
+		67603EDC97969DD4180C7B43 /* NXOAuth2Account+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NXOAuth2Account+Private.h"; sourceTree = "<group>"; };
+		6BC7FB32901E7DEB0DDE7A8A /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
+		6BDDBBD626D136AC0A91AC9F /* NSData+NXOAuth2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+NXOAuth2.h"; path = "Sources/NSData+NXOAuth2.h"; sourceTree = "<group>"; };
+		70B46C47BBA2E41B36115615 /* NSString+NXOAuth2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+NXOAuth2.h"; path = "Sources/NSString+NXOAuth2.h"; sourceTree = "<group>"; };
+		7630D8A4EB80C679C0767487 /* NXOAuth2Account.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2Account.h; path = Sources/OAuth2Client/NXOAuth2Account.h; sourceTree = "<group>"; };
+		79FE3411223F83F62E4E03B5 /* FCVerticalMenuItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FCVerticalMenuItem.h; path = Pod/Classes/FCVerticalMenuItem.h; sourceTree = "<group>"; };
+		7A38D4972BBBC5753109D66B /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJPopupBackgroundView.m; path = Source/MJPopupBackgroundView.m; sourceTree = "<group>"; };
+		815501892AD3EFD3E9D6BE93 /* NXOAuth2Connection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2Connection.h; path = Sources/OAuth2Client/NXOAuth2Connection.h; sourceTree = "<group>"; };
+		86D149A7D5ACAA5E30CED76A /* NSString+NXOAuth2.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+NXOAuth2.m"; path = "Sources/NSString+NXOAuth2.m"; sourceTree = "<group>"; };
+		8C8B823AD07DCBEECBEDD129 /* NXOAuth2ConnectionDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2ConnectionDelegate.h; path = Sources/OAuth2Client/NXOAuth2ConnectionDelegate.h; sourceTree = "<group>"; };
+		9008B9D994C9314B854A91D9 /* FCVerticalMenuItemCollectionViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FCVerticalMenuItemCollectionViewCell.h; path = Pod/Classes/FCVerticalMenuItemCollectionViewCell.h; sourceTree = "<group>"; };
+		9A5DEB07846526C22134A8DE /* NXOAuth2AccessToken.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2AccessToken.m; path = Sources/OAuth2Client/NXOAuth2AccessToken.m; sourceTree = "<group>"; };
+		9B7BEAFD54A4B40C3705EBD5 /* Pods-NXOAuth2Client-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NXOAuth2Client-dummy.m"; sourceTree = "<group>"; };
+		9B90EB30793BDAE1C12B102B /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+MJPopupViewController.m"; path = "Source/UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
+		A091C8BB9689B7675D4F40F2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		A0D909420C04838FC30686C7 /* Pods-FCVerticalMenu-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-FCVerticalMenu-prefix.pch"; sourceTree = "<group>"; };
+		A1864E52ED56FF69F3CE915C /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
+		A66D12B9BD40B832DC6C0E6B /* Pods-MSCellAccessory-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MSCellAccessory-prefix.pch"; sourceTree = "<group>"; };
+		A87A40CA8A6C14E65DA4D6A3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		AC7D32E05F273100B59B16E1 /* NXOAuth2Request.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2Request.m; path = Sources/OAuth2Client/NXOAuth2Request.m; sourceTree = "<group>"; };
+		AD160B84865C8B70231EA74A /* FCVerticalMenu.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FCVerticalMenu.m; path = Pod/Classes/FCVerticalMenu.m; sourceTree = "<group>"; };
+		B79A15781BE632487CE507D6 /* libPods-MBProgressHUD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MBProgressHUD.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B90432AB7A135745F632B3BD /* NXOAuth2PostBodyStream.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2PostBodyStream.m; path = Sources/OAuth2Client/NXOAuth2PostBodyStream.m; sourceTree = "<group>"; };
+		B91644B7C98104962720E722 /* NXOAuth2Client.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2Client.h; path = Sources/OAuth2Client/NXOAuth2Client.h; sourceTree = "<group>"; };
+		BBC8054ED127EA0097800981 /* NXOAuth2TrustDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2TrustDelegate.h; path = Sources/OAuth2Client/NXOAuth2TrustDelegate.h; sourceTree = "<group>"; };
+		C05C5AB558DB1E9692949234 /* Pods-FCVerticalMenu.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FCVerticalMenu.xcconfig"; sourceTree = "<group>"; };
+		C313481812C1A93BD4E7E24C /* FCVerticalMenuItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FCVerticalMenuItem.m; path = Pod/Classes/FCVerticalMenuItem.m; sourceTree = "<group>"; };
+		C969F95919642CBE7AF9F5CF /* Pods-NXOAuth2Client.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NXOAuth2Client.xcconfig"; sourceTree = "<group>"; };
+		CBA99B2E1FBAEC3B09DEC792 /* UIView+AccessViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+AccessViewController.m"; path = "MSCellAccessory/UIView+AccessViewController.m"; sourceTree = "<group>"; };
+		CD318DAAC9CAC877B3E62572 /* libPods-FCVerticalMenu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FCVerticalMenu.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1FF49BA6A67C79CAA717C96 /* libPods-MJPopupViewController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MJPopupViewController.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D312B035AE894C8BAE7F1B8F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		D351FBD0F22F2DBC5FF6360B /* Pods-NXOAuth2Client-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NXOAuth2Client-prefix.pch"; sourceTree = "<group>"; };
+		D77A7787427759525B5DC160 /* Pods-MSCellAccessory.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MSCellAccessory.xcconfig"; sourceTree = "<group>"; };
+		D7EE84D5AAA36498CB1BE80C /* NXOAuth2FileStreamWrapper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2FileStreamWrapper.m; path = Sources/OAuth2Client/NXOAuth2FileStreamWrapper.m; sourceTree = "<group>"; };
+		D90DB685F00D1786890AC3BD /* UIView+AccessViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+AccessViewController.h"; path = "MSCellAccessory/UIView+AccessViewController.h"; sourceTree = "<group>"; };
+		D9BFE6C4EA004F7C426664D7 /* NXOAuth2Constants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2Constants.h; path = Sources/OAuth2Client/NXOAuth2Constants.h; sourceTree = "<group>"; };
+		E00B1DCDAD639694E129DD16 /* NXOAuth2AccountStore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2AccountStore.h; path = Sources/OAuth2Client/NXOAuth2AccountStore.h; sourceTree = "<group>"; };
+		E584844F9BAC52A36FF7E21A /* NXOAuth2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2.h; path = Sources/OAuth2Client/NXOAuth2.h; sourceTree = "<group>"; };
+		E90C4F25DF8862FF51F455BB /* NSData+NXOAuth2.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+NXOAuth2.m"; path = "Sources/NSData+NXOAuth2.m"; sourceTree = "<group>"; };
+		F2AC3EF065AF1F13C58F0936 /* FCVerticalMenu.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FCVerticalMenu.h; path = Pod/Classes/FCVerticalMenu.h; sourceTree = "<group>"; };
+		F6F7D6BEDFD41A2CB4B2880C /* MBProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		FDE95BBF7E414BA14E3FDA08 /* Pods-MBProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MBProgressHUD-prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		86D48779518C00DDF6652F5D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2513F87038AA63D136325924 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		87199E8116F39F36B24F1CC3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				73677419E0629F1DB99BE18E /* Foundation.framework in Frameworks */,
-				E649C3589E42977F5EF837B5 /* Security.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A625A0F1D0A1AE92E77E095F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				16772D474D0EF9D601E49E67 /* CoreGraphics.framework in Frameworks */,
-				D2CABBA2FC11EF33691E4EDD /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D1F7A21D914C67C837F60D9C /* Frameworks */ = {
+		06DA763D3EAA581CB1F1C937 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DCB649CAEAA57F0330BB96D1 /* Frameworks */ = {
+		2846738A60A72E15BB50422A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				573D50207755C0F10F4FCA2B /* Foundation.framework in Frameworks */,
-				41F9B95F4DED0BA98DB7AC17 /* QuartzCore.framework in Frameworks */,
+				BA4958711A23CBC10521BCD1 /* Foundation.framework in Frameworks */,
+				D0D7AF6F7C8BE50F4AA84D74 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EDEF0744B2358116FE2213EE /* Frameworks */ = {
+		29B7054FB3C87C801423301D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6CD165649E7F987706A9E633 /* Foundation.framework in Frameworks */,
-				FA78EC945A12A9639ACF5F67 /* QuartzCore.framework in Frameworks */,
-				ED17ADC57395AA25B4A00EE5 /* UIKit.framework in Frameworks */,
+				866F42676EB1663771057985 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FFD22268486F5887C29BEC6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B80F6970EBE24CAB09876834 /* Foundation.framework in Frameworks */,
+				AEFD5437C122237ADC364AE1 /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53F5B500AC24965F946348E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98B923DE6E073B27BFC33EBD /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		646ABEAF6D8B76109301BFE6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2942020FE1AEA0AE7F127218 /* Foundation.framework in Frameworks */,
+				17879158933F3454D6EEB14B /* QuartzCore.framework in Frameworks */,
+				234FED5B332A0846D74604C3 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC4AB0418495840C8D6AA87B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DC8F95EED74D941D1E2833D /* CoreGraphics.framework in Frameworks */,
+				920B5BC3250658482EEB03B9 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		17973CA4C0A1A8AF363BF8DD /* Pods */ = {
+		019AA5DAD1D6AB5AED9A4ED3 /* FCVerticalMenu */ = {
 			isa = PBXGroup;
 			children = (
-				5773624BCC4A9ADA5E61CE75 /* Pods-acknowledgements.markdown */,
-				49E179A4059D66509E61F1C6 /* Pods-acknowledgements.plist */,
-				C6E4A8FF5BE6F76A0A793BD3 /* Pods-dummy.m */,
-				D371190C48CBC7931A6078E4 /* Pods-environment.h */,
-				6C4B21110DF4E1D8EFED8EAB /* Pods-resources.sh */,
-				5E0EB23618391964DB29A5C5 /* Pods.debug.xcconfig */,
-				6A744DDA88FEAA6137D5AF8E /* Pods.release.xcconfig */,
+				F2AC3EF065AF1F13C58F0936 /* FCVerticalMenu.h */,
+				AD160B84865C8B70231EA74A /* FCVerticalMenu.m */,
+				79FE3411223F83F62E4E03B5 /* FCVerticalMenuItem.h */,
+				C313481812C1A93BD4E7E24C /* FCVerticalMenuItem.m */,
+				9008B9D994C9314B854A91D9 /* FCVerticalMenuItemCollectionViewCell.h */,
+				1F292643407D3AB3F34D635B /* FCVerticalMenuItemCollectionViewCell.m */,
+				0F32C273B057F5C2D53340A8 /* Support Files */,
+			);
+			path = FCVerticalMenu;
+			sourceTree = "<group>";
+		};
+		051C1399614DFC8BD55F1FED /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				5D52761713E7DF21545ED2B2 /* MBProgressHUD.h */,
+				F6F7D6BEDFD41A2CB4B2880C /* MBProgressHUD.m */,
+				6C0952D4133A2A2F90C101FB /* Support Files */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		06D671A5520843D7FEA66CC6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4C32317A82E86DBA8BC876B4 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0981556C1AE1A57F35C4A4D4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6BC7FB32901E7DEB0DDE7A8A /* Pods-acknowledgements.markdown */,
+				16B5D9174ACF821EEBAC2620 /* Pods-acknowledgements.plist */,
+				17A19D64690325A3607EC007 /* Pods-dummy.m */,
+				133E1E3CBB820A48C823813B /* Pods-environment.h */,
+				A1864E52ED56FF69F3CE915C /* Pods-resources.sh */,
+				468D4D60AAFEAC8BAD5AB3C5 /* Pods.debug.xcconfig */,
+				3C30B6639C02404262639667 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
 			path = "Target Support Files/Pods";
 			sourceTree = "<group>";
 		};
-		55E14ECB27F2DF18B8E3DE81 /* Targets Support Files */ = {
+		0F32C273B057F5C2D53340A8 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				17973CA4C0A1A8AF363BF8DD /* Pods */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		5A564370D57B8F4EC3D32B0B /* NXOAuth2Client */ = {
-			isa = PBXGroup;
-			children = (
-				2F4F1A61C54F0D5CDC0C65A6 /* NSData+NXOAuth2.h */,
-				2E8EFD3B3257A8D4943D4D6D /* NSData+NXOAuth2.m */,
-				045E47B7EF768F13DDDD1333 /* NSString+NXOAuth2.h */,
-				D9DB291CCB634853045F37A2 /* NSString+NXOAuth2.m */,
-				AB36A44ED37AF80225BD0FE7 /* NSURL+NXOAuth2.h */,
-				DDAE3F2B2E64117A9107130E /* NSURL+NXOAuth2.m */,
-				028E85475697A4AEC1990D38 /* NXOAuth2.h */,
-				3E739A2E921691F7C3466629 /* NXOAuth2AccessToken.h */,
-				9E03272431EE315441B5AF9B /* NXOAuth2AccessToken.m */,
-				4554A5E1DDE37184EBCE9396 /* NXOAuth2Account.h */,
-				2D699CDACE344BAB6F745365 /* NXOAuth2Account.m */,
-				EC7A57B6B93BB0F14E950C23 /* NXOAuth2Account+Private.h */,
-				D90E4E0B934A38F78CEDAB1F /* NXOAuth2AccountStore.h */,
-				DE1B278CB8FA0341AB678FB9 /* NXOAuth2AccountStore.m */,
-				714C0844BFDD1B3315DC7A78 /* NXOAuth2Client.h */,
-				02BAE945656BD0B7DEBFA0DB /* NXOAuth2Client.m */,
-				F758DA7719DA198D803007A7 /* NXOAuth2ClientDelegate.h */,
-				E1D7130E9A014FF187748EDE /* NXOAuth2Connection.h */,
-				6A45016A315C1D2F1F0A890D /* NXOAuth2Connection.m */,
-				C58F1AB334D8CD800EAFE4DD /* NXOAuth2ConnectionDelegate.h */,
-				15EC9FDEC47280C1BDD25739 /* NXOAuth2Constants.h */,
-				4AD2FBF5989C1BB1E32C6932 /* NXOAuth2Constants.m */,
-				2BB72158A31C941AA1608347 /* NXOAuth2FileStreamWrapper.h */,
-				242864A9B81195C6CDC1C77C /* NXOAuth2FileStreamWrapper.m */,
-				055C66C35DA486A70A1C4ACD /* NXOAuth2PostBodyPart.h */,
-				B54E69DE6E28688F210FA6FA /* NXOAuth2PostBodyPart.m */,
-				BF010D95A36C9443377B9E31 /* NXOAuth2PostBodyStream.h */,
-				30240834D2ED165DCFB4979C /* NXOAuth2PostBodyStream.m */,
-				720EE25F443E497D1331DEB7 /* NXOAuth2Request.h */,
-				2111F89A3B7B8067F37FAE03 /* NXOAuth2Request.m */,
-				D87E30F87DF5432EC2AF2B18 /* NXOAuth2TrustDelegate.h */,
-				5EBC37BFA24A7BEC6B16169C /* Support Files */,
-			);
-			path = NXOAuth2Client;
-			sourceTree = "<group>";
-		};
-		5EBC37BFA24A7BEC6B16169C /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				F2663F0E5FD770D9D93A2D43 /* Pods-NXOAuth2Client.xcconfig */,
-				54059E3E20742B0740BEB47C /* Pods-NXOAuth2Client-Private.xcconfig */,
-				825FDB08051C828F2940F8BE /* Pods-NXOAuth2Client-dummy.m */,
-				E655EC0E9DB2A3A9E871A79C /* Pods-NXOAuth2Client-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/Pods-NXOAuth2Client";
-			sourceTree = "<group>";
-		};
-		652EED8ED7EA8F93B66FC027 = {
-			isa = PBXGroup;
-			children = (
-				DBF1C6B6CED81B61EF28E3DD /* Podfile */,
-				992947E2BC4626D323CCB690 /* Frameworks */,
-				F9FE8E28ECAD0967E0D5937B /* Pods */,
-				E572F7E7EC3B556B94A33613 /* Products */,
-				55E14ECB27F2DF18B8E3DE81 /* Targets Support Files */,
-			);
-			sourceTree = "<group>";
-		};
-		6E9A31B8A36F8C320F7CB20C /* FCVerticalMenu */ = {
-			isa = PBXGroup;
-			children = (
-				E033501B83FE9D0B9DBF6789 /* FCVerticalMenu.h */,
-				D81759349912781429DE6A4B /* FCVerticalMenu.m */,
-				7C384041D24B7CFA487F8C1D /* FCVerticalMenuItem.h */,
-				BF6E1D2D86346A672F0068CA /* FCVerticalMenuItem.m */,
-				4DBD5D929C4E6441E9278444 /* FCVerticalMenuItemCollectionViewCell.h */,
-				DB28FEBE2B6F338B46031F6B /* FCVerticalMenuItemCollectionViewCell.m */,
-				9F59BE93E9B956AFACBE61B2 /* Support Files */,
-			);
-			path = FCVerticalMenu;
-			sourceTree = "<group>";
-		};
-		711B7BC8014E6C8558E17E1D /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				5F2EED164722FF8B50933570 /* CoreGraphics.framework */,
-				9A89BC70664E09319647BEE9 /* Foundation.framework */,
-				4FC48CC4E51DE22FEBED91FF /* QuartzCore.framework */,
-				3712D8888C5FCAB5B7DDA24A /* Security.framework */,
-				8D51189E79177A60A601B3FA /* UIKit.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		992947E2BC4626D323CCB690 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				711B7BC8014E6C8558E17E1D /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9F59BE93E9B956AFACBE61B2 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				D361545A76D804BD77533091 /* Pods-FCVerticalMenu.xcconfig */,
-				BC28BB0888AA16F99D154605 /* Pods-FCVerticalMenu-Private.xcconfig */,
-				740B5A463C1E1DBCCD04B74D /* Pods-FCVerticalMenu-dummy.m */,
-				5534E77DBF5E5E5B818D9FF0 /* Pods-FCVerticalMenu-prefix.pch */,
+				C05C5AB558DB1E9692949234 /* Pods-FCVerticalMenu.xcconfig */,
+				516CA7681C679B72ECA1C0AE /* Pods-FCVerticalMenu-Private.xcconfig */,
+				3F2A4FD74FCB846A552EE507 /* Pods-FCVerticalMenu-dummy.m */,
+				A0D909420C04838FC30686C7 /* Pods-FCVerticalMenu-prefix.pch */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Pods-FCVerticalMenu";
 			sourceTree = "<group>";
 		};
-		B50BDDC327893D66D68464A7 /* MBProgressHUD */ = {
+		41367CE17DC5F6F757B717FC /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				D589E5404DA3E9222BF1ACE7 /* MBProgressHUD.h */,
-				4926B5686C7A86EDC3888BBF /* MBProgressHUD.m */,
-				B683AC6F6713DFD7B7320C7D /* Support Files */,
+				0981556C1AE1A57F35C4A4D4 /* Pods */,
 			);
-			path = MBProgressHUD;
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		B683AC6F6713DFD7B7320C7D /* Support Files */ = {
+		491F41226C603BD1B8A520C1 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				85F4ECAA03A1E658C3A172D0 /* Pods-MBProgressHUD.xcconfig */,
-				EC882313567EEFACCE534374 /* Pods-MBProgressHUD-Private.xcconfig */,
-				DF4637D2467A1252B3F9CC8D /* Pods-MBProgressHUD-dummy.m */,
-				D63EC4C01178329BC8F9DA95 /* Pods-MBProgressHUD-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/Pods-MBProgressHUD";
-			sourceTree = "<group>";
-		};
-		DB31DB0201DEFF090479EAB1 /* MJPopupViewController */ = {
-			isa = PBXGroup;
-			children = (
-				A5CD1F84C059454BE329A2A5 /* MJPopupBackgroundView.h */,
-				1F582D5E0D25EFBA863ED78B /* MJPopupBackgroundView.m */,
-				BA2964C81443DE2E8840BEF6 /* UIViewController+MJPopupViewController.h */,
-				D0CD86CCCD03B6BB84B5BEE7 /* UIViewController+MJPopupViewController.m */,
-				FB15C3B225158919655DCA12 /* Support Files */,
-			);
-			path = MJPopupViewController;
-			sourceTree = "<group>";
-		};
-		E572F7E7EC3B556B94A33613 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2B45DC4124C5ED9246B9E7BA /* FCVerticalMenu.bundle */,
-				38A7F8E21A05F0841D075CE5 /* libPods.a */,
-				982FEA5798CCE9409D7E8D0D /* libPods-FCVerticalMenu.a */,
-				0015BBB528F93F2C8261DE6E /* libPods-MBProgressHUD.a */,
-				A449C9F248D493EEB16CE31B /* libPods-MJPopupViewController.a */,
-				3FFCA5D60EFA7CD27697EABC /* libPods-NXOAuth2Client.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		F9FE8E28ECAD0967E0D5937B /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				6E9A31B8A36F8C320F7CB20C /* FCVerticalMenu */,
-				B50BDDC327893D66D68464A7 /* MBProgressHUD */,
-				DB31DB0201DEFF090479EAB1 /* MJPopupViewController */,
-				5A564370D57B8F4EC3D32B0B /* NXOAuth2Client */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		FB15C3B225158919655DCA12 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				9F8BE77E6254E4D3347E21A8 /* Pods-MJPopupViewController.xcconfig */,
-				E4C0066B2BE172AC90C7CC85 /* Pods-MJPopupViewController-Private.xcconfig */,
-				D43A070E20DA332BE6EF8467 /* Pods-MJPopupViewController-dummy.m */,
-				F1BB0192180AD3391B7379C8 /* Pods-MJPopupViewController-prefix.pch */,
+				15D4A898ADD36A20B04EAF76 /* Pods-MJPopupViewController.xcconfig */,
+				310EB2BD9F312C79A9AAFF36 /* Pods-MJPopupViewController-Private.xcconfig */,
+				011CF85DB11D825D36B28707 /* Pods-MJPopupViewController-dummy.m */,
+				25D848FBB268A8713AF6419E /* Pods-MJPopupViewController-prefix.pch */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Pods-MJPopupViewController";
 			sourceTree = "<group>";
 		};
+		4C32317A82E86DBA8BC876B4 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				2E1F2E43E5DD41E105E39BB4 /* CoreGraphics.framework */,
+				D312B035AE894C8BAE7F1B8F /* Foundation.framework */,
+				A091C8BB9689B7675D4F40F2 /* QuartzCore.framework */,
+				A87A40CA8A6C14E65DA4D6A3 /* Security.framework */,
+				4BCEA5C0CC1D2147EE4BA6C2 /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		5F3024FF481E0CD848A3D09C /* MSCellAccessory */ = {
+			isa = PBXGroup;
+			children = (
+				3FC6C0CF09467FF656494155 /* MSCellAccessory.h */,
+				5A5904A0A5C92C7141316D31 /* MSCellAccessory.m */,
+				D90DB685F00D1786890AC3BD /* UIView+AccessViewController.h */,
+				CBA99B2E1FBAEC3B09DEC792 /* UIView+AccessViewController.m */,
+				C2E2E64C2D5B96133C222CF8 /* Support Files */,
+			);
+			path = MSCellAccessory;
+			sourceTree = "<group>";
+		};
+		6C0952D4133A2A2F90C101FB /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				324F4B0ED04BC91790677D1E /* Pods-MBProgressHUD.xcconfig */,
+				4A8C53FBE9B33200B3AC4374 /* Pods-MBProgressHUD-Private.xcconfig */,
+				24D4635E8E8022A03418CAB3 /* Pods-MBProgressHUD-dummy.m */,
+				FDE95BBF7E414BA14E3FDA08 /* Pods-MBProgressHUD-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-MBProgressHUD";
+			sourceTree = "<group>";
+		};
+		90804A0EE3E8567990D2C6B7 /* MJPopupViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0B99E22F2FD6650DA5E61E47 /* MJPopupBackgroundView.h */,
+				7A38D4972BBBC5753109D66B /* MJPopupBackgroundView.m */,
+				29A32544310F6F5ECE569546 /* UIViewController+MJPopupViewController.h */,
+				9B90EB30793BDAE1C12B102B /* UIViewController+MJPopupViewController.m */,
+				491F41226C603BD1B8A520C1 /* Support Files */,
+			);
+			path = MJPopupViewController;
+			sourceTree = "<group>";
+		};
+		94EAB17D459FDCC010938962 /* NXOAuth2Client */ = {
+			isa = PBXGroup;
+			children = (
+				6BDDBBD626D136AC0A91AC9F /* NSData+NXOAuth2.h */,
+				E90C4F25DF8862FF51F455BB /* NSData+NXOAuth2.m */,
+				70B46C47BBA2E41B36115615 /* NSString+NXOAuth2.h */,
+				86D149A7D5ACAA5E30CED76A /* NSString+NXOAuth2.m */,
+				0B2C70A2BA650CBF0E0BAF6D /* NSURL+NXOAuth2.h */,
+				17BD60E20E4A2108F6C3FFFA /* NSURL+NXOAuth2.m */,
+				E584844F9BAC52A36FF7E21A /* NXOAuth2.h */,
+				42A25DA511050E546FAB5801 /* NXOAuth2AccessToken.h */,
+				9A5DEB07846526C22134A8DE /* NXOAuth2AccessToken.m */,
+				7630D8A4EB80C679C0767487 /* NXOAuth2Account.h */,
+				43F40E6390B9C673E467C510 /* NXOAuth2Account.m */,
+				67603EDC97969DD4180C7B43 /* NXOAuth2Account+Private.h */,
+				E00B1DCDAD639694E129DD16 /* NXOAuth2AccountStore.h */,
+				3BA57FA24294F9E4D3A9866C /* NXOAuth2AccountStore.m */,
+				B91644B7C98104962720E722 /* NXOAuth2Client.h */,
+				343FCC2EC6C67212AA892245 /* NXOAuth2Client.m */,
+				40BD8640B543047D5E4D7AFD /* NXOAuth2ClientDelegate.h */,
+				815501892AD3EFD3E9D6BE93 /* NXOAuth2Connection.h */,
+				3B0BCDBAECF1D615A03D2354 /* NXOAuth2Connection.m */,
+				8C8B823AD07DCBEECBEDD129 /* NXOAuth2ConnectionDelegate.h */,
+				D9BFE6C4EA004F7C426664D7 /* NXOAuth2Constants.h */,
+				61350908256B439152FABEAE /* NXOAuth2Constants.m */,
+				467D5EBFB7242158DA3DBE48 /* NXOAuth2FileStreamWrapper.h */,
+				D7EE84D5AAA36498CB1BE80C /* NXOAuth2FileStreamWrapper.m */,
+				5970ECAEE21B3C09EB09DF99 /* NXOAuth2PostBodyPart.h */,
+				45C852626BE19FDF8DC7FC43 /* NXOAuth2PostBodyPart.m */,
+				5AA0C08EAA3B6C1A2769D8A6 /* NXOAuth2PostBodyStream.h */,
+				B90432AB7A135745F632B3BD /* NXOAuth2PostBodyStream.m */,
+				5B78D2BAABE7B87B6825C467 /* NXOAuth2Request.h */,
+				AC7D32E05F273100B59B16E1 /* NXOAuth2Request.m */,
+				BBC8054ED127EA0097800981 /* NXOAuth2TrustDelegate.h */,
+				9A0D0FB76E48D7B4D5BA8F3D /* Support Files */,
+			);
+			path = NXOAuth2Client;
+			sourceTree = "<group>";
+		};
+		9A0D0FB76E48D7B4D5BA8F3D /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C969F95919642CBE7AF9F5CF /* Pods-NXOAuth2Client.xcconfig */,
+				15BFD4AEB539491A47DA9FE0 /* Pods-NXOAuth2Client-Private.xcconfig */,
+				9B7BEAFD54A4B40C3705EBD5 /* Pods-NXOAuth2Client-dummy.m */,
+				D351FBD0F22F2DBC5FF6360B /* Pods-NXOAuth2Client-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-NXOAuth2Client";
+			sourceTree = "<group>";
+		};
+		9E8D1C9DD55BAE4D9A9D6149 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0BF127D81ED53D0B8F01F658 /* FCVerticalMenu.bundle */,
+				027B926BEB6F48892C3F5039 /* libPods.a */,
+				CD318DAAC9CAC877B3E62572 /* libPods-FCVerticalMenu.a */,
+				B79A15781BE632487CE507D6 /* libPods-MBProgressHUD.a */,
+				D1FF49BA6A67C79CAA717C96 /* libPods-MJPopupViewController.a */,
+				5338DDD23E38466798FE9590 /* libPods-MSCellAccessory.a */,
+				3A8ED773158B65186E12F822 /* libPods-NXOAuth2Client.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B15C3DC991F52DD2FC8CE7B8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				019AA5DAD1D6AB5AED9A4ED3 /* FCVerticalMenu */,
+				051C1399614DFC8BD55F1FED /* MBProgressHUD */,
+				90804A0EE3E8567990D2C6B7 /* MJPopupViewController */,
+				5F3024FF481E0CD848A3D09C /* MSCellAccessory */,
+				94EAB17D459FDCC010938962 /* NXOAuth2Client */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C2E2E64C2D5B96133C222CF8 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D77A7787427759525B5DC160 /* Pods-MSCellAccessory.xcconfig */,
+				28F9C4E681A661B96D4A8C1D /* Pods-MSCellAccessory-Private.xcconfig */,
+				38AED10EDA2BF9D812F1CB45 /* Pods-MSCellAccessory-dummy.m */,
+				A66D12B9BD40B832DC6C0E6B /* Pods-MSCellAccessory-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-MSCellAccessory";
+			sourceTree = "<group>";
+		};
+		EC4BD024669EA8D802A7DAE0 = {
+			isa = PBXGroup;
+			children = (
+				019D6D0FB4922C3B07292FA4 /* Podfile */,
+				06D671A5520843D7FEA66CC6 /* Frameworks */,
+				B15C3DC991F52DD2FC8CE7B8 /* Pods */,
+				9E8D1C9DD55BAE4D9A9D6149 /* Products */,
+				41367CE17DC5F6F757B717FC /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		05C5BD2F6C79EECD9968FABF /* Headers */ = {
+		0DC1C5FA5F0D173C05B80D2B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				553FF1A096A3C783E058C3C6 /* MJPopupBackgroundView.h in Headers */,
-				A75FE495F207923A68061910 /* UIViewController+MJPopupViewController.h in Headers */,
+				8A44F2354856ABB4CCC725CB /* MJPopupBackgroundView.h in Headers */,
+				F1AA20E4C6A8FCB4F7E702AF /* UIViewController+MJPopupViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7FBBAC13923077FE20900334 /* Headers */ = {
+		810948A419DBDDFBDDA66F6A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BB24B2354BC22B1E67FEF90 /* FCVerticalMenu.h in Headers */,
-				959276DD138BEE5029772067 /* FCVerticalMenuItem.h in Headers */,
-				07598E1526FB938CAFAA573D /* FCVerticalMenuItemCollectionViewCell.h in Headers */,
+				4A9849F598D4F558D0B26C6F /* MSCellAccessory.h in Headers */,
+				1851F0102C4D5148FC464395 /* UIView+AccessViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CD8E4807DA13E2AC7CF7A169 /* Headers */ = {
+		84A38821FF9803AEA219CD05 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24E5518AFEE048CBB8904212 /* NSData+NXOAuth2.h in Headers */,
-				AA40F7D4F28F142BC9529EF6 /* NSString+NXOAuth2.h in Headers */,
-				DF1D8AA8EFEBB80CE013B099 /* NSURL+NXOAuth2.h in Headers */,
-				4D7235D8EB2393AC1605C242 /* NXOAuth2.h in Headers */,
-				EFAAF36ECB9BE8C6DCFAC838 /* NXOAuth2AccessToken.h in Headers */,
-				AE3A9F9D3873FC388FCE3FDA /* NXOAuth2Account+Private.h in Headers */,
-				CA09DB89CA1DF2EF4D8717D1 /* NXOAuth2Account.h in Headers */,
-				80343F12B91773B991FC9D0B /* NXOAuth2AccountStore.h in Headers */,
-				B9FAE409974AB0E1BEEE368C /* NXOAuth2Client.h in Headers */,
-				B35556CB1CFCF4D4C50A69C4 /* NXOAuth2ClientDelegate.h in Headers */,
-				A2579800AC1056903A70195C /* NXOAuth2Connection.h in Headers */,
-				FAD6D8C30FA5C7C8ADE8F847 /* NXOAuth2ConnectionDelegate.h in Headers */,
-				F2537CA9878A9C3840C95897 /* NXOAuth2Constants.h in Headers */,
-				30DE2609C90BCDD16F612026 /* NXOAuth2FileStreamWrapper.h in Headers */,
-				284E9A8857042821C5128EE1 /* NXOAuth2PostBodyPart.h in Headers */,
-				172C836745963DC2AA6286AA /* NXOAuth2PostBodyStream.h in Headers */,
-				D5CCACEBB9845423F8D2207B /* NXOAuth2Request.h in Headers */,
-				F25C7D39002498F40D9CAE0D /* NXOAuth2TrustDelegate.h in Headers */,
+				7114F735E6BD1B553C05B382 /* NSData+NXOAuth2.h in Headers */,
+				34C04C8D206012E527F5FF9B /* NSString+NXOAuth2.h in Headers */,
+				AA3F29BAC71F82435017BE5A /* NSURL+NXOAuth2.h in Headers */,
+				40C233F5A6BF3AFB00642CB2 /* NXOAuth2.h in Headers */,
+				1465C4494EA47CDD20AD746B /* NXOAuth2AccessToken.h in Headers */,
+				DB5DDD27CD1B659A7B4158C7 /* NXOAuth2Account+Private.h in Headers */,
+				AD4365DF647208EE0C4029A2 /* NXOAuth2Account.h in Headers */,
+				86418CEF0E548F94421A38EC /* NXOAuth2AccountStore.h in Headers */,
+				1FA38BD018B1F0E3B78A366F /* NXOAuth2Client.h in Headers */,
+				62E835A615A48D4774FF263E /* NXOAuth2ClientDelegate.h in Headers */,
+				15E754ADBA3E82BC16C3E4CF /* NXOAuth2Connection.h in Headers */,
+				A6978EBC3FC350BE4A696986 /* NXOAuth2ConnectionDelegate.h in Headers */,
+				972A261CF4EE1E17EFCCE379 /* NXOAuth2Constants.h in Headers */,
+				AFC68D6099D0CB9013228A66 /* NXOAuth2FileStreamWrapper.h in Headers */,
+				C440C5CEABA6AA71D4232E67 /* NXOAuth2PostBodyPart.h in Headers */,
+				F1674A833B12D120E835C913 /* NXOAuth2PostBodyStream.h in Headers */,
+				B2876B8E56A8DD2E4710F72C /* NXOAuth2Request.h in Headers */,
+				6165FD1FB9AB7E1935E24768 /* NXOAuth2TrustDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DB60F26B8F6CCA44FFF9D3E8 /* Headers */ = {
+		9C5C3F76961D7E380287F340 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1810A437DA8A32F081FC62F /* MBProgressHUD.h in Headers */,
+				A6CA0686458C1621D6A5D717 /* MBProgressHUD.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3B1F5A6FF2EBDE398EC9844 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7ECCABFD38248A6FEFA38AC1 /* FCVerticalMenu.h in Headers */,
+				684F2310BBE17246038E18E4 /* FCVerticalMenuItem.h in Headers */,
+				754CE8D5EBCE1DA30588C7AA /* FCVerticalMenuItemCollectionViewCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		0F51E8C35ACFC32F58CCFF39 /* Pods-FCVerticalMenu-FCVerticalMenu */ = {
+		22BC59F0AFC3D38061901656 /* Pods-NXOAuth2Client */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 442A2D3325822DA12508EDE0 /* Build configuration list for PBXNativeTarget "Pods-FCVerticalMenu-FCVerticalMenu" */;
+			buildConfigurationList = 274AF1B90CE2445806E09771 /* Build configuration list for PBXNativeTarget "Pods-NXOAuth2Client" */;
 			buildPhases = (
-				D46105F7543AFE6AF2B6DBEA /* Sources */,
-				D1F7A21D914C67C837F60D9C /* Frameworks */,
-				0789939A0F629C8AE6340DBC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Pods-FCVerticalMenu-FCVerticalMenu";
-			productName = "Pods-FCVerticalMenu-FCVerticalMenu";
-			productReference = 2B45DC4124C5ED9246B9E7BA /* FCVerticalMenu.bundle */;
-			productType = "com.apple.product-type.bundle";
-		};
-		13C420468F2B162ED2B2423C /* Pods-FCVerticalMenu */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3FB67F9AEC25CDB6775D9C6C /* Build configuration list for PBXNativeTarget "Pods-FCVerticalMenu" */;
-			buildPhases = (
-				A1E39C878B451F4B5FF27A63 /* Sources */,
-				EDEF0744B2358116FE2213EE /* Frameworks */,
-				7FBBAC13923077FE20900334 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D38BE9DB598FB5B273D0FFF3 /* PBXTargetDependency */,
-			);
-			name = "Pods-FCVerticalMenu";
-			productName = "Pods-FCVerticalMenu";
-			productReference = 982FEA5798CCE9409D7E8D0D /* libPods-FCVerticalMenu.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		2F2AFED1699B5A84A768E664 /* Pods-NXOAuth2Client */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 18082B24F84FC3CAE99BC550 /* Build configuration list for PBXNativeTarget "Pods-NXOAuth2Client" */;
-			buildPhases = (
-				E4EE3B64C836968912C23F21 /* Sources */,
-				87199E8116F39F36B24F1CC3 /* Frameworks */,
-				CD8E4807DA13E2AC7CF7A169 /* Headers */,
+				0F015354EEBA62BAA85790BD /* Sources */,
+				2846738A60A72E15BB50422A /* Frameworks */,
+				84A38821FF9803AEA219CD05 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -550,16 +580,51 @@
 			);
 			name = "Pods-NXOAuth2Client";
 			productName = "Pods-NXOAuth2Client";
-			productReference = 3FFCA5D60EFA7CD27697EABC /* libPods-NXOAuth2Client.a */;
+			productReference = 3A8ED773158B65186E12F822 /* libPods-NXOAuth2Client.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		633FEF53E7D2D6B10779DD02 /* Pods-MJPopupViewController */ = {
+		2797EBF31D7049A782D8F5ED /* Pods-FCVerticalMenu */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 63257A202D660DCBFFF4BF92 /* Build configuration list for PBXNativeTarget "Pods-MJPopupViewController" */;
+			buildConfigurationList = 8DBEF270C007747AEF0BBB86 /* Build configuration list for PBXNativeTarget "Pods-FCVerticalMenu" */;
 			buildPhases = (
-				716C674F9F8ABB56A1BF329C /* Sources */,
-				DCB649CAEAA57F0330BB96D1 /* Frameworks */,
-				05C5BD2F6C79EECD9968FABF /* Headers */,
+				184F64E95964B7A2F943E368 /* Sources */,
+				646ABEAF6D8B76109301BFE6 /* Frameworks */,
+				A3B1F5A6FF2EBDE398EC9844 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F2E412127E2EE45BB8C4CC68 /* PBXTargetDependency */,
+			);
+			name = "Pods-FCVerticalMenu";
+			productName = "Pods-FCVerticalMenu";
+			productReference = CD318DAAC9CAC877B3E62572 /* libPods-FCVerticalMenu.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		4DEB1781A12FE094675C1937 /* Pods-MSCellAccessory */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA56E20EEDEDFC96C8B98AB3 /* Build configuration list for PBXNativeTarget "Pods-MSCellAccessory" */;
+			buildPhases = (
+				B1482FCAFC0B64778D149F93 /* Sources */,
+				53F5B500AC24965F946348E1 /* Frameworks */,
+				810948A419DBDDFBDDA66F6A /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-MSCellAccessory";
+			productName = "Pods-MSCellAccessory";
+			productReference = 5338DDD23E38466798FE9590 /* libPods-MSCellAccessory.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		704E9612E8F0EFB3CF74A6EC /* Pods-MJPopupViewController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D5415DAC6AFC8DB6D30B7A8 /* Build configuration list for PBXNativeTarget "Pods-MJPopupViewController" */;
+			buildPhases = (
+				EA4905EDBF6C23AD1DF6FCEF /* Sources */,
+				4FFD22268486F5887C29BEC6 /* Frameworks */,
+				0DC1C5FA5F0D173C05B80D2B /* Headers */,
 			);
 			buildRules = (
 			);
@@ -567,16 +632,16 @@
 			);
 			name = "Pods-MJPopupViewController";
 			productName = "Pods-MJPopupViewController";
-			productReference = A449C9F248D493EEB16CE31B /* libPods-MJPopupViewController.a */;
+			productReference = D1FF49BA6A67C79CAA717C96 /* libPods-MJPopupViewController.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		68DB99559FE7C5315F5C6787 /* Pods-MBProgressHUD */ = {
+		A182F0457DF1F92D8F391C57 /* Pods-MBProgressHUD */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 141FE4D6970F10454219BB94 /* Build configuration list for PBXNativeTarget "Pods-MBProgressHUD" */;
+			buildConfigurationList = A69CF5C8C09A1A3BDFCCB518 /* Build configuration list for PBXNativeTarget "Pods-MBProgressHUD" */;
 			buildPhases = (
-				EED0104249F273EB88335E20 /* Sources */,
-				A625A0F1D0A1AE92E77E095F /* Frameworks */,
-				DB60F26B8F6CCA44FFF9D3E8 /* Headers */,
+				8EB6AFC2AD156C4FFA82019C /* Sources */,
+				EC4AB0418495840C8D6AA87B /* Frameworks */,
+				9C5C3F76961D7E380287F340 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -584,61 +649,80 @@
 			);
 			name = "Pods-MBProgressHUD";
 			productName = "Pods-MBProgressHUD";
-			productReference = 0015BBB528F93F2C8261DE6E /* libPods-MBProgressHUD.a */;
+			productReference = B79A15781BE632487CE507D6 /* libPods-MBProgressHUD.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		EA6FCE73D812E7BE6B8CC50C /* Pods */ = {
+		E71E75573657128063E7C59A /* Pods */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A028845929E7348271B3BDCE /* Build configuration list for PBXNativeTarget "Pods" */;
+			buildConfigurationList = 8178B0170802F8345D36C0B5 /* Build configuration list for PBXNativeTarget "Pods" */;
 			buildPhases = (
-				41C0283033587BF9A86327C8 /* Sources */,
-				86D48779518C00DDF6652F5D /* Frameworks */,
+				75EC9E8505387A020FB0AF3B /* Sources */,
+				29B7054FB3C87C801423301D /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				51057AC9E444874CD08106BC /* PBXTargetDependency */,
-				51BF904FD1EAC81C27D73D63 /* PBXTargetDependency */,
-				4FC614001774D7C50D9706D2 /* PBXTargetDependency */,
-				75B21B67BDFA43EE6379E0FE /* PBXTargetDependency */,
+				D3885D06500AE8AAD877B917 /* PBXTargetDependency */,
+				DD9ADC815C4B0BA7E7991F46 /* PBXTargetDependency */,
+				939EC25BA1E3ACF49C03D6E5 /* PBXTargetDependency */,
+				E1D87068DB9C6A4A61489846 /* PBXTargetDependency */,
+				E799F0C2CA9238C73B67AE26 /* PBXTargetDependency */,
 			);
 			name = Pods;
 			productName = Pods;
-			productReference = 38A7F8E21A05F0841D075CE5 /* libPods.a */;
+			productReference = 027B926BEB6F48892C3F5039 /* libPods.a */;
 			productType = "com.apple.product-type.library.static";
+		};
+		FFD1B6FDC077823A79738886 /* Pods-FCVerticalMenu-FCVerticalMenu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 146AA668F5CE903F06ED063A /* Build configuration list for PBXNativeTarget "Pods-FCVerticalMenu-FCVerticalMenu" */;
+			buildPhases = (
+				DCC784BB73B45D4E6407B88D /* Sources */,
+				06DA763D3EAA581CB1F1C937 /* Frameworks */,
+				3B997B943A07B2CCC7DAC9C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-FCVerticalMenu-FCVerticalMenu";
+			productName = "Pods-FCVerticalMenu-FCVerticalMenu";
+			productReference = 0BF127D81ED53D0B8F01F658 /* FCVerticalMenu.bundle */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		522C97A00F7BD03B957439E6 /* Project object */ = {
+		97C5203E3755406B357609E6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0510;
 			};
-			buildConfigurationList = 9A793C3ABC2083729A563294 /* Build configuration list for PBXProject "Pods" */;
+			buildConfigurationList = A6CE525E0F52C37BCEF97991 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 652EED8ED7EA8F93B66FC027;
-			productRefGroup = E572F7E7EC3B556B94A33613 /* Products */;
+			mainGroup = EC4BD024669EA8D802A7DAE0;
+			productRefGroup = 9E8D1C9DD55BAE4D9A9D6149 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EA6FCE73D812E7BE6B8CC50C /* Pods */,
-				13C420468F2B162ED2B2423C /* Pods-FCVerticalMenu */,
-				0F51E8C35ACFC32F58CCFF39 /* Pods-FCVerticalMenu-FCVerticalMenu */,
-				68DB99559FE7C5315F5C6787 /* Pods-MBProgressHUD */,
-				633FEF53E7D2D6B10779DD02 /* Pods-MJPopupViewController */,
-				2F2AFED1699B5A84A768E664 /* Pods-NXOAuth2Client */,
+				E71E75573657128063E7C59A /* Pods */,
+				2797EBF31D7049A782D8F5ED /* Pods-FCVerticalMenu */,
+				FFD1B6FDC077823A79738886 /* Pods-FCVerticalMenu-FCVerticalMenu */,
+				A182F0457DF1F92D8F391C57 /* Pods-MBProgressHUD */,
+				704E9612E8F0EFB3CF74A6EC /* Pods-MJPopupViewController */,
+				4DEB1781A12FE094675C1937 /* Pods-MSCellAccessory */,
+				22BC59F0AFC3D38061901656 /* Pods-NXOAuth2Client */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0789939A0F629C8AE6340DBC /* Resources */ = {
+		3B997B943A07B2CCC7DAC9C0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -648,125 +732,125 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		41C0283033587BF9A86327C8 /* Sources */ = {
+		0F015354EEBA62BAA85790BD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08368C7A526BB5EEAC92FA65 /* Pods-dummy.m in Sources */,
+				AA8462F5BEA5529C7C8F8E4B /* NSData+NXOAuth2.m in Sources */,
+				F67CC7BF2AD8284D664CED24 /* NSString+NXOAuth2.m in Sources */,
+				D5637D10B98F09FC96E30753 /* NSURL+NXOAuth2.m in Sources */,
+				9360036699BADEAB2E4CDB61 /* NXOAuth2AccessToken.m in Sources */,
+				768173F33A499802CE5FAAE3 /* NXOAuth2Account.m in Sources */,
+				7493EB17A55B85A4F02DAA97 /* NXOAuth2AccountStore.m in Sources */,
+				78D06E016664F3254509463B /* NXOAuth2Client.m in Sources */,
+				BB6F4C1437A7F5C1B13F7D6F /* NXOAuth2Connection.m in Sources */,
+				D418482B32DF08F8D705D30A /* NXOAuth2Constants.m in Sources */,
+				1530EAEB8855CE8D1ED35751 /* NXOAuth2FileStreamWrapper.m in Sources */,
+				C31346764E1F4499F36306C4 /* NXOAuth2PostBodyPart.m in Sources */,
+				058BA149E94EAF3198040A26 /* NXOAuth2PostBodyStream.m in Sources */,
+				47407D48272E5B9FEF09486C /* NXOAuth2Request.m in Sources */,
+				B5F58883DAE73B97BAB15132 /* Pods-NXOAuth2Client-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		716C674F9F8ABB56A1BF329C /* Sources */ = {
+		184F64E95964B7A2F943E368 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				229041A2857F827EF253B48B /* MJPopupBackgroundView.m in Sources */,
-				AC9AA41AAE2E3114611A41EA /* Pods-MJPopupViewController-dummy.m in Sources */,
-				9E414E2F0F6127E330D9D3DD /* UIViewController+MJPopupViewController.m in Sources */,
+				C6C14A5F2B275C478D7A3D90 /* FCVerticalMenu.m in Sources */,
+				B29046FEDFE145E33F0909DD /* FCVerticalMenuItem.m in Sources */,
+				02F84018A1EFEE88A9EE304D /* FCVerticalMenuItemCollectionViewCell.m in Sources */,
+				854E91AD756B736FD58F1976 /* Pods-FCVerticalMenu-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A1E39C878B451F4B5FF27A63 /* Sources */ = {
+		75EC9E8505387A020FB0AF3B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B701600C7B5C29A9B7723075 /* FCVerticalMenu.m in Sources */,
-				55348FEBCB94BD5F10F80BC8 /* FCVerticalMenuItem.m in Sources */,
-				81428C6EC411F8C993D0174E /* FCVerticalMenuItemCollectionViewCell.m in Sources */,
-				E5BBBED60F88DEB204DF3EFA /* Pods-FCVerticalMenu-dummy.m in Sources */,
+				CCA98FEA6E506F1299339527 /* Pods-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D46105F7543AFE6AF2B6DBEA /* Sources */ = {
+		8EB6AFC2AD156C4FFA82019C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81E53F1332171602546FBB0C /* MBProgressHUD.m in Sources */,
+				DF3B78E32F4582895898B6E7 /* Pods-MBProgressHUD-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1482FCAFC0B64778D149F93 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20F9CD5C72EAB177CDA3202A /* MSCellAccessory.m in Sources */,
+				F7A812534A70F96EF024D94D /* Pods-MSCellAccessory-dummy.m in Sources */,
+				FF775B1321C19090D260A015 /* UIView+AccessViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCC784BB73B45D4E6407B88D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E4EE3B64C836968912C23F21 /* Sources */ = {
+		EA4905EDBF6C23AD1DF6FCEF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEB77424F4A199BB12DB0AA5 /* NSData+NXOAuth2.m in Sources */,
-				8A4F17B1E37B409EDDD9AD43 /* NSString+NXOAuth2.m in Sources */,
-				03A961B9D08CC0CF0A631B71 /* NSURL+NXOAuth2.m in Sources */,
-				4EA2BE3A1B4737913AB575C1 /* NXOAuth2AccessToken.m in Sources */,
-				628AD5426A4204F9D49E861C /* NXOAuth2Account.m in Sources */,
-				421595FB2BA436DCC2FE06B2 /* NXOAuth2AccountStore.m in Sources */,
-				23D80788F17132750B9EA481 /* NXOAuth2Client.m in Sources */,
-				0BB2C08BD349F32A6F847320 /* NXOAuth2Connection.m in Sources */,
-				2EC00DB9005327D5B14BE55B /* NXOAuth2Constants.m in Sources */,
-				FE75BBE26F39FC5D1B39E8D4 /* NXOAuth2FileStreamWrapper.m in Sources */,
-				4C50DA66822F6648720EA9D7 /* NXOAuth2PostBodyPart.m in Sources */,
-				DFF9C9E69E458E59FC178FF8 /* NXOAuth2PostBodyStream.m in Sources */,
-				B1A64D35C69917EE6ECB1EB6 /* NXOAuth2Request.m in Sources */,
-				AA802FA1F6273FEB2310216A /* Pods-NXOAuth2Client-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EED0104249F273EB88335E20 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0DCBC49397EE26F9C8FCD1C8 /* MBProgressHUD.m in Sources */,
-				8D17CEC91650057FCC64DFF5 /* Pods-MBProgressHUD-dummy.m in Sources */,
+				CD4DD707C605CE90A97DFBF0 /* MJPopupBackgroundView.m in Sources */,
+				B3B02743BC8EBE305CC35C4E /* Pods-MJPopupViewController-dummy.m in Sources */,
+				3CA7AECD88ED8B81E5D33CF6 /* UIViewController+MJPopupViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4FC614001774D7C50D9706D2 /* PBXTargetDependency */ = {
+		939EC25BA1E3ACF49C03D6E5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-MJPopupViewController";
-			target = 633FEF53E7D2D6B10779DD02 /* Pods-MJPopupViewController */;
-			targetProxy = 2293B42D864F8B6A2AEB5B8C /* PBXContainerItemProxy */;
+			target = 704E9612E8F0EFB3CF74A6EC /* Pods-MJPopupViewController */;
+			targetProxy = 20C82F203E3E86A5C8F76296 /* PBXContainerItemProxy */;
 		};
-		51057AC9E444874CD08106BC /* PBXTargetDependency */ = {
+		D3885D06500AE8AAD877B917 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-FCVerticalMenu";
-			target = 13C420468F2B162ED2B2423C /* Pods-FCVerticalMenu */;
-			targetProxy = 3254ED77B59EF92FC5E13A08 /* PBXContainerItemProxy */;
+			target = 2797EBF31D7049A782D8F5ED /* Pods-FCVerticalMenu */;
+			targetProxy = E8FFF85C999E8BCE31F5017A /* PBXContainerItemProxy */;
 		};
-		51BF904FD1EAC81C27D73D63 /* PBXTargetDependency */ = {
+		DD9ADC815C4B0BA7E7991F46 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-MBProgressHUD";
-			target = 68DB99559FE7C5315F5C6787 /* Pods-MBProgressHUD */;
-			targetProxy = 2FC87590D8EA42DADE069EE9 /* PBXContainerItemProxy */;
+			target = A182F0457DF1F92D8F391C57 /* Pods-MBProgressHUD */;
+			targetProxy = 0905A1E205C5B683AFC17303 /* PBXContainerItemProxy */;
 		};
-		75B21B67BDFA43EE6379E0FE /* PBXTargetDependency */ = {
+		E1D87068DB9C6A4A61489846 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-MSCellAccessory";
+			target = 4DEB1781A12FE094675C1937 /* Pods-MSCellAccessory */;
+			targetProxy = 97B3742AB0960F9B982240CC /* PBXContainerItemProxy */;
+		};
+		E799F0C2CA9238C73B67AE26 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-NXOAuth2Client";
-			target = 2F2AFED1699B5A84A768E664 /* Pods-NXOAuth2Client */;
-			targetProxy = 50F8C9AC8A70BF2D08B38D86 /* PBXContainerItemProxy */;
+			target = 22BC59F0AFC3D38061901656 /* Pods-NXOAuth2Client */;
+			targetProxy = 6845C22D0C74293E88B95E90 /* PBXContainerItemProxy */;
 		};
-		D38BE9DB598FB5B273D0FFF3 /* PBXTargetDependency */ = {
+		F2E412127E2EE45BB8C4CC68 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-FCVerticalMenu-FCVerticalMenu";
-			target = 0F51E8C35ACFC32F58CCFF39 /* Pods-FCVerticalMenu-FCVerticalMenu */;
-			targetProxy = C1F2F61D5FBDB5CE8F6880D9 /* PBXContainerItemProxy */;
+			target = FFD1B6FDC077823A79738886 /* Pods-FCVerticalMenu-FCVerticalMenu */;
+			targetProxy = EAE4B1B95098D9DAC542EEEE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		08ED2D809C051BD4BE4A3896 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E0EB23618391964DB29A5C5 /* Pods.debug.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		33BCDCDB9874AD929BB4572A /* Debug */ = {
+		162DB6BFAD1C4E7CFAE623C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -805,9 +889,73 @@
 			};
 			name = Debug;
 		};
-		4727E0AB39614D8D116D5C46 /* Release */ = {
+		1991927CD9C579B743B5D769 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EC882313567EEFACCE534374 /* Pods-MBProgressHUD-Private.xcconfig */;
+			baseConfigurationReference = 28F9C4E681A661B96D4A8C1D /* Pods-MSCellAccessory-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-MSCellAccessory/Pods-MSCellAccessory-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		2287D105116D8D43B310D723 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 15BFD4AEB539491A47DA9FE0 /* Pods-NXOAuth2Client-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-NXOAuth2Client/Pods-NXOAuth2Client-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		2FBA5458786575F0C13C6F09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 516CA7681C679B72ECA1C0AE /* Pods-FCVerticalMenu-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-FCVerticalMenu/Pods-FCVerticalMenu-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		458A3F6A33675E1FEF3308F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 516CA7681C679B72ECA1C0AE /* Pods-FCVerticalMenu-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-FCVerticalMenu/Pods-FCVerticalMenu-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		60BFAC1175377822A6DE718E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A8C53FBE9B33200B3AC4374 /* Pods-MBProgressHUD-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/Pods-MBProgressHUD/Pods-MBProgressHUD-prefix.pch";
@@ -821,44 +969,23 @@
 			};
 			name = Release;
 		};
-		5070DEBE7600AA76F287E7B6 /* Debug */ = {
+		629949C1467A11D12E9D5F1F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 54059E3E20742B0740BEB47C /* Pods-NXOAuth2Client-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-NXOAuth2Client/Pods-NXOAuth2Client-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FCVerticalMenu;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		536C59B8CCB6D98C946EEFFB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC28BB0888AA16F99D154605 /* Pods-FCVerticalMenu-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-FCVerticalMenu/Pods-FCVerticalMenu-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
 		};
-		53AC7C0E30138E226F09AED4 /* Debug */ = {
+		6E1670787246D0CC43432A91 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC28BB0888AA16F99D154605 /* Pods-FCVerticalMenu-Private.xcconfig */;
+			baseConfigurationReference = 310EB2BD9F312C79A9AAFF36 /* Pods-MJPopupViewController-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-FCVerticalMenu/Pods-FCVerticalMenu-prefix.pch";
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-MJPopupViewController/Pods-MJPopupViewController-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
@@ -869,7 +996,39 @@
 			};
 			name = Debug;
 		};
-		5B2C84F0F74D4A336399FC5D /* Release */ = {
+		78F6BAFC093C8C5BEB58DD44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 468D4D60AAFEAC8BAD5AB3C5 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		97B40EECE887BB79650A8414 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A8C53FBE9B33200B3AC4374 /* Pods-MBProgressHUD-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-MBProgressHUD/Pods-MBProgressHUD-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		9951776C7186528A2E4874BB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -903,9 +1062,9 @@
 			};
 			name = Release;
 		};
-		6743DFEB859A23BA4B529758 /* Release */ = {
+		AD2A6B27990849F1C7646550 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E4C0066B2BE172AC90C7CC85 /* Pods-MJPopupViewController-Private.xcconfig */;
+			baseConfigurationReference = 310EB2BD9F312C79A9AAFF36 /* Pods-MJPopupViewController-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/Pods-MJPopupViewController/Pods-MJPopupViewController-prefix.pch";
@@ -919,23 +1078,12 @@
 			};
 			name = Release;
 		};
-		8AF3418FAEA1109D82EB7104 /* Release */ = {
+		C0CE12C33A4F95132A689FA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 15BFD4AEB539491A47DA9FE0 /* Pods-NXOAuth2Client-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				PRODUCT_NAME = FCVerticalMenu;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
-		A837EB0376855C60BC71CB4A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = EC882313567EEFACCE534374 /* Pods-MBProgressHUD-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-MBProgressHUD/Pods-MBProgressHUD-prefix.pch";
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-NXOAuth2Client/Pods-NXOAuth2Client-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
@@ -946,7 +1094,23 @@
 			};
 			name = Debug;
 		};
-		AA10B7BB7DC9169704D62A3F /* Debug */ = {
+		C2D8F25968D0728D4A07FEAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28F9C4E681A661B96D4A8C1D /* Pods-MSCellAccessory-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-MSCellAccessory/Pods-MSCellAccessory-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		C5BC43E492D5D6DFA17F17B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -957,25 +1121,9 @@
 			};
 			name = Debug;
 		};
-		B71DEA339A8B4E62027D7289 /* Release */ = {
+		E991AD830BE5B12CE94910BD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 54059E3E20742B0740BEB47C /* Pods-NXOAuth2Client-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-NXOAuth2Client/Pods-NXOAuth2Client-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		BC4AEDEE6F2BC4776D9B8227 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A744DDA88FEAA6137D5AF8E /* Pods.release.xcconfig */;
+			baseConfigurationReference = 3C30B6639C02404262639667 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
@@ -989,89 +1137,82 @@
 			};
 			name = Release;
 		};
-		BE3125983F489CAC42BF1194 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E4C0066B2BE172AC90C7CC85 /* Pods-MJPopupViewController-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-MJPopupViewController/Pods-MJPopupViewController-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		141FE4D6970F10454219BB94 /* Build configuration list for PBXNativeTarget "Pods-MBProgressHUD" */ = {
+		146AA668F5CE903F06ED063A /* Build configuration list for PBXNativeTarget "Pods-FCVerticalMenu-FCVerticalMenu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A837EB0376855C60BC71CB4A /* Debug */,
-				4727E0AB39614D8D116D5C46 /* Release */,
+				C5BC43E492D5D6DFA17F17B6 /* Debug */,
+				629949C1467A11D12E9D5F1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		18082B24F84FC3CAE99BC550 /* Build configuration list for PBXNativeTarget "Pods-NXOAuth2Client" */ = {
+		274AF1B90CE2445806E09771 /* Build configuration list for PBXNativeTarget "Pods-NXOAuth2Client" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5070DEBE7600AA76F287E7B6 /* Debug */,
-				B71DEA339A8B4E62027D7289 /* Release */,
+				C0CE12C33A4F95132A689FA6 /* Debug */,
+				2287D105116D8D43B310D723 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3FB67F9AEC25CDB6775D9C6C /* Build configuration list for PBXNativeTarget "Pods-FCVerticalMenu" */ = {
+		3D5415DAC6AFC8DB6D30B7A8 /* Build configuration list for PBXNativeTarget "Pods-MJPopupViewController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				53AC7C0E30138E226F09AED4 /* Debug */,
-				536C59B8CCB6D98C946EEFFB /* Release */,
+				6E1670787246D0CC43432A91 /* Debug */,
+				AD2A6B27990849F1C7646550 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		442A2D3325822DA12508EDE0 /* Build configuration list for PBXNativeTarget "Pods-FCVerticalMenu-FCVerticalMenu" */ = {
+		8178B0170802F8345D36C0B5 /* Build configuration list for PBXNativeTarget "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AA10B7BB7DC9169704D62A3F /* Debug */,
-				8AF3418FAEA1109D82EB7104 /* Release */,
+				78F6BAFC093C8C5BEB58DD44 /* Debug */,
+				E991AD830BE5B12CE94910BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		63257A202D660DCBFFF4BF92 /* Build configuration list for PBXNativeTarget "Pods-MJPopupViewController" */ = {
+		8DBEF270C007747AEF0BBB86 /* Build configuration list for PBXNativeTarget "Pods-FCVerticalMenu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BE3125983F489CAC42BF1194 /* Debug */,
-				6743DFEB859A23BA4B529758 /* Release */,
+				2FBA5458786575F0C13C6F09 /* Debug */,
+				458A3F6A33675E1FEF3308F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A793C3ABC2083729A563294 /* Build configuration list for PBXProject "Pods" */ = {
+		A69CF5C8C09A1A3BDFCCB518 /* Build configuration list for PBXNativeTarget "Pods-MBProgressHUD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				33BCDCDB9874AD929BB4572A /* Debug */,
-				5B2C84F0F74D4A336399FC5D /* Release */,
+				97B40EECE887BB79650A8414 /* Debug */,
+				60BFAC1175377822A6DE718E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A028845929E7348271B3BDCE /* Build configuration list for PBXNativeTarget "Pods" */ = {
+		A6CE525E0F52C37BCEF97991 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				08ED2D809C051BD4BE4A3896 /* Debug */,
-				BC4AEDEE6F2BC4776D9B8227 /* Release */,
+				162DB6BFAD1C4E7CFAE623C8 /* Debug */,
+				9951776C7186528A2E4874BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA56E20EEDEDFC96C8B98AB3 /* Build configuration list for PBXNativeTarget "Pods-MSCellAccessory" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2D8F25968D0728D4A07FEAB /* Debug */,
+				1991927CD9C579B743B5D769 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 522C97A00F7BD03B957439E6 /* Project object */;
+	rootObject = 97C5203E3755406B357609E6 /* Project object */;
 }
