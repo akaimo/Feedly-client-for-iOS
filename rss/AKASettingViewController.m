@@ -8,6 +8,7 @@
 
 #import "AKASettingViewController.h"
 #import "AKANavigationController.h"
+#import "NXOauth2.h"
 
 @interface AKASettingViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *settingTableView;
@@ -42,27 +43,24 @@
 
 
 #pragma mark - UITableView DataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger dataCount;
-    
-    // テーブルに表示するデータ件数を返す
-    switch (section) {
-        case 0:
-//            dataCount = self.dataSourceiPhone.count;
-            dataCount = 2;
-            break;
-        case 1:
-//            dataCount = self.dataSourceAndroid.count;
-            dataCount = 4;
-            break;
-        default:
-            break;
-    }
-    return dataCount;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    NSString *sectionName = @"hoge";
+    NSString *sectionName;
+    switch (section) {
+        case 0:
+            sectionName = @"Account";
+            break;
+            
+        case 1:
+            sectionName = @"General";
+            break;
+            
+        default:
+            break;
+    }
     return sectionName;
 }
 
@@ -82,28 +80,45 @@
     return view;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSInteger dataCount;
+    
+    switch (section) {
+        case 0:
+            dataCount = [[[NXOAuth2AccountStore sharedStore] accounts] count];
+            break;
+        case 1:
+            dataCount = 4;
+            break;
+        default:
+            break;
+    }
+    return dataCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
-    // 再利用できるセルがあれば再利用する
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell) {
-        // 再利用できない場合は新規で作成
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    
     switch (indexPath.section) {
-        case 0:
-            cell.textLabel.text = @"section1";
+        case 0:{
+            NXOAuth2Account *account = [[[NXOAuth2AccountStore sharedStore] accounts] objectAtIndex:indexPath.row];
+            NSDictionary *userData = (id)account.userData;
+//            NSLog(@"%@", userData);
+            NSString *name = [NSString stringWithFormat:@"%@ : %@", [userData valueForKey:@"client"], [[userData objectForKey:@"logins"][0] valueForKey:@"provider"]];
+            
+            cell.textLabel.text = name;
             break;
-        case 1:
+        }
+        case 1:{
             cell.textLabel.text = @"section2";
             break;
+        }
         default:
             break;
     }

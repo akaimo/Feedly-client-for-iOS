@@ -30,9 +30,21 @@ static NSString *const kOauth2ClientKeyChainGroup = @"Feedly";                  
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    NXOAuth2Account *account = [[[NXOAuth2AccountStore sharedStore] accounts] objectAtIndex:0];
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    delegate.account = account;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *viewController;
+    
+    if([[[NXOAuth2AccountStore sharedStore] accounts] count] == 0){
+        viewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
+    } else {
+        NXOAuth2Account *account = [[[NXOAuth2AccountStore sharedStore] accounts] objectAtIndex:0];
+        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        delegate.account = account;
+
+        viewController = [storyboard instantiateViewControllerWithIdentifier:@"FeedNavigationController"];
+    }
+    
+    self.window.rootViewController = viewController;
+    [self.window makeKeyAndVisible];
     
     return YES;
 }
