@@ -25,6 +25,7 @@
 		9987E7871AF7A21B002622EE /* AKAUnsavedPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9987E7861AF7A21B002622EE /* AKAUnsavedPopupViewController.xib */; };
 		9987E7891AF7A297002622EE /* AKAReadPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9987E7881AF7A297002622EE /* AKAReadPopupViewController.xib */; };
 		998A2EC71AFCF0A200967A77 /* AKANavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998A2EC61AFCF0A200967A77 /* AKANavigationController.m */; };
+		998A2ECD1AFF693300967A77 /* AKASettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998A2ECC1AFF693300967A77 /* AKASettingViewController.m */; };
 		999BEA2C1ADFF0CB0087D51A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 999BEA2A1ADFF0CB0087D51A /* Model.xcdatamodeld */; };
 		99A0A2DE1AE10DC100A3A592 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99A0A2DD1AE10DC100A3A592 /* CoreData.framework */; };
 		99A0A2E71AE110A000A3A592 /* AKACoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A0A2E61AE110A000A3A592 /* AKACoreData.m */; };
@@ -89,6 +90,8 @@
 		9987E7881AF7A297002622EE /* AKAReadPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKAReadPopupViewController.xib; sourceTree = "<group>"; };
 		998A2EC51AFCF0A200967A77 /* AKANavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKANavigationController.h; sourceTree = "<group>"; };
 		998A2EC61AFCF0A200967A77 /* AKANavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKANavigationController.m; sourceTree = "<group>"; };
+		998A2ECB1AFF693300967A77 /* AKASettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKASettingViewController.h; sourceTree = "<group>"; };
+		998A2ECC1AFF693300967A77 /* AKASettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKASettingViewController.m; sourceTree = "<group>"; };
 		999BEA2B1ADFF0CB0087D51A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		99A0A2DD1AE10DC100A3A592 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		99A0A2E51AE110A000A3A592 /* AKACoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKACoreData.h; sourceTree = "<group>"; };
@@ -265,6 +268,8 @@
 				99FBE9091AEDFAC70022B1F0 /* AKAFeedViewController.m */,
 				99FBE9271AF1D2850022B1F0 /* AKADetailViewController.h */,
 				99FBE9281AF1D2850022B1F0 /* AKADetailViewController.m */,
+				998A2ECB1AFF693300967A77 /* AKASettingViewController.h */,
+				998A2ECC1AFF693300967A77 /* AKASettingViewController.m */,
 				9987E7831AF74997002622EE /* Web */,
 				9987E7821AF74965002622EE /* Popup */,
 				99FBE91B1AEFB8720022B1F0 /* Cell */,
@@ -471,6 +476,7 @@
 				99FBE9071AEB431D0022B1F0 /* AKAFetchFeed.m in Sources */,
 				997E43EB1AD3D4BB002CB3BB /* OAuthWebViewController.m in Sources */,
 				990606911ACE869C0014964E /* UnreadViewController.m in Sources */,
+				998A2ECD1AFF693300967A77 /* AKASettingViewController.m in Sources */,
 				9987E7801AF7459C002622EE /* AKAPopupViewController.m in Sources */,
 				999BEA2C1ADFF0CB0087D51A /* Model.xcdatamodeld in Sources */,
 			);

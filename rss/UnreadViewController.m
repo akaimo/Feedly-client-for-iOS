@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     /* Menu追加 */
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(openVerticalMenu:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(openVerticalMenu:)];
     
     /* カスタムセルの定義 */
     UINib *nib = [UINib nibWithNibName:@"AKATopCustomCell" bundle:nil];

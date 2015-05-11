@@ -83,7 +83,8 @@
         
     };
     item5.actionBlock = ^{
-        NSLog(@"test element 5");
+        UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"SettingViewController"];
+        [self setViewControllers:@[vc] animated:NO];
     };
     item6.actionBlock = ^{
         UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UnreadViewController"];

@@ -143,7 +143,9 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [tableView reloadData];
+            if (!tableView) {
+                [tableView reloadData];
+            }
             [JDStatusBarNotification showWithStatus:@"Sync Success!" dismissAfter:1.5 styleName:JDStatusBarStyleSuccess];
         });
     }];
