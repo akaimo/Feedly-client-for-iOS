@@ -21,3 +21,6 @@
 
 //-- Markers
 #define MARKERS @"https://sandbox.feedly.com/v3/markers"
+
+//-- ユーザープロファイル
+#define PROFILE @"https://sandbox.feedly.com/v3/profile"

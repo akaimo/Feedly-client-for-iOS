@@ -27,8 +27,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     /* Menu追加 */
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(openVerticalMenu:)];
+    
+    /* 次のViewの戻るボタンの設定 */
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] init];
+    barButton.title = @"";
+    self.navigationItem.backBarButtonItem = barButton;
+    
+    /* アカウント情報が無い場合はログインを要求 */
+    if([[[NXOAuth2AccountStore sharedStore] accounts] count] == 0){
+        UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ViewController"];
+        [self.navigationController setViewControllers:@[vc] animated:NO];
+        self.title = @"Account";
+        return;
+    }
     
     /* カスタムセルの定義 */
     UINib *nib = [UINib nibWithNibName:@"AKATopCustomCell" bundle:nil];
@@ -59,11 +73,6 @@
         AKASynchronized *synchronized = [[AKASynchronized alloc] init];
         [synchronized synchro:_unreadTableView];
     }
-    
-    /* 次のViewの戻るボタンの設定 */
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] init];
-    barButton.title = @"";
-    self.navigationItem.backBarButtonItem = barButton;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

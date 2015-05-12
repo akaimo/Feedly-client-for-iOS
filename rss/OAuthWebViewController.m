@@ -9,6 +9,7 @@
 #import "OAuthWebViewController.h"
 #import "NXOAuth2.h"
 #import "AppDelegate.h"
+#import "UnreadViewController.h"
 
 @interface OAuthWebViewController () <UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -109,7 +110,7 @@
     //get user profile on feedly user
     NSLog(@"account info : %@", account);
     
-    NSURL *targetUrl = [NSURL URLWithString:@"https://sandbox.feedly.com/v3/profile"];
+    NSURL *targetUrl = [NSURL URLWithString:PROFILE];
     [NXOAuth2Request performMethod:@"GET"
                         onResource:targetUrl
                    usingParameters:nil
@@ -135,7 +136,14 @@
                            }
                            
                            //pop viewcontroller
-                           [self.navigationController popViewControllerAnimated:YES];
+//                           [self.navigationController popViewControllerAnimated:YES];
+                           // アカウント情報をデリゲートに保存しViewをUnreadViewCOntrollerへ
+                           NXOAuth2Account *account = [[[NXOAuth2AccountStore sharedStore] accounts] objectAtIndex:0];
+                           AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                           delegate.account = account;
+                           delegate.feedStatus = nil;
+                           UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UnreadViewController"];
+                           [self.navigationController setViewControllers:@[vc] animated:NO];
                            
                        } else {
                            //error

@@ -116,14 +116,66 @@
             break;
         }
         case 1:{
-            cell.textLabel.text = @"section2";
+            cell.textLabel.text = @"hogehoge";
             break;
         }
         default:
             break;
     }
     
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     return cell;
+}
+
+
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%@", indexPath);
+    switch (indexPath.section) {
+        case 0:{
+            NSLog(@"section0");
+            
+            UIAlertController * ac = [UIAlertController alertControllerWithTitle:@"Logout"
+                                                                         message:@"Are you sure you want to logout this account?"
+                                                                  preferredStyle:UIAlertControllerStyleAlert];
+            
+            // Cancel用のアクションを生成
+            UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                                    style:UIAlertActionStyleCancel
+                                                                  handler:^(UIAlertAction * action) {
+                                                                      // ボタンタップ時の処理
+//                                                                      NSLog(@"Cancel button tapped.");
+                                                                  }];
+            
+            // OK用のアクションを生成
+            UIAlertAction * okAction = [UIAlertAction actionWithTitle:@"Logout"
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {
+                                                                  // ボタンタップ時の処理
+                                                                  NXOAuth2Account *account = [[[NXOAuth2AccountStore sharedStore] accounts] objectAtIndex:indexPath.row];
+                                                                  [[NXOAuth2AccountStore sharedStore] removeAccount:account];
+                                                                  NSLog(@"account delete");
+                                                                  [tableView reloadData];
+                                                              }];
+            
+            // コントローラにアクションを追加
+            [ac addAction:cancelAction];
+            [ac addAction:okAction];
+            
+            // アラート表示処理
+            [self presentViewController:ac animated:YES completion:nil];
+            
+            break;
+        }
+            
+        case 1:
+            NSLog(@"section1");
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end
