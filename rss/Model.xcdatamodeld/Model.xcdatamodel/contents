@@ -15,11 +15,16 @@
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="article" inverseEntity="Account" syncable="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="article" inverseEntity="Category" syncable="YES"/>
+        <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="article" inverseEntity="Image" syncable="YES"/>
         <relationship name="site" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Site" inverseName="article" inverseEntity="Site" syncable="YES"/>
     </entity>
     <entity name="Category" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="article" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Article" inverseName="category" inverseEntity="Article" syncable="YES"/>
+    </entity>
+    <entity name="Image" syncable="YES">
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="image" inverseEntity="Article" syncable="YES"/>
     </entity>
     <entity name="Site" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -27,9 +32,10 @@
         <relationship name="article" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Article" inverseName="site" inverseEntity="Article" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Article" positionX="-245" positionY="72" width="128" height="193"/>
-        <element name="Category" positionX="-432" positionY="179" width="128" height="73"/>
-        <element name="Site" positionX="-432" positionY="261" width="128" height="88"/>
-        <element name="Account" positionX="-432" positionY="74" width="128" height="88"/>
+        <element name="Account" positionX="-432" positionY="72" width="128" height="88"/>
+        <element name="Article" positionX="-245" positionY="72" width="128" height="208"/>
+        <element name="Category" positionX="-65" positionY="72" width="128" height="73"/>
+        <element name="Site" positionX="-432" positionY="173" width="128" height="88"/>
+        <element name="Image" positionX="-65" positionY="197" width="128" height="73"/>
     </elements>
 </model>

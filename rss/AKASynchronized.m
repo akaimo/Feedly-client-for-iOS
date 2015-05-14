@@ -27,6 +27,8 @@
     return self;
 }
 
+
+#pragma mark - Synchro
 //-- 同期処理
 - (void)synchro:(UITableView *)tableView {
     /* sqlite3のURLを収得 */
@@ -143,14 +145,13 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (!tableView) {
+            if (tableView) {
                 [tableView reloadData];
             }
             [JDStatusBarNotification showWithStatus:@"Sync Success!" dismissAfter:1.5 styleName:JDStatusBarStyleSuccess];
         });
     }];
 }
-
 
 //-- URLを受け取ってJSONを収得し、辞書に変換して返す
 - (NSDictionary *)urlForJSONToDictionary:(NSURL *)url {
@@ -178,6 +179,36 @@
     return dict;
 }
 
+//-- 未読数を収得
+- (NSString *)checkUnreadCount {
+    NSString *count;
+    NSURL *url = [NSURL URLWithString:UNREAD_COUNT];
+    NSDictionary *unreadDict = [self urlForJSONToDictionary:url];
+    NSArray *unreadArray = [unreadDict valueForKey:@"unreadcounts"];
+    for (int i=0; i<unreadArray.count; i++) {
+        @autoreleasepool {
+            NSError *error = nil;
+            NSString *str = [unreadArray[i] valueForKey:@"id"];
+            NSString *pattern = @"/category/global.all";
+            
+            // パターンから正規表現を生成する
+            NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&error];
+            
+            // 正規表現を適用して結果を得る
+            NSTextCheckingResult *match = [regexp firstMatchInString:str options:0 range:NSMakeRange(0, str.length)];
+            
+            if (match) {
+                count = [[unreadArray[i] valueForKey:@"count"] stringValue];
+                //                NSLog(@"count: %@", count);
+            }
+        }
+    }
+    
+    return count;
+}
+
+
+#pragma mark - Save
 //-- カテゴリを解析、保存
 - (void)saveCategory:(NSDictionary *)categoryDict {
     NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Category"];
@@ -336,34 +367,6 @@
             }
         }
     }
-}
-
-//-- 未読数を収得
-- (NSString *)checkUnreadCount {
-    NSString *count;
-    NSURL *url = [NSURL URLWithString:UNREAD_COUNT];
-    NSDictionary *unreadDict = [self urlForJSONToDictionary:url];
-    NSArray *unreadArray = [unreadDict valueForKey:@"unreadcounts"];
-    for (int i=0; i<unreadArray.count; i++) {
-        @autoreleasepool {
-            NSError *error = nil;
-            NSString *str = [unreadArray[i] valueForKey:@"id"];
-            NSString *pattern = @"/category/global.all";
-            
-            // パターンから正規表現を生成する
-            NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&error];
-            
-            // 正規表現を適用して結果を得る
-            NSTextCheckingResult *match = [regexp firstMatchInString:str options:0 range:NSMakeRange(0, str.length)];
-            
-            if (match) {
-                count = [[unreadArray[i] valueForKey:@"count"] stringValue];
-//                NSLog(@"count: %@", count);
-            }
-        }
-    }
-    
-    return count;
 }
 
 //-- savedを収得し、保存

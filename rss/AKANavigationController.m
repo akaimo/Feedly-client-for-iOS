@@ -58,7 +58,8 @@
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         delegate.feedStatus = UnreadItems;
         UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UnreadViewController"];
-        [self setViewControllers:@[vc] animated:NO];
+//        [self setViewControllers:@[vc] animated:NO];
+        [self pushViewController:vc animated:NO];
         
     };
     item2.actionBlock = ^{

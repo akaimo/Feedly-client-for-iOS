@@ -56,9 +56,11 @@
     }
     
     /* uncategorizedを一番下に並び替え */
-    if ([[[feed[0] valueForKey:@"category"] valueForKey:@"name"][0] isEqualToString:@"uncategorized"]) {
-        for (int i=0; i<feed.count-1; i++) {
-            [feed exchangeObjectAtIndex:i withObjectAtIndex:i+1];
+    if (feed.count != 0) {
+        if ([[[feed[0] valueForKey:@"category"] valueForKey:@"name"][0] isEqualToString:@"uncategorized"]) {
+            for (int i=0; i<feed.count-1; i++) {
+                [feed exchangeObjectAtIndex:i withObjectAtIndex:i+1];
+            }
         }
     }
     
@@ -126,9 +128,11 @@
     }
     
     /* uncategorizedを一番下に並び替え */
-    if ([[[feed[0] valueForKey:@"category"] valueForKey:@"name"][0] isEqualToString:@"uncategorized"]) {
-        for (int i=0; i<feed.count-1; i++) {
-            [feed exchangeObjectAtIndex:i withObjectAtIndex:i+1];
+    if (feed.count != 0) {
+        if ([[[feed[0] valueForKey:@"category"] valueForKey:@"name"][0] isEqualToString:@"uncategorized"]) {
+            for (int i=0; i<feed.count-1; i++) {
+                [feed exchangeObjectAtIndex:i withObjectAtIndex:i+1];
+            }
         }
     }
     

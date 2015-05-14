@@ -13,6 +13,7 @@
 #import "AKAMarkersFeed.h"
 #import "AppDelegate.h"
 #import "MBProgressHUD.h"
+#import "AKACoreData.h"
 
 @interface AKAFeedViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
@@ -104,18 +105,44 @@
     //-- ここまで
     
     if (img.count != 0) {
-        dispatch_queue_t q_global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_queue_t q_main = dispatch_get_main_queue();
         cell.image.image = nil;
-        dispatch_async(q_global, ^{
-            NSString *imageURL = img[0];
-            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL: [NSURL URLWithString: imageURL]]];
+        if ([[_feed valueForKey:@"image"] valueForKey:@"image"][indexPath.row] == [NSNull null]) {
+            // DBに存在しない
+            NSLog(@"DBに存在しない");
             
-            dispatch_async(q_main, ^{
-                cell.image.image = image;
-                [cell layoutSubviews];
+            dispatch_queue_t q_global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            dispatch_queue_t q_main = dispatch_get_main_queue();
+            dispatch_async(q_global, ^{
+                // 画像読み込み
+                NSString *imageURL = img[0];
+                UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL: [NSURL URLWithString: imageURL]]];
+                
+                // 画像を縮小
+                UIImage *resizeImage = [self resizeImage:image];
+                
+                // 画像をDBへ保存
+                id obj = [NSEntityDescription insertNewObjectForEntityForName:@"Image" inManagedObjectContext:[AKACoreData sharedCoreData].managedObjectContext];
+                NSData *dataCropImage = UIImagePNGRepresentation(resizeImage);
+//                NSLog(@"%@", dataCropImage);
+                [obj setValue:dataCropImage forKey:@"image"];
+                [[AKACoreData sharedCoreData] saveContext];
+                [_feed[indexPath.row] setValue:obj forKey:@"image"];
+                [[AKACoreData sharedCoreData] saveContext];
+            
+                
+                // メインスレッドで表示
+                dispatch_async(q_main, ^{
+                    cell.image.image = resizeImage;
+                    [cell layoutSubviews];
+                });
             });
-        });
+        } else {
+            // DBに存在する
+            NSLog(@"DBに存在する");
+            NSData *data = [[_feed valueForKey:@"image"] valueForKey:@"image"][indexPath.row];
+            cell.image.image = [UIImage imageWithData:data];
+
+        }
     }
     
     if ([[_feed valueForKey:@"unread"][indexPath.row] isEqualToNumber:[NSNumber numberWithBool:NO]]) {
@@ -135,19 +162,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _feed.count;
-}
-
-- (void)updateCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    AKAImgCustomCell *customeCell = (AKAImgCustomCell *)cell;
-    if ([[_feed valueForKey:@"unread"][indexPath.row] isEqualToNumber:[NSNumber numberWithBool:NO]]) {
-        customeCell.title.textColor = [UIColor lightGrayColor];
-        customeCell.detail.textColor = [UIColor lightGrayColor];
-        customeCell.siteTitle.textColor = [UIColor lightGrayColor];
-    } else {
-        customeCell.title.textColor = [UIColor blackColor];
-        customeCell.detail.textColor = [UIColor darkGrayColor];
-        customeCell.siteTitle.textColor = [UIColor darkGrayColor];
-    }
 }
 
 
@@ -172,7 +186,7 @@
 }
 
 
-
+#pragma mark - SwipeGesture
 - (void)didSwipeCell:(UISwipeGestureRecognizer*)swipeRecognizer {
     CGPoint loc = [swipeRecognizer locationInView:self.feedTableView];
     NSIndexPath* indexPath = [self.feedTableView indexPathForRowAtPoint:loc];
@@ -248,8 +262,46 @@
     [_feedTableView reloadData];
 }
 
+- (void)updateCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    AKAImgCustomCell *customeCell = (AKAImgCustomCell *)cell;
+    if ([[_feed valueForKey:@"unread"][indexPath.row] isEqualToNumber:[NSNumber numberWithBool:NO]]) {
+        customeCell.title.textColor = [UIColor lightGrayColor];
+        customeCell.detail.textColor = [UIColor lightGrayColor];
+        customeCell.siteTitle.textColor = [UIColor lightGrayColor];
+    } else {
+        customeCell.title.textColor = [UIColor blackColor];
+        customeCell.detail.textColor = [UIColor darkGrayColor];
+        customeCell.siteTitle.textColor = [UIColor darkGrayColor];
+    }
+}
 
 
+#pragma mark - Image
+- (UIImage *)resizeImage:(UIImage *)image {
+    UIImage *aImage = image;
+    
+    // 取得した画像の縦サイズ、横サイズを取得する
+    int imageW = aImage.size.width;
+    int imageH = aImage.size.height;
+    
+    // リサイズする倍率を作成する。
+    float scale = (imageW > imageH ? 320.0f/imageH : 320.0f/imageW);
+    
+    // 比率に合わせてリサイズする。
+    // ポイントはUIGraphicsXXとdrawInRectを用いて、リサイズ後のサイズで、
+    // aImageを書き出し、書き出した画像を取得することで、
+    // リサイズ後の画像を取得します。
+    CGSize resizedSize = CGSizeMake(imageW * scale, imageH * scale);
+    UIGraphicsBeginImageContext(resizedSize);
+    [aImage drawInRect:CGRectMake(0, 0, resizedSize.width, resizedSize.height)];
+    UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return resizedImage;
+}
+
+
+#pragma mark - Action
 - (IBAction)actionBtnTap:(id)sender {
     // コントローラを生成
     UIAlertController * ac =
