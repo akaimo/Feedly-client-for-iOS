@@ -17,15 +17,6 @@
 
 @implementation AKASettingViewController
 
-- (id)init {
-    // 図1
-    self = [super initWithStyle:UITableViewStylePlain];
-    if (self) {
-        // ・・・・
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     /* Menu追加 */
@@ -131,13 +122,10 @@
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%@", indexPath);
     switch (indexPath.section) {
         case 0:{
-            NSLog(@"section0");
-            
             UIAlertController * ac = [UIAlertController alertControllerWithTitle:@"Logout"
-                                                                         message:@"Are you sure you want to logout this account?"
+                                                                         message:@"Really Logout this account?"
                                                                   preferredStyle:UIAlertControllerStyleAlert];
             
             // Cancel用のアクションを生成
@@ -149,7 +137,7 @@
                                                                   }];
             
             // OK用のアクションを生成
-            UIAlertAction * okAction = [UIAlertAction actionWithTitle:@"Logout"
+            UIAlertAction * okAction = [UIAlertAction actionWithTitle:@"OK"
                                                                 style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction * action) {
                                                                   // ボタンタップ時の処理
