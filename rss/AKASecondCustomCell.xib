@@ -12,27 +12,43 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E6x-UV-J4X" id="1Xe-oW-WRd">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kB4-LQ-u1n">
-                        <rect key="frame" x="15" y="11" width="33" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L45-c3-7ub">
                         <rect key="frame" x="300" y="11" width="20" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wHT-gU-MHJ">
+                        <rect key="frame" x="15" y="12" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="R6l-VH-SZY"/>
+                            <constraint firstAttribute="height" constant="20" id="blP-sB-qof"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kB4-LQ-u1n">
+                        <rect key="frame" x="45" y="11" width="33" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="centerY" secondItem="wHT-gU-MHJ" secondAttribute="centerY" id="5LM-Yj-qsB"/>
                     <constraint firstAttribute="centerY" secondItem="L45-c3-7ub" secondAttribute="centerY" id="CBt-rh-V9c"/>
+                    <constraint firstItem="kB4-LQ-u1n" firstAttribute="leading" secondItem="wHT-gU-MHJ" secondAttribute="trailing" constant="10" id="HWB-c1-Msp"/>
+                    <constraint firstItem="wHT-gU-MHJ" firstAttribute="leading" secondItem="1Xe-oW-WRd" secondAttribute="leading" constant="15" id="QBY-pg-esF"/>
                     <constraint firstAttribute="centerY" secondItem="kB4-LQ-u1n" secondAttribute="centerY" id="jk2-M8-KJZ"/>
                     <constraint firstItem="kB4-LQ-u1n" firstAttribute="leading" secondItem="1Xe-oW-WRd" secondAttribute="leading" constant="15" id="upa-b2-y00"/>
                     <constraint firstAttribute="trailing" secondItem="L45-c3-7ub" secondAttribute="trailing" id="wh5-4G-W9q"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="upa-b2-y00"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="iconImageView" destination="wHT-gU-MHJ" id="Xl4-pD-Pbk"/>
                 <outlet property="title" destination="kB4-LQ-u1n" id="jYw-lm-BKz"/>
                 <outlet property="unreadCount" destination="L45-c3-7ub" id="YaR-m3-TOf"/>
             </connections>

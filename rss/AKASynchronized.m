@@ -13,6 +13,7 @@
 #import "JDStatusBarNotification.h"
 #import "AKAFetchFeed.h"
 #import "AKANavigationController.h"
+#import "AKAMarkersFeed.h"
 
 @implementation AKASynchronized
 
@@ -49,14 +50,47 @@
         });
         
         
+        /* データベースの整合性のチェック */
+        NSURL *url = [NSURL URLWithString:LATESTREAD];
+        NSDictionary *latestRead = [self urlForJSONToDictionary:url];
+        if (latestRead == nil) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [JDStatusBarNotification showWithStatus:@"Sync Failed!!" dismissAfter:1.5 styleName:JDStatusBarStyleError];
+            });
+            return;
+        }
+        /* 他のクライアントで既読にされた記事を既読にする */
+        if ([latestRead valueForKey:@"entries"]) {
+            NSArray *entries = [latestRead valueForKey:@"entries"];
+//            NSLog(@"%@", entries);
+            for (int i=0; i<entries.count; i++) {
+                AKAMarkersFeed *markersFeed = [[AKAMarkersFeed alloc] init];
+                [markersFeed changeUnreadWithID:entries[i] unread:[NSNumber numberWithBool:NO]];
+            }
+        }
+        /* 他のクライアントで未読にされた記事を未読にする */
+        if ([latestRead valueForKey:@"unread"]) {
+            NSArray *unread = [latestRead valueForKey:@"unread"];
+//            NSLog(@"%@", unread);
+            for (int i=0; i<unread.count; i++) {
+                AKAMarkersFeed *markersFeed = [[AKAMarkersFeed alloc] init];
+                [markersFeed changeUnreadWithID:unread[i] unread:[NSNumber numberWithBool:NO]];
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [JDStatusBarNotification showProgress:0.3];
+        });
+        
+        
         /* カテゴリ一覧を収得 */
-        NSURL *url = [NSURL URLWithString:CATEGORY];
+        url = [NSURL URLWithString:CATEGORY];
         NSDictionary *category = [self urlForJSONToDictionary:url];
         /* カテゴリを解析し保存 */
         [self saveCategory:category];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [JDStatusBarNotification showProgress:0.2];
+            [JDStatusBarNotification showProgress:0.5];
         });
         
         
@@ -71,7 +105,7 @@
         [self saveFeed:feed];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [JDStatusBarNotification showProgress:0.5];
+            [JDStatusBarNotification showProgress:0.7];
         });
         
         
@@ -84,15 +118,7 @@
         [self saveSaved:save];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [JDStatusBarNotification showProgress:0.6];
-        });
-        
-        
-        /* データベースの整合性のチェック */
-        // 未実装
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [JDStatusBarNotification showProgress:0.8];
+            [JDStatusBarNotification showProgress:0.9];
         });
         
         
@@ -164,10 +190,10 @@
     NSError *error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
-//    if (error != nil) {
-//        NSLog(@"Error!");
-//        return nil;
-//    }
+    if (error != nil) {
+        NSLog(@"Error!");
+        return nil;
+    }
     
     NSError *e = nil;    
     /* 取得したレスポンスをJSONパース */

@@ -29,7 +29,8 @@
     [super viewDidLoad];
     
     /* Menu追加 */
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(openVerticalMenu:)];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(openVerticalMenu:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menuBtn"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(openVerticalMenu:)];
     
     /* 次のViewの戻るボタンの設定 */
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] init];
@@ -139,27 +140,33 @@
     NSString *identifier;
     NSString *title;
     NSString *unreadCount;
+    UIImage *image;
     if (indexPath.row == 0) {
         identifier = @"Top";
         switch (delegate.feedStatus) {
             case UnreadItems:
                 title = @"Unread Items";
+                image = [UIImage imageNamed:@"unreadIcon"];
                 break;
                 
             case SavedItems:
                 title = @"Saved Items";
+                image = [UIImage imageNamed:@"savedIcon"];
                 break;
                 
             case ReadItems:
                 title = @"Read Items";
+                image = [UIImage imageNamed:@"readIcon"];
                 break;
                 
             case AllItems:
                 title = @"All Items";
+                image = [UIImage imageNamed:@"allIcon"];
                 break;
                 
             default:
                 title = @"Unread Items";
+                image = [UIImage imageNamed:@"unreadIcon"];
                 break;
         }
         
@@ -177,6 +184,7 @@
     } else {
         identifier = @"Second";
         title = [self capitalizeFirstLetter:[[delegate.feed[indexPath.row] valueForKey:@"category"] valueForKey:@"name"][0]];
+        image = [UIImage imageNamed:@"feedIcon"];
         int count = 0;
         for (NSDictionary *dic in delegate.feed[indexPath.row]) {
             if ([[dic valueForKey:@"unread"] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
@@ -193,8 +201,12 @@
     cell.title.text = title;
     cell.unreadCount.text = unreadCount;
     
-//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.accessoryView = [MSCellAccessory accessoryWithType:DISCLOSURE_INDICATOR color:[UIColor colorWithRed:133/255.0 green:230/255.0 blue:255/255.0 alpha:1.0]];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    cell.iconImageView.image = image;
+    
+    UIColor *themeColor = [UIColor colorWithRed:133/255.0 green:230/255.0 blue:255/255.0 alpha:1.0];
+    cell.iconImageView.tintColor = themeColor;
+    cell.accessoryView = [MSCellAccessory accessoryWithType:DISCLOSURE_INDICATOR color:themeColor];
     
     return cell;
 }

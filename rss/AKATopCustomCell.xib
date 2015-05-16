@@ -13,27 +13,43 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XJG-bE-BzR">
-                        <rect key="frame" x="15" y="11" width="34" height="21"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ZW-C7-KWk">
                         <rect key="frame" x="300" y="11" width="20" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IC1-Up-c59">
+                        <rect key="frame" x="15" y="12" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="12b-mX-May"/>
+                            <constraint firstAttribute="height" constant="20" id="baW-ml-xsU"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XJG-bE-BzR">
+                        <rect key="frame" x="45" y="11" width="34" height="21"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="0ZW-C7-KWk" secondAttribute="trailing" id="00J-C0-3tl"/>
+                    <constraint firstItem="IC1-Up-c59" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="3tk-cO-4rV"/>
                     <constraint firstAttribute="centerY" secondItem="XJG-bE-BzR" secondAttribute="centerY" id="7xl-UQ-tLf"/>
                     <constraint firstItem="XJG-bE-BzR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="eOJ-Ka-kgX"/>
+                    <constraint firstAttribute="centerY" secondItem="IC1-Up-c59" secondAttribute="centerY" id="oAJ-SD-nVf"/>
                     <constraint firstAttribute="centerY" secondItem="0ZW-C7-KWk" secondAttribute="centerY" id="plw-Os-wl2"/>
+                    <constraint firstItem="XJG-bE-BzR" firstAttribute="leading" secondItem="IC1-Up-c59" secondAttribute="trailing" constant="10" id="uMz-pZ-OY3"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="eOJ-Ka-kgX"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="iconImageView" destination="IC1-Up-c59" id="zJR-68-2PU"/>
                 <outlet property="title" destination="XJG-bE-BzR" id="dGO-3X-6fa"/>
                 <outlet property="unreadCount" destination="0ZW-C7-KWk" id="jHM-Ow-5oQ"/>
             </connections>

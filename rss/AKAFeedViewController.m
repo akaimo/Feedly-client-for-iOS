@@ -108,7 +108,6 @@
         cell.image.image = nil;
         if ([[_feed valueForKey:@"image"] valueForKey:@"image"][indexPath.row] == [NSNull null]) {
             // DBに存在しない
-            NSLog(@"DBに存在しない");
             
             [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 //            dispatch_queue_t q_global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -140,7 +139,6 @@
             });
         } else {
             // DBに存在する
-            NSLog(@"DBに存在する");
             NSData *data = [[_feed valueForKey:@"image"] valueForKey:@"image"][indexPath.row];
             cell.image.image = [UIImage imageWithData:data];
 

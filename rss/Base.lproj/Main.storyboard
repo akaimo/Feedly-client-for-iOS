@@ -241,7 +241,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Qg-uX-4be">
                                                     <rect key="frame" x="30" y="30" width="540" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fMn-ep-Vyy">
@@ -253,7 +253,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyM-xi-gUA">
                                                     <rect key="frame" x="30" y="291" width="540" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -304,13 +304,13 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="VRv-DY-DF1"/>
-                        <barButtonItem title="↑" id="oxv-xO-S8M">
+                        <barButtonItem image="nextBtn" id="oxv-xO-S8M">
                             <connections>
                                 <action selector="tapUp:" destination="iHh-eU-Bho" id="uKG-qq-3XP"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="jvt-TG-bm0"/>
-                        <barButtonItem title="↓" id="9pO-9r-Gtg">
+                        <barButtonItem image="backBtn" id="9pO-9r-Gtg">
                             <connections>
                                 <action selector="tapDown:" destination="iHh-eU-Bho" id="JYk-4w-DDd"/>
                             </connections>
@@ -445,4 +445,8 @@
             <point key="canvasLocation" x="1117" y="1204"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="backBtn" width="21" height="11"/>
+        <image name="nextBtn" width="21" height="11"/>
+    </resources>
 </document>

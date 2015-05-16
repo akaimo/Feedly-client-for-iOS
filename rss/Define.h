@@ -24,3 +24,6 @@
 
 //-- ユーザープロファイル
 #define PROFILE @"https://sandbox.feedly.com/v3/profile"
+
+//-- ローカルキャッシュの整合性
+#define LATESTREAD @"https://sandbox.feedly.com/v3/markers/reads"

@@ -45,7 +45,7 @@
         _highlightedTextShadowColor = [UIColor blackColor];
 
         _borderWidth = 0.5;
-        _borderColor = [UIColor whiteColor];
+        _borderColor = [UIColor clearColor];
         
         _backgroundAlpha = 0.85;
         _backgroundColor = [UIColor colorWithRed:61/255.0 green:153/255.0 blue:194/255.0 alpha:1.0];

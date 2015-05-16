@@ -37,22 +37,22 @@
 #pragma mark - FCVerticalMenu Configuration
 - (void)configureVerticalMenu {
     FCVerticalMenuItem *item1 = [[FCVerticalMenuItem alloc] initWithTitle:@"Unread"
-                                                             andIconImage:nil];
+                                                             andIconImage:[UIImage imageNamed:@"unreadIcon"]];
     
     FCVerticalMenuItem *item2 = [[FCVerticalMenuItem alloc] initWithTitle:@"Saved"
-                                                             andIconImage:nil];
+                                                             andIconImage:[UIImage imageNamed:@"savedIcon"]];
     
     FCVerticalMenuItem *item3 = [[FCVerticalMenuItem alloc] initWithTitle:@"Read"
-                                                             andIconImage:nil];
+                                                             andIconImage:[UIImage imageNamed:@"readIcon"]];
     
     FCVerticalMenuItem *item4 = [[FCVerticalMenuItem alloc] initWithTitle:@"All Items"
-                                                             andIconImage:nil];
+                                                             andIconImage:[UIImage imageNamed:@"allIcon"]];
     
     FCVerticalMenuItem *item5 = [[FCVerticalMenuItem alloc] initWithTitle:@"Settings"
                                                              andIconImage:[UIImage imageNamed:@"settingIcon"]];
     
     FCVerticalMenuItem *item6 = [[FCVerticalMenuItem alloc] initWithTitle:@"Sync"
-                                                             andIconImage:nil];
+                                                             andIconImage:[UIImage imageNamed:@"syncIcon"]];
     
     item1.actionBlock = ^{
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];

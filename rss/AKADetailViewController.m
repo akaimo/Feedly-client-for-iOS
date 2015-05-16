@@ -179,18 +179,18 @@
 //-- barItemの更新
 - (void)reloadUnreadBtn {
     if ([[_feed valueForKey:@"unread"][_feedRow] isEqualToNumber:[NSNumber numberWithBool:NO]]) {
-        self.unreadBtn.title = @"Unread";
+        self.unreadBtn.image = [UIImage imageNamed:@"keepUnreadBtn"];
     } else {
-        self.unreadBtn.title = @"Read";
+        self.unreadBtn.image = [UIImage imageNamed:@"readBtn"];
     }
 }
 
 //-- saveBtnの更新
 - (void)reloadSaveBtn {
     if ([[_feed valueForKey:@"saved"][_feedRow] isEqualToNumber:[NSNumber numberWithBool:NO]]) {
-        self.saveBtn.title = @"Saved";
+        self.saveBtn.image = [UIImage imageNamed:@"savedBtn"];
     } else {
-        self.saveBtn.title = @"Unsaved";
+        self.saveBtn.image = [UIImage imageNamed:@"unsavedBtn"];
     }
 }
 
@@ -231,14 +231,16 @@
             [markersFeed markAsSaved:array];
             NSLog(@"markAsSaved");
         }];
-        self.saveBtn.title = @"Unsaved";
+        self.saveBtn.image = [UIImage imageNamed:@"unsavedBtn"];
+
     } else {
         nibName = @"AKAUnsavedPopupViewController";
         [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
             [markersFeed markAsUnsaved:array];
             NSLog(@"markAsUnsaved");
         }];
-        self.saveBtn.title = @"Saved";
+        self.saveBtn.image = [UIImage imageNamed:@"savedBtn"];
+
     }
     
     AKAPopupViewController *popUpView = [[AKAPopupViewController alloc]initWithNibName:nibName bundle:nil];
@@ -263,14 +265,14 @@
             [markersFeed keepUnread:array];
             NSLog(@"keepUnread");
         }];
-        self.unreadBtn.title = @"Read";
+        self.unreadBtn.image = [UIImage imageNamed:@"readBtn"];
     } else {
         nibName = @"AKAReadPopupViewController";
         [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
             [markersFeed markAsRead:array];
             NSLog(@"markAsRead");
         }];
-        self.unreadBtn.title = @"Unread";
+        self.unreadBtn.image = [UIImage imageNamed:@"keepUnreadBtn"];
     }
     
     AKAPopupViewController *popUpView = [[AKAPopupViewController alloc]initWithNibName:nibName bundle:nil];
@@ -299,7 +301,7 @@
     }
     
     [self.tableView reloadData];
-    self.unreadBtn.title = @"Unread";
+    self.unreadBtn.image = [UIImage imageNamed:@"keepUnreadBtn"];
     [self reloadSaveBtn];
     [self reloadUpDownBtn];
 }
@@ -320,7 +322,7 @@
     }
     
     [self.tableView reloadData];
-    self.unreadBtn.title = @"Unread";
+    self.unreadBtn.image = [UIImage imageNamed:@"keepUnreadBtn"];
     [self reloadSaveBtn];
     [self reloadUpDownBtn];
 }

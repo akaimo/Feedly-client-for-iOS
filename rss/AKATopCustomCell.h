@@ -11,6 +11,7 @@
 @interface AKATopCustomCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *unreadCount;
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 
 + (CGFloat)topRowHeight;
 + (CGFloat)secondRowHeight;
