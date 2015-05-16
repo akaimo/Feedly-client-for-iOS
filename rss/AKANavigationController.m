@@ -66,26 +66,30 @@
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         delegate.feedStatus = SavedItems;
         UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UnreadViewController"];
-        [self setViewControllers:@[vc] animated:NO];
+//        [self setViewControllers:@[vc] animated:NO];
+        [self pushViewController:vc animated:NO];
         
     };
     item3.actionBlock = ^{
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         delegate.feedStatus = ReadItems;
         UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UnreadViewController"];
-        [self setViewControllers:@[vc] animated:NO];
+//        [self setViewControllers:@[vc] animated:NO];
+        [self pushViewController:vc animated:NO];
         
     };
     item4.actionBlock = ^{
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         delegate.feedStatus = AllItems;
         UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UnreadViewController"];
-        [self setViewControllers:@[vc] animated:NO];
+//        [self setViewControllers:@[vc] animated:NO];
+        [self pushViewController:vc animated:NO];
         
     };
     item5.actionBlock = ^{
         UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"SettingViewController"];
-        [self setViewControllers:@[vc] animated:NO];
+//        [self setViewControllers:@[vc] animated:NO];
+        [self pushViewController:vc animated:NO];
     };
     item6.actionBlock = ^{
         UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UnreadViewController"];

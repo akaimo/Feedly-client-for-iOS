@@ -72,6 +72,12 @@ static AKACoreData* _CoreData;
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
             NSLog(@"永続ストアへの保存に失敗 %@", [error localizedDescription]);
         }
+//        if ([managedObjectContext hasChanges]) {
+//            NSLog(@"ok");
+//        }
+//        if (![managedObjectContext save:&error]) {
+//            NSLog(@"%@", [error localizedDescription]);
+//        }
     }
 }
 

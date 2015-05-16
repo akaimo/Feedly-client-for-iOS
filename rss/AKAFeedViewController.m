@@ -110,7 +110,9 @@
             // DBに存在しない
             NSLog(@"DBに存在しない");
             
-            dispatch_queue_t q_global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+//            dispatch_queue_t q_global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            dispatch_queue_t q_global = dispatch_queue_create("getImage", NULL);
             dispatch_queue_t q_main = dispatch_get_main_queue();
             dispatch_async(q_global, ^{
                 // 画像読み込み
@@ -123,7 +125,6 @@
                 // 画像をDBへ保存
                 id obj = [NSEntityDescription insertNewObjectForEntityForName:@"Image" inManagedObjectContext:[AKACoreData sharedCoreData].managedObjectContext];
                 NSData *dataCropImage = UIImagePNGRepresentation(resizeImage);
-//                NSLog(@"%@", dataCropImage);
                 [obj setValue:dataCropImage forKey:@"image"];
                 [[AKACoreData sharedCoreData] saveContext];
                 [_feed[indexPath.row] setValue:obj forKey:@"image"];
@@ -132,6 +133,7 @@
                 
                 // メインスレッドで表示
                 dispatch_async(q_main, ^{
+                    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                     cell.image.image = resizeImage;
                     [cell layoutSubviews];
                 });

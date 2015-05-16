@@ -107,18 +107,23 @@
     //-- ここまで
     
     if (img.count != 0) {
-        dispatch_queue_t q_global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_queue_t q_main = dispatch_get_main_queue();
-        cell.detailImageView.image = nil;
-        dispatch_async(q_global, ^{
-            NSString *imageURL = img[0];
-            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL: [NSURL URLWithString: imageURL]]];
-            
-            dispatch_async(q_main, ^{
-                cell.detailImageView.image = image;
-                [cell layoutSubviews];
+        if ([[_feed valueForKey:@"image"] valueForKey:@"image"][_feedRow] == [NSNull null]) {
+            dispatch_queue_t q_global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            dispatch_queue_t q_main = dispatch_get_main_queue();
+            cell.detailImageView.image = nil;
+            dispatch_async(q_global, ^{
+                NSString *imageURL = img[0];
+                UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL: [NSURL URLWithString: imageURL]]];
+                
+                dispatch_async(q_main, ^{
+                    cell.detailImageView.image = image;
+                    [cell layoutSubviews];
+                });
             });
-        });
+        } else {
+            NSData *data = [[_feed valueForKey:@"image"] valueForKey:@"image"][_feedRow];
+            cell.detailImageView.image = [UIImage imageWithData:data];
+        }
     }
     
     return cell;
