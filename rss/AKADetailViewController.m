@@ -13,6 +13,8 @@
 #import "AKAMarkersFeed.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "AKAPopupViewController.h"
+#import "AKAReadability.h"
+#import "AKAReadabilityViewController.h"
 
 @interface AKADetailViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -24,6 +26,8 @@
 - (IBAction)tapUp:(id)sender;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *downBtn;
 - (IBAction)tapDown:(id)sender;
+- (IBAction)tapReadability:(id)sender;
+@property (nonatomic, retain) NSDictionary *readability;
 
 @end
 
@@ -172,6 +176,10 @@
     if ([[segue identifier] isEqualToString:@"Web"]) {
         AKAFeedWebViewController *feedWebViewController = (AKAFeedWebViewController *)[segue destinationViewController];
         feedWebViewController.feed = sender;
+    } else if ([[segue identifier] isEqualToString:@"Readability"]) {
+        AKAReadabilityViewController *vc = (AKAReadabilityViewController *)[segue destinationViewController];
+        vc.url = [_feed valueForKey:@"url"][_feedRow];
+        vc.title = [_feed valueForKey:@"title"][_feedRow];
     }
 }
 
@@ -325,6 +333,16 @@
     self.unreadBtn.image = [UIImage imageNamed:@"keepUnreadBtn"];
     [self reloadSaveBtn];
     [self reloadUpDownBtn];
+}
+
+- (IBAction)tapReadability:(id)sender {
+    AKAReadability *readability = [[AKAReadability alloc] init];
+    [readability getReadabilityForURL:[NSURL URLWithString:[_feed valueForKey:@"url"][_feedRow]]
+                completionHandler:^(NSDictionary *dict, NSError *error) {
+                    NSLog(@"%@", dict);
+                    _readability = [NSDictionary dictionaryWithDictionary:dict];
+                    [self.tableView reloadData];
+    }];
 }
 
 @end
