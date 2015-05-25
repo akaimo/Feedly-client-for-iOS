@@ -9,6 +9,7 @@
 #import "AKADetailSettingViewController.h"
 
 @interface AKADetailSettingViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *detailSettingTableView;
 
 @end
 

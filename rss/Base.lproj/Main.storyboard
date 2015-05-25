@@ -125,11 +125,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="lZ3-Xg-a09">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="lZ3-Xg-a09">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lZ3-Xg-a09" id="vMq-Sc-Y69">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="R7T-3g-rUv" kind="push" identifier="Detail" id="0Ky-DC-z2P"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -144,6 +147,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9sQ-tX-zFF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1929" y="1917"/>
+        </scene>
+        <!--Detail Setting View Controller-->
+        <scene sceneID="dqz-sE-oid">
+            <objects>
+                <viewController id="R7T-3g-rUv" customClass="AKADetailSettingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KOV-v0-m6t"/>
+                        <viewControllerLayoutGuide type="bottom" id="o0z-dg-mIc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VA1-B9-7CV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gjz-b1-RDV">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gjz-b1-RDV" firstAttribute="leading" secondItem="VA1-B9-7CV" secondAttribute="leading" id="GWH-jI-97s"/>
+                            <constraint firstAttribute="trailing" secondItem="gjz-b1-RDV" secondAttribute="trailing" id="W15-fK-evY"/>
+                            <constraint firstItem="gjz-b1-RDV" firstAttribute="bottom" secondItem="o0z-dg-mIc" secondAttribute="top" id="jjv-WV-kWa"/>
+                            <constraint firstItem="gjz-b1-RDV" firstAttribute="top" secondItem="VA1-B9-7CV" secondAttribute="top" id="viF-vs-xkr"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="4j3-x5-cya"/>
+                    <connections>
+                        <outlet property="detailSettingTableView" destination="gjz-b1-RDV" id="7OK-nI-r2F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kdo-rA-ORq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2663" y="1917"/>
         </scene>
         <!--Feed View Controller-->
         <scene sceneID="7uA-9D-vWd">

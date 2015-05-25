@@ -31,7 +31,7 @@
     self.title = @"Setting";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.section2CellName = @[@"保存日数", @"左スワイプ", @"右スワイプ"];
+    self.section2CellName = @[@"保存日数", @"右スワイプ", @"左スワイプ"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -110,8 +110,14 @@
             break;
         }
         case 1:{
+            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+            int i;
+            if (indexPath.row == 0) i = (int)[ud integerForKey:@"SaveDay"];
+            else if (indexPath.row == 1) i = (int)[ud integerForKey:@"RightSwipe"];
+            else if (indexPath.row == 2) i = (int)[ud integerForKey:@"LeftSwipe"];
+            
             cell.titleLabel.text = self.section2CellName[indexPath.row];
-            cell.detailLabel.text = @"hoge";
+            cell.detailLabel.text = [self selectDetailText:indexPath userDefaults:i];
             break;
         }
         default:
@@ -162,10 +168,43 @@
         }
             
         case 1:
-            NSLog(@"section1");
+            [self performSegueWithIdentifier:@"Detail" sender:nil];
             break;
             
         default:
+            break;
+    }
+}
+
+- (NSString *)selectDetailText:(NSIndexPath *)indexPath userDefaults:(int)defaults {
+    switch (indexPath.row) {
+        case 0:
+            if (defaults == Never)          return @"Never";
+            else if (defaults == Day1)      return @"1 day";
+            else if (defaults == Day2)      return @"2 days";
+            else if (defaults == Day3)      return @"3 days";
+            else if (defaults == Week1)     return @"1 week";
+            else if (defaults == Week2)     return @"2 weeks";
+            else if (defaults == Month1)    return @"1 month";
+            else                            return @"";
+            break;
+            
+        case 1:
+            if (defaults == RNon)          return @"No Action";
+            else if (defaults == RRead)      return @"Toggle Read";
+            else if (defaults == RSaved)      return @"Toggle Saved";
+            else                            return @"";
+            break;
+            
+        case 2:
+            if (defaults == LNon)          return @"No Action";
+            else if (defaults == LRead)      return @"Toggle Read";
+            else if (defaults == LSaved)      return @"Toggle Saved";
+            else                            return @"";
+            break;
+            
+        default:
+            return @"";
             break;
     }
 }

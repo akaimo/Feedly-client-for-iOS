@@ -20,4 +20,16 @@ typedef NS_ENUM(char, SaveDay) {
     Month1 = 7
 };
 
+typedef NS_ENUM(int, RightSwipe) {
+    RNon = 0,
+    RRead = 1,
+    RSaved = 2
+};
+
+typedef NS_ENUM(int, LeftSwipe) {
+    LNon = 0,
+    LRead = 1,
+    LSaved = 2
+};
+
 @end
