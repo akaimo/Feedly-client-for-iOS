@@ -9,9 +9,11 @@
 #import "AKASettingViewController.h"
 #import "AKANavigationController.h"
 #import "NXOauth2.h"
+#import "AKASettingCustomCell.h"
 
 @interface AKASettingViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *settingTableView;
+@property (strong, nonatomic) NSArray *section2CellName;
 
 @end
 
@@ -22,9 +24,14 @@
     /* Menu追加 */
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(openVerticalMenu:)];
     
+    /* カスタムセルの定義 */
+    UINib *nib = [UINib nibWithNibName:@"AKASettingCustomCell" bundle:nil];
+    [self.settingTableView registerNib:nib forCellReuseIdentifier:@"Radio"];
+    
     self.title = @"Setting";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.section2CellName = @[@"保存日数", @"左スワイプ", @"右スワイプ"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,7 +86,7 @@
             dataCount = [[[NXOAuth2AccountStore sharedStore] accounts] count];
             break;
         case 1:
-            dataCount = 4;
+            dataCount = self.section2CellName.count;
             break;
         default:
             break;
@@ -88,12 +95,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+    static NSString *identifier = @"Radio";
+    AKASettingCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
     
     switch (indexPath.section) {
@@ -103,11 +106,12 @@
 //            NSLog(@"%@", userData);
             NSString *name = [NSString stringWithFormat:@"%@ : %@", [userData valueForKey:@"client"], [[userData objectForKey:@"logins"][0] valueForKey:@"provider"]];
             
-            cell.textLabel.text = name;
+            cell.titleLabel.text = name;
             break;
         }
         case 1:{
-            cell.textLabel.text = @"hogehoge";
+            cell.titleLabel.text = self.section2CellName[indexPath.row];
+            cell.detailLabel.text = @"hoge";
             break;
         }
         default:
