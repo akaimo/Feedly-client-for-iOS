@@ -42,7 +42,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     // footer on
-    [self.navigationController setToolbarHidden:NO animated:NO];
+    [self.navigationController setToolbarHidden:YES animated:NO];
     self.navigationController.toolbar.barTintColor = [UIColor colorWithRed:61/255.0 green:173/255.0 blue:204/255.0 alpha:1.0];
     self.navigationController.toolbar.tintColor = [UIColor whiteColor];
 
