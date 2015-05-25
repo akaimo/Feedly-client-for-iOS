@@ -482,7 +482,7 @@
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSLog(@"now: %@", now);
     NSDateComponents *comps = [[NSDateComponents alloc]init];
-    comps.day = -3;
+    comps.day = -7;
     NSDate *result = [calendar dateByAddingComponents:comps toDate:now options:0];
     NSLog(@"3日前：%@", result);
     double unixtime = [result timeIntervalSince1970];

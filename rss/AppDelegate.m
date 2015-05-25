@@ -16,7 +16,7 @@
 //-- for Feedly Oauth2(sandbox)
 NSString * const kOauth2ClientAccountType = @"Feedly";                                      // account type
 static NSString * const kOauth2ClientClientId = @"sandbox";                                 // clientId
-static NSString * const kOauth2ClientClientSecret = @"4205DQXBAP99S8SUHXI3";                // Client Secret
+static NSString * const kOauth2ClientClientSecret = @"A4143F56J75FGQY7TAJM";                // Client Secret
 static NSString * const kOauth2ClientRedirectUrl = @"http://localhost";                     // Redirect Url
 static NSString * const kOauth2ClientBaseUrl = @"https://sandbox.feedly.com";               // base url
 static NSString * const kOauth2ClientAuthUrl = @"/v3/auth/auth";                            // auth url
