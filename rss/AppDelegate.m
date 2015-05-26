@@ -90,7 +90,7 @@ static NSString *const kOauth2ClientKeyChainGroup = @"Feedly";                  
     // NSUserDefaultsに初期値を登録する
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];  // 取得
     NSMutableDictionary *defaults = [NSMutableDictionary dictionary];
-    [defaults setObject:@"5" forKey:@"SaveDay"];
+    [defaults setObject:@"4" forKey:@"SaveDay"];
     [defaults setObject:@"1" forKey:@"RightSwipe"];
     [defaults setObject:@"2" forKey:@"LeftSwipe"];
     [ud registerDefaults:defaults];

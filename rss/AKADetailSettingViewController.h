@@ -10,4 +10,6 @@
 
 @interface AKADetailSettingViewController : UIViewController
 
+@property (strong, nonatomic) NSIndexPath *settingIndexPath;
+
 @end

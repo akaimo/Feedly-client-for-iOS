@@ -10,6 +10,7 @@
 #import "AKANavigationController.h"
 #import "NXOauth2.h"
 #import "AKASettingCustomCell.h"
+#import "AKADetailSettingViewController.h"
 
 @interface AKASettingViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *settingTableView;
@@ -28,10 +29,15 @@
     UINib *nib = [UINib nibWithNibName:@"AKASettingCustomCell" bundle:nil];
     [self.settingTableView registerNib:nib forCellReuseIdentifier:@"Radio"];
     
-    self.title = @"Setting";
+    /* 次のViewの戻るボタンの設定 */
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] init];
+    barButton.title = @"";
+    self.navigationItem.backBarButtonItem = barButton;
+    
+    self.title = @"Settings";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.section2CellName = @[@"保存日数", @"右スワイプ", @"左スワイプ"];
+    self.section2CellName = @[@"Keep Read Items", @"Slide Right to", @"Slide Left to"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -168,7 +174,7 @@
         }
             
         case 1:
-            [self performSegueWithIdentifier:@"Detail" sender:nil];
+            [self performSegueWithIdentifier:@"Detail" sender:indexPath];
             break;
             
         default:
@@ -176,6 +182,15 @@
     }
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"Detail"]) {
+        AKADetailSettingViewController *detailSettingViewController = (AKADetailSettingViewController *)[segue destinationViewController];
+        detailSettingViewController.settingIndexPath = sender;
+    }
+}
+
+
+#pragma mark - private
 - (NSString *)selectDetailText:(NSIndexPath *)indexPath userDefaults:(int)defaults {
     switch (indexPath.row) {
         case 0:
