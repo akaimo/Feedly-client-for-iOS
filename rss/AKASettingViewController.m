@@ -40,6 +40,10 @@
     self.section2CellName = @[@"Keep Read Items", @"Slide Right to", @"Slide Left to"];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self.settingTableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

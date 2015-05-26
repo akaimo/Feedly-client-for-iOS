@@ -82,9 +82,29 @@
     else return 0;
 }
 
+
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    [self performSegueWithIdentifier:@"Web" sender:_feed[_feedRow]];
+    [self.detailSettingTableView reloadData];
+    
+    // 選択したセル以外のすべてのチェックを取る
+    for (NSInteger index=0; index<[self.detailSettingTableView numberOfRowsInSection:0]; index++) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        // 選択したセルだけチェックする
+        if (indexPath.row == index) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+    }
+    
+    // 選択したデータを保存
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    if (self.settingIndexPath.row == 0) [ud setInteger:indexPath.row forKey:@"SaveDay"];
+    else if (self.settingIndexPath.row == 1) [ud setInteger:indexPath.row forKey:@"RightSwipe"];
+    else if (self.settingIndexPath.row == 2) [ud setInteger:indexPath.row forKey:@"LeftSwipe"];
+    [ud synchronize];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
