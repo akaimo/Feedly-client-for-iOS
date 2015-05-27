@@ -13,7 +13,6 @@
 #import "AKAMarkersFeed.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "AKAPopupViewController.h"
-#import "AKAReadability.h"
 #import "AKAReadabilityViewController.h"
 
 @interface AKADetailViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -333,16 +332,6 @@
     self.unreadBtn.image = [UIImage imageNamed:@"keepUnreadBtn"];
     [self reloadSaveBtn];
     [self reloadUpDownBtn];
-}
-
-- (IBAction)tapReadability:(id)sender {
-    AKAReadability *readability = [[AKAReadability alloc] init];
-    [readability getReadabilityForURL:[NSURL URLWithString:[_feed valueForKey:@"url"][_feedRow]]
-                completionHandler:^(NSDictionary *dict, NSError *error) {
-                    NSLog(@"%@", dict);
-                    _readability = [NSDictionary dictionaryWithDictionary:dict];
-                    [self.tableView reloadData];
-    }];
 }
 
 @end

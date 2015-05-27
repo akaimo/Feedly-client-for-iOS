@@ -33,7 +33,6 @@
 		99A0A2DE1AE10DC100A3A592 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99A0A2DD1AE10DC100A3A592 /* CoreData.framework */; };
 		99A0A2E71AE110A000A3A592 /* AKACoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A0A2E61AE110A000A3A592 /* AKACoreData.m */; };
 		99A0A2EA1AE1153F00A3A592 /* AKASynchronized.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A0A2E91AE1153F00A3A592 /* AKASynchronized.m */; };
-		99F934DD1B084F0B0062B296 /* AKAReadability.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F934DC1B084F0B0062B296 /* AKAReadability.m */; };
 		99F934E01B0898C10062B296 /* AKAReadabilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F934DF1B0898C10062B296 /* AKAReadabilityViewController.m */; };
 		99FB28EE1AE7CFE60062214D /* AKACurrentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FB28ED1AE7CFE60062214D /* AKACurrentData.m */; };
 		99FBE9071AEB431D0022B1F0 /* AKAFetchFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FBE9061AEB431D0022B1F0 /* AKAFetchFeed.m */; };
@@ -108,8 +107,6 @@
 		99A0A2E61AE110A000A3A592 /* AKACoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKACoreData.m; sourceTree = "<group>"; };
 		99A0A2E81AE1153F00A3A592 /* AKASynchronized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKASynchronized.h; sourceTree = "<group>"; };
 		99A0A2E91AE1153F00A3A592 /* AKASynchronized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKASynchronized.m; sourceTree = "<group>"; };
-		99F934DB1B084F0B0062B296 /* AKAReadability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKAReadability.h; sourceTree = "<group>"; };
-		99F934DC1B084F0B0062B296 /* AKAReadability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKAReadability.m; sourceTree = "<group>"; };
 		99F934DE1B0898C10062B296 /* AKAReadabilityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKAReadabilityViewController.h; sourceTree = "<group>"; };
 		99F934DF1B0898C10062B296 /* AKAReadabilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKAReadabilityViewController.m; sourceTree = "<group>"; };
 		99FB28EC1AE7CFE60062214D /* AKACurrentData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKACurrentData.h; sourceTree = "<group>"; };
@@ -207,8 +204,6 @@
 				99FBE92B1AF31BAB0022B1F0 /* AKARegularExpression.m */,
 				9987E77A1AF4895C002622EE /* AKAMarkersFeed.h */,
 				9987E77B1AF4895C002622EE /* AKAMarkersFeed.m */,
-				99F934DB1B084F0B0062B296 /* AKAReadability.h */,
-				99F934DC1B084F0B0062B296 /* AKAReadability.m */,
 				99FBE9151AEFB71F0022B1F0 /* CoreData */,
 				99FBE9141AEFB6DC0022B1F0 /* View */,
 				9906062D1ACBA8660014964E /* Main.storyboard */,
@@ -502,7 +497,6 @@
 				99FBE9191AEFB7F50022B1F0 /* AKATopCustomCell.m in Sources */,
 				9987E77C1AF4895C002622EE /* AKAMarkersFeed.m in Sources */,
 				990606291ACBA8660014964E /* AppDelegate.m in Sources */,
-				99F934DD1B084F0B0062B296 /* AKAReadability.m in Sources */,
 				99FBE9211AF0E4B10022B1F0 /* AKAImgCustomCell.m in Sources */,
 				990606261ACBA8660014964E /* main.m in Sources */,
 				9987E7771AF36FCE002622EE /* AKAFeedWebViewController.m in Sources */,

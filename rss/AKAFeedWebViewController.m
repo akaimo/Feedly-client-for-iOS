@@ -96,7 +96,37 @@
 
 
 - (void)actionBtnTap:(UIButton *)sender {
+    // コントローラを生成
+    UIAlertController * ac =
+    [UIAlertController alertControllerWithTitle:nil
+                                        message:@"share"
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
     
+    // Cancel用のアクションを生成
+    UIAlertAction * cancelAction =
+    [UIAlertAction actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleCancel
+                           handler:^(UIAlertAction * action) {
+                               // ボタンタップ時の処理
+                           }];
+    
+    // Destructive用のアクションを生成
+    UIAlertAction * safariAction =
+    [UIAlertAction actionWithTitle:@"Open in Safari"
+                             style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action) {
+                               /* ボタンタップ時の処理*/
+                               NSURL *url = [NSURL URLWithString:[_feed valueForKey:@"url"]];
+                               // ブラウザを起動する
+                               [[UIApplication sharedApplication] openURL:url];
+                           }];
+    
+    // コントローラにアクションを追加
+    [ac addAction:cancelAction];
+    [ac addAction:safariAction];
+    
+    // アクションシート表示処理
+    [self presentViewController:ac animated:YES completion:nil];
 }
 
 - (void)refreshBtnTap:(UIButton *)sender {

@@ -338,7 +338,6 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="VHV-Xn-5at"/>
                         <barButtonItem image="readability" id="iJ5-i4-YOA">
                             <connections>
-                                <action selector="tapReadability:" destination="iHh-eU-Bho" id="Ygy-i0-5t8"/>
                                 <segue destination="WX9-t3-FHd" kind="push" identifier="Readability" id="XaI-Rm-AxZ"/>
                             </connections>
                         </barButtonItem>

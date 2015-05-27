@@ -29,8 +29,6 @@
         /* 処理内容 */
         [self getReadabilityForURL:[NSURL URLWithString:_url]
                  completionHandler:^(NSDictionary *dict, NSError *error) {
-                     NSLog(@"%@", dict);
-                     
                      NSData *bodyData = [[dict valueForKey:@"content"] dataUsingEncoding:NSUTF8StringEncoding];
                      [_webView loadData:bodyData MIMEType:@"text/html"textEncodingName:@"utf-8"baseURL:nil];
                  }];
@@ -78,20 +76,6 @@
     NSError *e = nil;
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&e];
     handler(dict, nil);
-    
-//    [NSURLConnection sendAsynchronousRequest:shortenRequest
-//                                       queue:[NSOperationQueue mainQueue]
-//                           completionHandler:^(NSURLResponse *shortenResponse, NSData *shortenData, NSError *shortenError) {
-//                               if (shortenError) {
-//                                   handler(nil, shortenError);
-//                               }
-//                               else {
-//                                   NSDictionary *shortenJson = [NSJSONSerialization JSONObjectWithData:shortenData
-//                                                                                               options:0
-//                                                                                                 error:NULL];
-//                                   handler(shortenJson, nil);
-//                               }
-//                           }];
 }
 
 @end
