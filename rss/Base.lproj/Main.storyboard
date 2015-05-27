@@ -336,7 +336,7 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="VHV-Xn-5at"/>
-                        <barButtonItem systemItem="add" id="iJ5-i4-YOA">
+                        <barButtonItem image="readability" id="iJ5-i4-YOA">
                             <connections>
                                 <action selector="tapReadability:" destination="iHh-eU-Bho" id="Ygy-i0-5t8"/>
                                 <segue destination="WX9-t3-FHd" kind="push" identifier="Readability" id="XaI-Rm-AxZ"/>
@@ -519,5 +519,6 @@
         <image name="FeedlyIcon" width="256" height="256"/>
         <image name="backBtn" width="21" height="11"/>
         <image name="nextBtn" width="21" height="11"/>
+        <image name="readability" width="48" height="35"/>
     </resources>
 </document>
