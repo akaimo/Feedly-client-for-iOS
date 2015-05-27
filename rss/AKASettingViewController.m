@@ -9,9 +9,12 @@
 #import "AKASettingViewController.h"
 #import "AKANavigationController.h"
 #import "NXOauth2.h"
+#import "AKASettingCustomCell.h"
+#import "AKADetailSettingViewController.h"
 
 @interface AKASettingViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *settingTableView;
+@property (strong, nonatomic) NSArray *section2CellName;
 
 @end
 
@@ -22,9 +25,23 @@
     /* Menu追加 */
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(openVerticalMenu:)];
     
-    self.title = @"Setting";
+    /* カスタムセルの定義 */
+    UINib *nib = [UINib nibWithNibName:@"AKASettingCustomCell" bundle:nil];
+    [self.settingTableView registerNib:nib forCellReuseIdentifier:@"Radio"];
+    
+    /* 次のViewの戻るボタンの設定 */
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] init];
+    barButton.title = @"";
+    self.navigationItem.backBarButtonItem = barButton;
+    
+    self.title = @"Settings";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.section2CellName = @[@"Keep Read Items", @"Slide Right to", @"Slide Left to"];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.settingTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,7 +96,7 @@
             dataCount = [[[NXOAuth2AccountStore sharedStore] accounts] count];
             break;
         case 1:
-            dataCount = 4;
+            dataCount = self.section2CellName.count;
             break;
         default:
             break;
@@ -88,12 +105,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+    static NSString *identifier = @"Radio";
+    AKASettingCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
     
     switch (indexPath.section) {
@@ -103,11 +116,18 @@
 //            NSLog(@"%@", userData);
             NSString *name = [NSString stringWithFormat:@"%@ : %@", [userData valueForKey:@"client"], [[userData objectForKey:@"logins"][0] valueForKey:@"provider"]];
             
-            cell.textLabel.text = name;
+            cell.titleLabel.text = name;
             break;
         }
         case 1:{
-            cell.textLabel.text = @"hogehoge";
+            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+            int i;
+            if (indexPath.row == 0) i = (int)[ud integerForKey:@"SaveDay"];
+            else if (indexPath.row == 1) i = (int)[ud integerForKey:@"RightSwipe"];
+            else if (indexPath.row == 2) i = (int)[ud integerForKey:@"LeftSwipe"];
+            
+            cell.titleLabel.text = self.section2CellName[indexPath.row];
+            cell.detailLabel.text = [self selectDetailText:indexPath userDefaults:i];
             break;
         }
         default:
@@ -158,10 +178,52 @@
         }
             
         case 1:
-            NSLog(@"section1");
+            [self performSegueWithIdentifier:@"Detail" sender:indexPath];
             break;
             
         default:
+            break;
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"Detail"]) {
+        AKADetailSettingViewController *detailSettingViewController = (AKADetailSettingViewController *)[segue destinationViewController];
+        detailSettingViewController.settingIndexPath = sender;
+    }
+}
+
+
+#pragma mark - private
+- (NSString *)selectDetailText:(NSIndexPath *)indexPath userDefaults:(int)defaults {
+    switch (indexPath.row) {
+        case 0:
+            if (defaults == Never)          return @"Never";
+            else if (defaults == Day1)      return @"1 day";
+            else if (defaults == Day2)      return @"2 days";
+            else if (defaults == Day3)      return @"3 days";
+            else if (defaults == Week1)     return @"1 week";
+            else if (defaults == Week2)     return @"2 weeks";
+            else if (defaults == Month1)    return @"1 month";
+            else                            return @"";
+            break;
+            
+        case 1:
+            if (defaults == RNon)          return @"No Action";
+            else if (defaults == RRead)      return @"Toggle Read";
+            else if (defaults == RSaved)      return @"Toggle Saved";
+            else                            return @"";
+            break;
+            
+        case 2:
+            if (defaults == LNon)          return @"No Action";
+            else if (defaults == LRead)      return @"Toggle Read";
+            else if (defaults == LSaved)      return @"Toggle Saved";
+            else                            return @"";
+            break;
+            
+        default:
+            return @"";
             break;
     }
 }

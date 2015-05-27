@@ -10,4 +10,32 @@
 
 @interface AKASettingViewController : UITableViewController
 
+typedef NS_ENUM(char, SaveDay) {
+    Never,
+    Day1,
+    Day2,
+    Day3,
+    Week1,
+    Week2,
+    Month1,
+    
+    SDend
+};
+
+typedef NS_ENUM(int, RightSwipe) {
+    RNon,
+    RRead,
+    RSaved,
+    
+    Rend
+};
+
+typedef NS_ENUM(int, LeftSwipe) {
+    LNon,
+    LRead,
+    LSaved,
+    
+    Lend
+};
+
 @end

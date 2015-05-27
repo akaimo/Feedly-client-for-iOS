@@ -26,6 +26,9 @@
 		9987E7891AF7A297002622EE /* AKAReadPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9987E7881AF7A297002622EE /* AKAReadPopupViewController.xib */; };
 		998A2EC71AFCF0A200967A77 /* AKANavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998A2EC61AFCF0A200967A77 /* AKANavigationController.m */; };
 		998A2ECD1AFF693300967A77 /* AKASettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998A2ECC1AFF693300967A77 /* AKASettingViewController.m */; };
+		998C90761B131CFE008CB8D0 /* AKASettingCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 998C90741B131CFE008CB8D0 /* AKASettingCustomCell.m */; };
+		998C90771B131CFE008CB8D0 /* AKASettingCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 998C90751B131CFE008CB8D0 /* AKASettingCustomCell.xib */; };
+		998C907A1B132157008CB8D0 /* AKADetailSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998C90791B132157008CB8D0 /* AKADetailSettingViewController.m */; };
 		999BEA2C1ADFF0CB0087D51A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 999BEA2A1ADFF0CB0087D51A /* Model.xcdatamodeld */; };
 		99A0A2DE1AE10DC100A3A592 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99A0A2DD1AE10DC100A3A592 /* CoreData.framework */; };
 		99A0A2E71AE110A000A3A592 /* AKACoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A0A2E61AE110A000A3A592 /* AKACoreData.m */; };
@@ -94,6 +97,11 @@
 		998A2EC61AFCF0A200967A77 /* AKANavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKANavigationController.m; sourceTree = "<group>"; };
 		998A2ECB1AFF693300967A77 /* AKASettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKASettingViewController.h; sourceTree = "<group>"; };
 		998A2ECC1AFF693300967A77 /* AKASettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKASettingViewController.m; sourceTree = "<group>"; };
+		998C90731B131CFE008CB8D0 /* AKASettingCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKASettingCustomCell.h; sourceTree = "<group>"; };
+		998C90741B131CFE008CB8D0 /* AKASettingCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKASettingCustomCell.m; sourceTree = "<group>"; };
+		998C90751B131CFE008CB8D0 /* AKASettingCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKASettingCustomCell.xib; sourceTree = "<group>"; };
+		998C90781B132157008CB8D0 /* AKADetailSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKADetailSettingViewController.h; sourceTree = "<group>"; };
+		998C90791B132157008CB8D0 /* AKADetailSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKADetailSettingViewController.m; sourceTree = "<group>"; };
 		999BEA2B1ADFF0CB0087D51A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		99A0A2DD1AE10DC100A3A592 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		99A0A2E51AE110A000A3A592 /* AKACoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKACoreData.h; sourceTree = "<group>"; };
@@ -265,7 +273,7 @@
 			name = Web;
 			sourceTree = "<group>";
 		};
-		99FBE9141AEFB6DC0022B1F0 /* View */ = {
+		998C90721B130A76008CB8D0 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				998A2EC51AFCF0A200967A77 /* AKANavigationController.h */,
@@ -280,6 +288,16 @@
 				99FBE9281AF1D2850022B1F0 /* AKADetailViewController.m */,
 				998A2ECB1AFF693300967A77 /* AKASettingViewController.h */,
 				998A2ECC1AFF693300967A77 /* AKASettingViewController.m */,
+				998C90781B132157008CB8D0 /* AKADetailSettingViewController.h */,
+				998C90791B132157008CB8D0 /* AKADetailSettingViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		99FBE9141AEFB6DC0022B1F0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				998C90721B130A76008CB8D0 /* ViewController */,
 				9987E7831AF74997002622EE /* Web */,
 				9987E7821AF74965002622EE /* Popup */,
 				99FBE91B1AEFB8720022B1F0 /* Cell */,
@@ -317,6 +335,9 @@
 				99FBE9301AF35D730022B1F0 /* AKADetailCustomCell.m */,
 				99FBE9311AF35D730022B1F0 /* AKADetailCustomCell.xib */,
 				9987E7781AF3AA39002622EE /* AKADetailImgCustomCell.xib */,
+				998C90731B131CFE008CB8D0 /* AKASettingCustomCell.h */,
+				998C90741B131CFE008CB8D0 /* AKASettingCustomCell.m */,
+				998C90751B131CFE008CB8D0 /* AKASettingCustomCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -406,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99FBE91A1AEFB7F50022B1F0 /* AKATopCustomCell.xib in Resources */,
+				998C90771B131CFE008CB8D0 /* AKASettingCustomCell.xib in Resources */,
 				9987E7851AF7A0C6002622EE /* AKAUnreadPopupViewController.xib in Resources */,
 				99FBE91D1AF0BD580022B1F0 /* AKASecondCustomCell.xib in Resources */,
 				99FBE9221AF0E4B10022B1F0 /* AKAImgCustomCell.xib in Resources */,
@@ -471,10 +493,12 @@
 				9906062C1ACBA8660014964E /* ViewController.m in Sources */,
 				99A0A2EA1AE1153F00A3A592 /* AKASynchronized.m in Sources */,
 				99A0A2E71AE110A000A3A592 /* AKACoreData.m in Sources */,
+				998C907A1B132157008CB8D0 /* AKADetailSettingViewController.m in Sources */,
 				99FBE9291AF1D2850022B1F0 /* AKADetailViewController.m in Sources */,
 				99FBE90A1AEDFAC70022B1F0 /* AKAFeedViewController.m in Sources */,
 				998A2EC71AFCF0A200967A77 /* AKANavigationController.m in Sources */,
 				99FBE92C1AF31BAB0022B1F0 /* AKARegularExpression.m in Sources */,
+				998C90761B131CFE008CB8D0 /* AKASettingCustomCell.m in Sources */,
 				99FBE9191AEFB7F50022B1F0 /* AKATopCustomCell.m in Sources */,
 				9987E77C1AF4895C002622EE /* AKAMarkersFeed.m in Sources */,
 				990606291ACBA8660014964E /* AppDelegate.m in Sources */,
@@ -616,6 +640,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "rss/Rss-Prefix.pch";
 				INFOPLIST_FILE = rss/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -629,6 +654,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "rss/Rss-Prefix.pch";
 				INFOPLIST_FILE = rss/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

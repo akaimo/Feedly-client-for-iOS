@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "NXOAuth2.h"
+#import "AKASettingViewController.h"
 
 @interface AppDelegate ()
 
@@ -86,6 +87,13 @@ static NSString *const kOauth2ClientKeyChainGroup = @"Feedly";                  
                                       keyChainGroup:kOauth2ClientKeyChainGroup
                                      forAccountType:kOauth2ClientAccountType];
     
+    // NSUserDefaultsに初期値を登録する
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];  // 取得
+    NSMutableDictionary *defaults = [NSMutableDictionary dictionary];
+    [defaults setObject:@"4" forKey:@"SaveDay"];
+    [defaults setObject:@"1" forKey:@"RightSwipe"];
+    [defaults setObject:@"2" forKey:@"LeftSwipe"];
+    [ud registerDefaults:defaults];
 }
 
 @end

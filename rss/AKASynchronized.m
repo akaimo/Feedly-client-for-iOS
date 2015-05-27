@@ -14,6 +14,7 @@
 #import "AKAFetchFeed.h"
 #import "AKANavigationController.h"
 #import "AKAMarkersFeed.h"
+#import "AKASettingViewController.h"
 
 @implementation AKASynchronized
 
@@ -482,9 +483,10 @@
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSLog(@"now: %@", now);
     NSDateComponents *comps = [[NSDateComponents alloc]init];
-    comps.day = -7;
+    comps = [self selectSaveDay:comps];
+    NSLog(@"%ld", (long)comps.day);
     NSDate *result = [calendar dateByAddingComponents:comps toDate:now options:0];
-    NSLog(@"3日前：%@", result);
+    NSLog(@"前：%@", result);
     double unixtime = [result timeIntervalSince1970];
     NSLog(@"%f", unixtime * 1000);
     
@@ -503,6 +505,45 @@
     } else {
         NSLog(@"削除なし");
     }
+}
+
+- (NSDateComponents *)selectSaveDay:(NSDateComponents *)dc {
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    int sd = (int)[ud integerForKey:@"SaveDay"];
+    switch (sd) {
+        case Never:
+            dc.day = -9999;
+            break;
+            
+        case Day1:
+            dc.day = -1;
+            break;
+            
+        case Day2:
+            dc.day = -2;
+            break;
+        
+        case Day3:
+            dc.day = -3;
+            break;
+            
+        case Week1:
+            dc.day = -7;
+            break;
+            
+        case Week2:
+            dc.day = -14;
+            break;
+            
+        case Month1:
+            dc.day = -30;
+            break;
+            
+        default:
+            dc.day = -7;
+            break;
+    }
+    return dc;
 }
 
 //-- feedの保存処理
