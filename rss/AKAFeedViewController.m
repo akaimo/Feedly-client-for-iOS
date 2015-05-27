@@ -14,6 +14,7 @@
 #import "AppDelegate.h"
 #import "MBProgressHUD.h"
 #import "AKACoreData.h"
+#import "AKASettingViewController.h"
 
 @interface AKAFeedViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
@@ -194,25 +195,75 @@
     
     if (swipeRecognizer.direction == UISwipeGestureRecognizerDirectionRight) {
         // 右スワイプ
-        if ([[_feed valueForKey:@"unread"][indexPath.row] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
-            // 既読にする
-            [self changeUnreadWithIndexPath:indexPath unread:[NSNumber numberWithBool:NO]];
-        } else {
-            // 未読にする
-            [self changeUnreadWithIndexPath:indexPath unread:[NSNumber numberWithBool:YES]];
-        }
+        [self rightSwipeWithIndexPath:indexPath];
     } else if (swipeRecognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
         // 左スワイプ
-        if ([[_feed valueForKey:@"saved"][indexPath.row] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
-            NSLog(@"this feed is saved");
-            // unsavedにする
-            [self changeSavedWithIndexPath:indexPath saved:[NSNumber numberWithBool:NO]];
+        [self leftSwipeWithIndexPath:indexPath];
+    }
+}
+
+//-- 右スワイプの処理
+- (void)rightSwipeWithIndexPath:(NSIndexPath *)indexPath {
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    int rs = (int)[ud integerForKey:@"RightSwipe"];
+    switch (rs) {
+        case RNon:
+            break;
             
-        } else {
-            NSLog(@"this feed is unsaved");
-            // savedにする
-            [self changeSavedWithIndexPath:indexPath saved:[NSNumber numberWithBool:YES]];
-        }
+        case RRead:
+            if ([[_feed valueForKey:@"unread"][indexPath.row] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+                // 既読にする
+                [self changeUnreadWithIndexPath:indexPath unread:[NSNumber numberWithBool:NO]];
+            } else {
+                // 未読にする
+                [self changeUnreadWithIndexPath:indexPath unread:[NSNumber numberWithBool:YES]];
+            }
+            break;
+            
+        case RSaved:
+            if ([[_feed valueForKey:@"saved"][indexPath.row] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+                NSLog(@"this feed is saved");
+                // unsavedにする
+                [self changeSavedWithIndexPath:indexPath saved:[NSNumber numberWithBool:NO]];
+                
+            } else {
+                NSLog(@"this feed is unsaved");
+                // savedにする
+                [self changeSavedWithIndexPath:indexPath saved:[NSNumber numberWithBool:YES]];
+            }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+//-- 左スワイプの処理
+- (void)leftSwipeWithIndexPath:(NSIndexPath *)indexPath {
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    int ls = (int)[ud integerForKey:@"LeftSwipe"];
+    switch (ls) {
+        case LNon:
+            break;
+            
+        case LRead:
+            if ([[_feed valueForKey:@"unread"][indexPath.row] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+                [self changeUnreadWithIndexPath:indexPath unread:[NSNumber numberWithBool:NO]];
+            } else {
+                [self changeUnreadWithIndexPath:indexPath unread:[NSNumber numberWithBool:YES]];
+            }
+            break;
+            
+        case LSaved:
+            if ([[_feed valueForKey:@"saved"][indexPath.row] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+                [self changeSavedWithIndexPath:indexPath saved:[NSNumber numberWithBool:NO]];
+            } else {
+                [self changeSavedWithIndexPath:indexPath saved:[NSNumber numberWithBool:YES]];
+            }
+            break;
+            
+        default:
+            break;
     }
 }
 

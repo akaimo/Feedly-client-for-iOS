@@ -507,6 +507,7 @@
     }
 }
 
+//-- SaveDayによって異なる日数を返す
 - (NSDateComponents *)selectSaveDay:(NSDateComponents *)dc {
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     int sd = (int)[ud integerForKey:@"SaveDay"];
