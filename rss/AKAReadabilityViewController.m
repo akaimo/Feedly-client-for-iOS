@@ -7,6 +7,7 @@
 //
 
 #import "AKAReadabilityViewController.h"
+#import "MBProgressHUD.h"
 
 @interface AKAReadabilityViewController () <UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -23,20 +24,21 @@
     _webView.scalesPageToFit = YES;
     [self.navigationController setToolbarHidden:YES animated:YES];
     
-    [self getReadabilityForURL:[NSURL URLWithString:_url]
-                    completionHandler:^(NSDictionary *dict, NSError *error) {
-                        NSLog(@"%@", dict);
-//                        NSError *err = nil;
-//                        self.readabilityLabel.attributedText =
-//                        [[NSAttributedString alloc]
-//                         initWithData: [[dict valueForKey:@"content"] dataUsingEncoding:NSUTF8StringEncoding]
-//                         options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType }
-//                         documentAttributes: nil
-//                         error: &err];
-                        
-                        NSData *bodyData = [[dict valueForKey:@"content"] dataUsingEncoding:NSUTF8StringEncoding];
-                        [_webView loadData:bodyData MIMEType:@"text/html"textEncodingName:@"utf-8"baseURL:nil];
-                    }];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        /* 処理内容 */
+        [self getReadabilityForURL:[NSURL URLWithString:_url]
+                 completionHandler:^(NSDictionary *dict, NSError *error) {
+                     NSLog(@"%@", dict);
+                     
+                     NSData *bodyData = [[dict valueForKey:@"content"] dataUsingEncoding:NSUTF8StringEncoding];
+                     [_webView loadData:bodyData MIMEType:@"text/html"textEncodingName:@"utf-8"baseURL:nil];
+                 }];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
 }
 
 - (void)didReceiveMemoryWarning {

@@ -519,6 +519,6 @@
         <image name="FeedlyIcon" width="256" height="256"/>
         <image name="backBtn" width="21" height="11"/>
         <image name="nextBtn" width="21" height="11"/>
-        <image name="readability" width="48" height="35"/>
+        <image name="readability" width="26" height="20"/>
     </resources>
 </document>
