@@ -222,12 +222,10 @@
             
         case RSaved:
             if ([[_feed valueForKey:@"saved"][indexPath.row] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
-                NSLog(@"this feed is saved");
                 // unsavedにする
                 [self changeSavedWithIndexPath:indexPath saved:[NSNumber numberWithBool:NO]];
                 
             } else {
-                NSLog(@"this feed is unsaved");
                 // savedにする
                 [self changeSavedWithIndexPath:indexPath saved:[NSNumber numberWithBool:YES]];
             }
