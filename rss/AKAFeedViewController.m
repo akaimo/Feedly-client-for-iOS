@@ -134,6 +134,8 @@
                 // メインスレッドで表示
                 dispatch_async(q_main, ^{
                     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                    cell.image.layer.cornerRadius = 20.0f;
+                    cell.image.layer.masksToBounds = YES;
                     cell.image.image = resizeImage;
                     [cell layoutSubviews];
                 });
@@ -141,6 +143,8 @@
         } else {
             // DBに存在する
             NSData *data = [[_feed valueForKey:@"image"] valueForKey:@"image"][indexPath.row];
+            cell.image.layer.cornerRadius = 20.0f;
+            cell.image.layer.masksToBounds = YES;
             cell.image.image = [UIImage imageWithData:data];
 
         }
