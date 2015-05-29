@@ -33,8 +33,8 @@
     _actionBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actionBtnTap:)];
     _refreshBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshBtnTap:)];
     _stopBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(stopBtnTap:)];
-    _forwardBtn = [[UIBarButtonItem alloc] initWithTitle:@"＞" style:UIBarButtonItemStylePlain target:self action:@selector(forwardBtnTap:)];
-    _backBtn = [[UIBarButtonItem alloc] initWithTitle:@"＜" style:UIBarButtonItemStylePlain target:self action:@selector(backBtnTap:)];
+    _forwardBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nextWebBtn"] style:UIBarButtonItemStylePlain target:self action:@selector(forwardBtnTap:)];
+    _backBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"backWebBtn"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtnTap:)];
     self.navigationItem.rightBarButtonItems = @[_actionBtn, _refreshBtn, _forwardBtn, _backBtn];
 }
 
@@ -96,7 +96,37 @@
 
 
 - (void)actionBtnTap:(UIButton *)sender {
+    // コントローラを生成
+    UIAlertController * ac =
+    [UIAlertController alertControllerWithTitle:nil
+                                        message:@"share"
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
     
+    // Cancel用のアクションを生成
+    UIAlertAction * cancelAction =
+    [UIAlertAction actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleCancel
+                           handler:^(UIAlertAction * action) {
+                               // ボタンタップ時の処理
+                           }];
+    
+    // Destructive用のアクションを生成
+    UIAlertAction * safariAction =
+    [UIAlertAction actionWithTitle:@"Open in Safari"
+                             style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action) {
+                               /* ボタンタップ時の処理*/
+                               NSURL *url = [NSURL URLWithString:[_feed valueForKey:@"url"]];
+                               // ブラウザを起動する
+                               [[UIApplication sharedApplication] openURL:url];
+                           }];
+    
+    // コントローラにアクションを追加
+    [ac addAction:cancelAction];
+    [ac addAction:safariAction];
+    
+    // アクションシート表示処理
+    [self presentViewController:ac animated:YES completion:nil];
 }
 
 - (void)refreshBtnTap:(UIButton *)sender {

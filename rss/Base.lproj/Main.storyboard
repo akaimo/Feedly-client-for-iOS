@@ -338,7 +338,6 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="VHV-Xn-5at"/>
                         <barButtonItem image="readability" id="iJ5-i4-YOA">
                             <connections>
-                                <action selector="tapReadability:" destination="iHh-eU-Bho" id="Ygy-i0-5t8"/>
                                 <segue destination="WX9-t3-FHd" kind="push" identifier="Readability" id="XaI-Rm-AxZ"/>
                             </connections>
                         </barButtonItem>
@@ -382,7 +381,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ICx-Z9-z3G">
-                                <rect key="frame" x="20" y="0.0" width="560" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="delegate" destination="WX9-t3-FHd" id="Mkv-Rl-bbH"/>
@@ -391,10 +390,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ICx-Z9-z3G" firstAttribute="leading" secondItem="zqC-DO-MeA" secondAttribute="leading" constant="20" id="1um-tg-poW"/>
+                            <constraint firstItem="ICx-Z9-z3G" firstAttribute="leading" secondItem="zqC-DO-MeA" secondAttribute="leading" id="1um-tg-poW"/>
                             <constraint firstAttribute="bottom" secondItem="ICx-Z9-z3G" secondAttribute="bottom" id="The-Xj-mbJ"/>
                             <constraint firstItem="ICx-Z9-z3G" firstAttribute="top" secondItem="zqC-DO-MeA" secondAttribute="top" id="TsR-wH-Lqb"/>
-                            <constraint firstAttribute="trailing" secondItem="ICx-Z9-z3G" secondAttribute="trailing" constant="20" id="WY5-Vv-YmD"/>
+                            <constraint firstAttribute="trailing" secondItem="ICx-Z9-z3G" secondAttribute="trailing" id="WY5-Vv-YmD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Fho-7Z-QBY"/>

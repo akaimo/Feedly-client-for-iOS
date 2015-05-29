@@ -29,10 +29,12 @@
         /* 処理内容 */
         [self getReadabilityForURL:[NSURL URLWithString:_url]
                  completionHandler:^(NSDictionary *dict, NSError *error) {
-                     NSLog(@"%@", dict);
-                     
                      NSData *bodyData = [[dict valueForKey:@"content"] dataUsingEncoding:NSUTF8StringEncoding];
                      [_webView loadData:bodyData MIMEType:@"text/html"textEncodingName:@"utf-8"baseURL:nil];
+//                     NSURL *url = [NSURL URLWithString:[dict valueForKey:@"short_url"]];
+//                     NSLog(@"%@", url);
+//                     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//                     [_webView loadRequest:request];
                  }];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -52,6 +54,8 @@
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     NSString *string = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust='300%%'"];
+    [webView stringByEvaluatingJavaScriptFromString:string];
+    string = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('body')[0].style.padding='30px'"];
     [webView stringByEvaluatingJavaScriptFromString:string];
 }
 
@@ -78,20 +82,6 @@
     NSError *e = nil;
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&e];
     handler(dict, nil);
-    
-//    [NSURLConnection sendAsynchronousRequest:shortenRequest
-//                                       queue:[NSOperationQueue mainQueue]
-//                           completionHandler:^(NSURLResponse *shortenResponse, NSData *shortenData, NSError *shortenError) {
-//                               if (shortenError) {
-//                                   handler(nil, shortenError);
-//                               }
-//                               else {
-//                                   NSDictionary *shortenJson = [NSJSONSerialization JSONObjectWithData:shortenData
-//                                                                                               options:0
-//                                                                                                 error:NULL];
-//                                   handler(shortenJson, nil);
-//                               }
-//                           }];
 }
 
 @end
