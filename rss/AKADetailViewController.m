@@ -14,6 +14,7 @@
 #import "UIViewController+MJPopupViewController.h"
 #import "AKAPopupViewController.h"
 #import "AKAReadabilityViewController.h"
+#import "JDStatusBarNotification.h"
 
 @interface AKADetailViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -228,12 +229,12 @@
 
 //-- savedを管理する
 - (IBAction)staoSaved:(id)sender {
-    NSString *nibName;
+    NSString *statusName;
     NSArray *array = [NSArray arrayWithObjects:[_feed valueForKey:@"id"][_feedRow], nil];
     AKAMarkersFeed *markersFeed = [[AKAMarkersFeed alloc] init];
     
     if ([[_feed valueForKey:@"saved"][_feedRow] isEqualToNumber:[NSNumber numberWithBool:NO]]) {
-        nibName = @"AKAPopupViewController";
+        statusName = @"Saved";
         [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
             [markersFeed markAsSaved:array];
             NSLog(@"markAsSaved");
@@ -241,7 +242,7 @@
         self.saveBtn.image = [UIImage imageNamed:@"unsavedBtn"];
 
     } else {
-        nibName = @"AKAUnsavedPopupViewController";
+        statusName = @"Unsaved";
         [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
             [markersFeed markAsUnsaved:array];
             NSLog(@"markAsUnsaved");
@@ -250,31 +251,24 @@
 
     }
     
-    AKAPopupViewController *popUpView = [[AKAPopupViewController alloc]initWithNibName:nibName bundle:nil];
-    [self presentPopupViewController:popUpView animationType:MJPopupViewAnimationFade];
-    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
-        sleep(1);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
-        });
-    }];
+    [JDStatusBarNotification showWithStatus:statusName dismissAfter:1.5 styleName:JDStatusBarStyleDark];
 }
 
 //-- unreadを管理する
 - (IBAction)tapUnread:(id)sender {
-    NSString *nibName;
+    NSString *statusName;
     NSArray *array = [NSArray arrayWithObjects:[_feed valueForKey:@"id"][_feedRow], nil];
     AKAMarkersFeed *markersFeed = [[AKAMarkersFeed alloc] init];
     
     if ([[_feed valueForKey:@"unread"][_feedRow] isEqualToNumber:[NSNumber numberWithBool:NO]]) {
-        nibName = @"AKAUnreadPopupViewController";
+        statusName = @"Unread";
         [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
             [markersFeed keepUnread:array];
             NSLog(@"keepUnread");
         }];
         self.unreadBtn.image = [UIImage imageNamed:@"readBtn"];
     } else {
-        nibName = @"AKAReadPopupViewController";
+        statusName = @"Read";
         [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
             [markersFeed markAsRead:array];
             NSLog(@"markAsRead");
@@ -282,14 +276,7 @@
         self.unreadBtn.image = [UIImage imageNamed:@"keepUnreadBtn"];
     }
     
-    AKAPopupViewController *popUpView = [[AKAPopupViewController alloc]initWithNibName:nibName bundle:nil];
-    [self presentPopupViewController:popUpView animationType:MJPopupViewAnimationFade];
-    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
-        sleep(1);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
-        });
-    }];
+    [JDStatusBarNotification showWithStatus:statusName dismissAfter:1.5 styleName:JDStatusBarStyleDark];
 }
 
 //-- 1つ前のfeedを表示する
