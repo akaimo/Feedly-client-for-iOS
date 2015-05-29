@@ -31,6 +31,10 @@
                  completionHandler:^(NSDictionary *dict, NSError *error) {
                      NSData *bodyData = [[dict valueForKey:@"content"] dataUsingEncoding:NSUTF8StringEncoding];
                      [_webView loadData:bodyData MIMEType:@"text/html"textEncodingName:@"utf-8"baseURL:nil];
+//                     NSURL *url = [NSURL URLWithString:[dict valueForKey:@"short_url"]];
+//                     NSLog(@"%@", url);
+//                     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//                     [_webView loadRequest:request];
                  }];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -50,6 +54,8 @@
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     NSString *string = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust='300%%'"];
+    [webView stringByEvaluatingJavaScriptFromString:string];
+    string = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('body')[0].style.padding='30px'"];
     [webView stringByEvaluatingJavaScriptFromString:string];
 }
 
