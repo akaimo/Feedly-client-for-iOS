@@ -12,7 +12,6 @@
 #import "AKAFeedWebViewController.h"
 #import "AKAMarkersFeed.h"
 #import "UIViewController+MJPopupViewController.h"
-#import "AKAPopupViewController.h"
 #import "AKAReadabilityViewController.h"
 #import "JDStatusBarNotification.h"
 
@@ -26,7 +25,6 @@
 - (IBAction)tapUp:(id)sender;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *downBtn;
 - (IBAction)tapDown:(id)sender;
-- (IBAction)tapReadability:(id)sender;
 @property (nonatomic, retain) NSDictionary *readability;
 
 @end
