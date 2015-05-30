@@ -42,7 +42,7 @@ typedef NS_ENUM(int, OrderItems) {
     OlderFirst,
     NewestFirst,
     
-    OrderCount
+    OrderEND
 };
 
 @end

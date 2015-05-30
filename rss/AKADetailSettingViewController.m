@@ -15,6 +15,7 @@
 @property (weak, nonatomic) NSArray *saveDay;
 @property (weak, nonatomic) NSArray *rightSwipe;
 @property (weak, nonatomic) NSArray *leftSwipe;
+@property (weak, nonatomic) NSArray *orderItems;
 
 @end
 
@@ -27,10 +28,12 @@
     if (self.settingIndexPath.row == 0) self.title = @"Keep Read Items";
     else if (self.settingIndexPath.row == 1) self.title = @"Slide Right to";
     else if (self.settingIndexPath.row == 2) self.title = @"Slide Left to";
+    else if (self.settingIndexPath.row == 3) self.title = @"Order Items";
     
     _saveDay = [NSArray arrayWithObjects:@"Never", @"1 day", @"2 days", @"3 days", @"1 week", @"2 weeks", @"1 month", nil];
     _rightSwipe = [NSArray arrayWithObjects:@"No Action", @"Toggle Read", @"Toggle Saved", nil];
     _leftSwipe = [NSArray arrayWithObjects:@"No Action", @"Toggle Read", @"Toggle Saved", nil];
+    _orderItems = [NSArray arrayWithObjects:@"Older First", @"Newest First", nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,6 +56,8 @@
     int sd = (int)[ud integerForKey:@"SaveDay"];
     int rs = (int)[ud integerForKey:@"RightSwipe"];
     int ls = (int)[ud integerForKey:@"LeftSwipe"];
+    int oi = (int)[ud integerForKey:@"OrderItems"];
+    
     if (self.settingIndexPath.row == 0) {
         cell.textLabel.text = _saveDay[indexPath.row];
         if (indexPath.row == sd) {
@@ -71,6 +76,12 @@
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
     }
+    else if (self.settingIndexPath.row == 3) {
+        cell.textLabel.text = _orderItems[indexPath.row];
+        if (indexPath.row == oi) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+    }
     
     return cell;
 }
@@ -79,6 +90,7 @@
     if (self.settingIndexPath.row == 0) return SDend;
     else if (self.settingIndexPath.row == 1) return Rend;
     else if (self.settingIndexPath.row == 2) return Lend;
+    else if (self.settingIndexPath.row == 3) return OrderEND;
     else return 0;
 }
 
@@ -102,6 +114,7 @@
     if (self.settingIndexPath.row == 0) [ud setInteger:indexPath.row forKey:@"SaveDay"];
     else if (self.settingIndexPath.row == 1) [ud setInteger:indexPath.row forKey:@"RightSwipe"];
     else if (self.settingIndexPath.row == 2) [ud setInteger:indexPath.row forKey:@"LeftSwipe"];
+    else if (self.settingIndexPath.row == 3) [ud setInteger:indexPath.row forKey:@"OrderItems"];
     [ud synchronize];
     
     [self.navigationController popViewControllerAnimated:YES];
