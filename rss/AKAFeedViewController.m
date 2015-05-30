@@ -93,17 +93,11 @@
     dateFormatter.dateFormat = @"HH:mm";
     NSString *date24 = [dateFormatter stringFromDate:date];
     
-    /*
-     savedの確認のために一時的に表示
-     本来ならば以下に1行
-     cell.siteTitle.text = [NSString stringWithFormat:@"%@ | %@",date24, [[_feed valueForKey:@"site"] valueForKey:@"title"][indexPath.row]];
-     */
     if ([[_feed valueForKey:@"saved"][indexPath.row] isEqualToNumber:[NSNumber numberWithBool:NO]]) {
         cell.siteTitle.text = [NSString stringWithFormat:@"%@ | %@",date24, [[_feed valueForKey:@"site"] valueForKey:@"title"][indexPath.row]];
     } else {
         cell.siteTitle.text = [NSString stringWithFormat:@"★ %@ | %@",date24, [[_feed valueForKey:@"site"] valueForKey:@"title"][indexPath.row]];
     }
-    //-- ここまで
     
     if (img.count != 0) {
         cell.image.image = nil;
