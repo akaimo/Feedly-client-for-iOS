@@ -12,6 +12,8 @@
 @interface AKAReadabilityViewController () <UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
+@property (nonatomic) BOOL fullscreen;
+@property (nonatomic) BOOL first;
 
 @end
 
@@ -31,10 +33,6 @@
                  completionHandler:^(NSDictionary *dict, NSError *error) {
                      NSData *bodyData = [[dict valueForKey:@"content"] dataUsingEncoding:NSUTF8StringEncoding];
                      [_webView loadData:bodyData MIMEType:@"text/html"textEncodingName:@"utf-8"baseURL:nil];
-//                     NSURL *url = [NSURL URLWithString:[dict valueForKey:@"short_url"]];
-//                     NSLog(@"%@", url);
-//                     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//                     [_webView loadRequest:request];
                  }];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -47,6 +45,36 @@
     swipeGesture.delegate = self;
     swipeGesture.direction = UISwipeGestureRecognizerDirectionUp;
     [self.webView addGestureRecognizer:swipeGesture];
+    
+    swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipeCell:)];
+    swipeGesture.delegate = self;
+    swipeGesture.direction = UISwipeGestureRecognizerDirectionDown;
+    [self.webView addGestureRecognizer:swipeGesture];
+    
+    swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipeCell:)];
+    swipeGesture.delegate = self;
+    swipeGesture.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.webView addGestureRecognizer:swipeGesture];
+    
+    self.first = YES;   //初回時のフラグ
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        // ViewControllerでステータスバーの更新を宣言
+        [self setNeedsStatusBarAppearanceUpdate];
+    }
+}
+
+- (BOOL)prefersStatusBarHidden {
+    // YES：ステータスバー非表示
+    // 初回時は強制的に表示
+    if (self.first) {
+        self.first = NO;
+        return NO;
+    }
+    if (self.fullscreen) {
+        return NO;
+    } else {
+        return YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,7 +94,7 @@
 }
 
 
-
+#pragma mark - Readability API
 - (void)getReadabilityForURL:(NSURL *)url completionHandler:(void (^)(NSDictionary *, NSError *))handler {
     NSString *getUrl = [NSString stringWithFormat:@"url=%@", [url.absoluteString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSString *token = [NSString stringWithFormat:@"&token=%@", @"01a12b1b435c61b59e2dd8c75b4f86fcefa1bc2d"];
@@ -91,14 +119,36 @@
 }
 
 
-
+#pragma mark - SwipeGesture
 //-- スワイプジェスチャー
 - (void)didSwipeCell:(UISwipeGestureRecognizer*)swipeRecognizer {
     if (swipeRecognizer.direction == UISwipeGestureRecognizerDirectionUp) {
-        // 上スワイプ
-        NSLog(@"ue");
+        [self hideNavigationToolBar];
+    } else if (swipeRecognizer.direction == UISwipeGestureRecognizerDirectionDown) {
+        [self showNavigationToolBar];
+    } else if (swipeRecognizer.direction == UISwipeGestureRecognizerDirectionRight) {
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
+
+//-- ナビゲーションバーを表示させる
+- (void) showNavigationToolBar {
+    if (self.fullscreen) {
+        [self setNeedsStatusBarAppearanceUpdate];
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+        self.fullscreen = NO;
+    }
+}
+
+//-- ナビゲーションバーを隠す
+- (void) hideNavigationToolBar {
+    if (!self.fullscreen) {
+        [self setNeedsStatusBarAppearanceUpdate];
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+        self.fullscreen = YES;
+    }
+}
+
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     /* 無条件に、すべてのジェスチャを同時に認識します。 */
     return YES;
