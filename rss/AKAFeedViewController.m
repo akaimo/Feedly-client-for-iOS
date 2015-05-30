@@ -90,7 +90,7 @@
     
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:[[_feed valueForKey:@"timestamp"][indexPath.row] longLongValue] /1000.0];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"HH:mm";
+    dateFormatter.dateFormat = @"MM/dd HH:mm";
     NSString *date24 = [dateFormatter stringFromDate:date];
     
     if ([[_feed valueForKey:@"saved"][indexPath.row] isEqualToNumber:[NSNumber numberWithBool:NO]]) {
