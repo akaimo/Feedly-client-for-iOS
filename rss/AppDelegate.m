@@ -93,6 +93,7 @@ static NSString *const kOauth2ClientKeyChainGroup = @"Feedly";                  
     [defaults setObject:@"4" forKey:@"SaveDay"];
     [defaults setObject:@"1" forKey:@"RightSwipe"];
     [defaults setObject:@"2" forKey:@"LeftSwipe"];
+    [defaults setObject:@"1" forKey:@"OrderItems"];
     [ud registerDefaults:defaults];
 }
 

@@ -37,7 +37,7 @@
     self.title = @"Settings";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.section2CellName = @[@"Keep Read Items", @"Slide Right to", @"Slide Left to"];
+    self.section2CellName = @[@"Keep Read Items", @"Slide Right to", @"Slide Left to", @"Order Items"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -125,6 +125,7 @@
             if (indexPath.row == 0) i = (int)[ud integerForKey:@"SaveDay"];
             else if (indexPath.row == 1) i = (int)[ud integerForKey:@"RightSwipe"];
             else if (indexPath.row == 2) i = (int)[ud integerForKey:@"LeftSwipe"];
+            else if (indexPath.row == 3) i = (int)[ud integerForKey:@"OrderItems"];
             
             cell.titleLabel.text = self.section2CellName[indexPath.row];
             cell.detailLabel.text = [self selectDetailText:indexPath userDefaults:i];
@@ -209,18 +210,23 @@
             break;
             
         case 1:
-            if (defaults == RNon)          return @"No Action";
+            if (defaults == RNon)            return @"No Action";
             else if (defaults == RRead)      return @"Toggle Read";
-            else if (defaults == RSaved)      return @"Toggle Saved";
-            else                            return @"";
+            else if (defaults == RSaved)     return @"Toggle Saved";
+            else                             return @"";
             break;
             
         case 2:
-            if (defaults == LNon)          return @"No Action";
+            if (defaults == LNon)            return @"No Action";
             else if (defaults == LRead)      return @"Toggle Read";
-            else if (defaults == LSaved)      return @"Toggle Saved";
-            else                            return @"";
+            else if (defaults == LSaved)     return @"Toggle Saved";
+            else                             return @"";
             break;
+            
+        case 3:
+            if (defaults == OlderFirst)         return @"Older First";
+            else if (defaults == NewestFirst)   return @"Newest First";
+            else                                return @"";
             
         default:
             return @"";

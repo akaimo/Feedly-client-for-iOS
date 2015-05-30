@@ -38,4 +38,11 @@ typedef NS_ENUM(int, LeftSwipe) {
     Lend
 };
 
+typedef NS_ENUM(int, OrderItems) {
+    OlderFirst,
+    NewestFirst,
+    
+    OrderCount
+};
+
 @end
