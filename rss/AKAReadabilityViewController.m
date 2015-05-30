@@ -41,6 +41,12 @@
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });
     });
+    
+    // スワイプジェスチャー
+    UISwipeGestureRecognizer* swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipeCell:)];
+    swipeGesture.delegate = self;
+    swipeGesture.direction = UISwipeGestureRecognizerDirectionUp;
+    [self.webView addGestureRecognizer:swipeGesture];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,6 +88,20 @@
     NSError *e = nil;
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&e];
     handler(dict, nil);
+}
+
+
+
+//-- スワイプジェスチャー
+- (void)didSwipeCell:(UISwipeGestureRecognizer*)swipeRecognizer {
+    if (swipeRecognizer.direction == UISwipeGestureRecognizerDirectionUp) {
+        // 上スワイプ
+        NSLog(@"ue");
+    }
+}
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    /* 無条件に、すべてのジェスチャを同時に認識します。 */
+    return YES;
 }
 
 @end
