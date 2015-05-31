@@ -4,3 +4,4 @@ pod 'MBProgressHUD', '~> 0.9.1'
 pod "FCVerticalMenu"
 pod 'MSCellAccessory'
 pod 'JDStatusBarNotification'
+pod 'PocketAPI'
