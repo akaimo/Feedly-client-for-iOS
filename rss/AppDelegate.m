@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "NXOAuth2.h"
 #import "AKASettingViewController.h"
+#import "PocketAPI.h"
 
 @interface AppDelegate ()
 
@@ -44,6 +45,9 @@ static NSString *const kOauth2ClientKeyChainGroup = @"Feedly";                  
         viewController = [storyboard instantiateViewControllerWithIdentifier:@"FeedNavigationController"];
     }
     
+    // PocketAPI
+    [[PocketAPI sharedAPI] setConsumerKey:@"41738-356232d9b93e05196474fbfa"];
+    
     self.window.rootViewController = viewController;
     [self.window makeKeyAndVisible];
     
@@ -72,6 +76,16 @@ static NSString *const kOauth2ClientKeyChainGroup = @"Feedly";                  
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+// PocketAPI
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    if([[PocketAPI sharedAPI] handleOpenURL:url]){
+        return YES;
+    }else{
+        // if you handle your own custom url-schemes, do it here
+        return NO;
+    }
+}
+
 + (void)initialize {
     
     NSString *authUrl = [kOauth2ClientBaseUrl stringByAppendingString:kOauth2ClientAuthUrl];
@@ -95,6 +109,7 @@ static NSString *const kOauth2ClientKeyChainGroup = @"Feedly";                  
     [defaults setObject:@"2" forKey:@"LeftSwipe"];
     [defaults setObject:@"1" forKey:@"OrderItems"];
     [ud registerDefaults:defaults];
+    
 }
 
 @end

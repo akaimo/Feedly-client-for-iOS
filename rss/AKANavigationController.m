@@ -36,29 +36,22 @@
 
 #pragma mark - FCVerticalMenu Configuration
 - (void)configureVerticalMenu {
-    FCVerticalMenuItem *item1 = [[FCVerticalMenuItem alloc] initWithTitle:@"Unread"
-                                                             andIconImage:[UIImage imageNamed:@"unreadIcon"]];
+    FCVerticalMenuItem *item1 = [[FCVerticalMenuItem alloc] initWithTitle:@"Unread" andIconImage:[UIImage imageNamed:@"unreadIcon"]];
     
-    FCVerticalMenuItem *item2 = [[FCVerticalMenuItem alloc] initWithTitle:@"Saved"
-                                                             andIconImage:[UIImage imageNamed:@"savedIcon"]];
+    FCVerticalMenuItem *item2 = [[FCVerticalMenuItem alloc] initWithTitle:@"Saved" andIconImage:[UIImage imageNamed:@"savedIcon"]];
     
-    FCVerticalMenuItem *item3 = [[FCVerticalMenuItem alloc] initWithTitle:@"Read"
-                                                             andIconImage:[UIImage imageNamed:@"readIcon"]];
+    FCVerticalMenuItem *item3 = [[FCVerticalMenuItem alloc] initWithTitle:@"All Items" andIconImage:[UIImage imageNamed:@"allIcon"]];
     
-    FCVerticalMenuItem *item4 = [[FCVerticalMenuItem alloc] initWithTitle:@"All Items"
-                                                             andIconImage:[UIImage imageNamed:@"allIcon"]];
+    FCVerticalMenuItem *item4 = [[FCVerticalMenuItem alloc] initWithTitle:@"Pocket" andIconImage:[UIImage imageNamed:@"pocketIcon"]];
     
-    FCVerticalMenuItem *item5 = [[FCVerticalMenuItem alloc] initWithTitle:@"Settings"
-                                                             andIconImage:[UIImage imageNamed:@"settingIcon"]];
+    FCVerticalMenuItem *item5 = [[FCVerticalMenuItem alloc] initWithTitle:@"Settings" andIconImage:[UIImage imageNamed:@"settingIcon"]];
     
-    FCVerticalMenuItem *item6 = [[FCVerticalMenuItem alloc] initWithTitle:@"Sync"
-                                                             andIconImage:[UIImage imageNamed:@"syncIcon"]];
+    FCVerticalMenuItem *item6 = [[FCVerticalMenuItem alloc] initWithTitle:@"Sync" andIconImage:[UIImage imageNamed:@"syncIcon"]];
     
     item1.actionBlock = ^{
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         delegate.feedStatus = UnreadItems;
         UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UnreadViewController"];
-//        [self setViewControllers:@[vc] animated:NO];
         [self pushViewController:vc animated:NO];
         
     };
@@ -66,29 +59,25 @@
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         delegate.feedStatus = SavedItems;
         UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UnreadViewController"];
-//        [self setViewControllers:@[vc] animated:NO];
         [self pushViewController:vc animated:NO];
         
     };
     item3.actionBlock = ^{
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        delegate.feedStatus = ReadItems;
+        delegate.feedStatus = AllItems;
         UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UnreadViewController"];
-//        [self setViewControllers:@[vc] animated:NO];
         [self pushViewController:vc animated:NO];
         
     };
     item4.actionBlock = ^{
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        delegate.feedStatus = AllItems;
-        UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UnreadViewController"];
-//        [self setViewControllers:@[vc] animated:NO];
+        delegate.feedStatus = Pocket;
+        UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"PocketViewController"];
         [self pushViewController:vc animated:NO];
         
     };
     item5.actionBlock = ^{
         UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"SettingViewController"];
-//        [self setViewControllers:@[vc] animated:NO];
         [self pushViewController:vc animated:NO];
     };
     item6.actionBlock = ^{

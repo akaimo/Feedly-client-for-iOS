@@ -11,11 +11,11 @@
 
 @interface AKANavigationController : UINavigationController <FCVerticalMenuDelegate>
 
-typedef NS_ENUM(char, FeedStatus) {
+typedef NS_ENUM(int, FeedStatus) {
     UnreadItems = 1,
     SavedItems = 2,
-    ReadItems = 3,
-    AllItems = 4
+    AllItems = 3,
+    Pocket = 4
 };
 
 @property (strong, readonly, nonatomic) FCVerticalMenu *verticalMenu;

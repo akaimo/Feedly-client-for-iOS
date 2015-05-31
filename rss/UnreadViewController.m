@@ -98,13 +98,6 @@
             }
             break;
             
-        case ReadItems:
-            delegate.feed = [NSMutableArray arrayWithObject:[fechFeed fechAllFeedUnread:[NSNumber numberWithBool:NO]]];
-            for (NSDictionary *dic in [NSMutableArray arrayWithArray:[fechFeed fechCategoryFeedUnread:[NSNumber numberWithBool:NO]]]) {
-                [delegate.feed addObject:dic];
-            }
-            break;
-            
         case AllItems:
             delegate.feed = [NSMutableArray arrayWithObject:[fechFeed fechAllFeedUnread:nil]];
             for (NSDictionary *dic in [NSMutableArray arrayWithArray:[fechFeed fechCategoryFeedUnread:nil]]) {
@@ -152,11 +145,6 @@
             case SavedItems:
                 title = @"Saved Items";
                 image = [UIImage imageNamed:@"savedIcon"];
-                break;
-                
-            case ReadItems:
-                title = @"Read Items";
-                image = [UIImage imageNamed:@"readIcon"];
                 break;
                 
             case AllItems:

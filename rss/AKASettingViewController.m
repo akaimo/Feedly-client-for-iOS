@@ -11,6 +11,7 @@
 #import "NXOauth2.h"
 #import "AKASettingCustomCell.h"
 #import "AKADetailSettingViewController.h"
+#import "PocketAPI.h"
 
 @interface AKASettingViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *settingTableView;
@@ -94,6 +95,7 @@
     switch (section) {
         case 0:
             dataCount = [[[NXOAuth2AccountStore sharedStore] accounts] count];
+            dataCount += 2;
             break;
         case 1:
             dataCount = self.section2CellName.count;
@@ -111,15 +113,22 @@
     
     switch (indexPath.section) {
         case 0:{
-            NXOAuth2Account *account = [[[NXOAuth2AccountStore sharedStore] accounts] objectAtIndex:indexPath.row];
-            NSDictionary *userData = (id)account.userData;
-//            NSLog(@"%@", userData);
-            NSString *name = [NSString stringWithFormat:@"%@ : %@", [userData valueForKey:@"client"], [[userData objectForKey:@"logins"][0] valueForKey:@"provider"]];
-            
-            cell.titleLabel.text = name;
+        // Accountについての設定
+            if (indexPath.row == 0) {
+                NXOAuth2Account *account = [[[NXOAuth2AccountStore sharedStore] accounts] objectAtIndex:indexPath.row];
+                NSDictionary *userData = (id)account.userData;
+                NSString *name = [NSString stringWithFormat:@"%@ : %@", [userData valueForKey:@"client"], [[userData objectForKey:@"logins"][0] valueForKey:@"provider"]];
+                
+                cell.titleLabel.text = name;
+            } else if (indexPath.row == 1) {
+                cell.titleLabel.text = @"Pocket Login";
+            } else if (indexPath.row == 2) {
+                cell.titleLabel.text = @"Pocket Logout";
+            }
             break;
         }
         case 1:{
+        // クライアントの設定
             NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
             int i;
             if (indexPath.row == 0) i = (int)[ud integerForKey:@"SaveDay"];
@@ -144,41 +153,43 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
-        case 0:{
-            UIAlertController * ac = [UIAlertController alertControllerWithTitle:@"Logout"
-                                                                         message:@"Really Logout this account?"
-                                                                  preferredStyle:UIAlertControllerStyleAlert];
-            
-            // Cancel用のアクションを生成
-            UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                                                    style:UIAlertActionStyleCancel
-                                                                  handler:^(UIAlertAction * action) {
-                                                                      // ボタンタップ時の処理
-//                                                                      NSLog(@"Cancel button tapped.");
-                                                                  }];
-            
-            // OK用のアクションを生成
-            UIAlertAction * okAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * action) {
-                                                                  // ボタンタップ時の処理
-                                                                  NXOAuth2Account *account = [[[NXOAuth2AccountStore sharedStore] accounts] objectAtIndex:indexPath.row];
-                                                                  [[NXOAuth2AccountStore sharedStore] removeAccount:account];
-                                                                  NSLog(@"account delete");
-                                                                  [tableView reloadData];
-                                                              }];
-            
-            // コントローラにアクションを追加
-            [ac addAction:cancelAction];
-            [ac addAction:okAction];
-            
-            // アラート表示処理
-            [self presentViewController:ac animated:YES completion:nil];
+        case 0:{    // Accountについての設定
+            if (indexPath.row == 0) {
+                // feedlyアカウント
+                [self confirmLogout:indexPath];
+                
+            } else if (indexPath.row == 1) {
+                // Pocketアカウント
+                [[PocketAPI sharedAPI] loginWithHandler:^(PocketAPI *API, NSError *error){
+                    if (error != nil) {
+                        // error
+                        NSLog(@"error");
+                        return;
+                    } else {
+                        // login
+                        NSLog(@"success");
+                    }
+                }];
+            } else if (indexPath.row == 2) {
+                NSLog(@"logout");
+//                [[PocketAPI sharedAPI] logout];
+                NSURL *url = [NSURL URLWithString:@"http://google.com"];
+                              [[PocketAPI sharedAPI] saveURL:url handler: ^(PocketAPI *API, NSURL *URL, NSError *error){
+                    if(error){
+                        // there was an issue connecting to Pocket
+                        // present some UI to notify if necessary
+                        NSLog(@"erroe");
+                    }else{
+                        // the URL was saved successfully
+                        NSLog(@"success");
+                    }
+                }];
+            }
             
             break;
         }
             
-        case 1:
+        case 1:     // クライアントの設定
             [self performSegueWithIdentifier:@"Detail" sender:indexPath];
             break;
             
@@ -196,6 +207,39 @@
 
 
 #pragma mark - private
+//-- ログアウトの確認
+- (void)confirmLogout:(NSIndexPath *)indexPath {
+    UIAlertController * ac = [UIAlertController alertControllerWithTitle:@"Logout"
+                                                                 message:@"Really Logout this account?"
+                                                          preferredStyle:UIAlertControllerStyleAlert];
+    
+    // Cancel用のアクションを生成
+    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:^(UIAlertAction * action) {
+                                                              // ボタンタップ時の処理
+                                                          }];
+    
+    // OK用のアクションを生成
+    UIAlertAction * okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction * action) {
+                                                          // ボタンタップ時の処理
+                                                          NXOAuth2Account *account = [[[NXOAuth2AccountStore sharedStore] accounts] objectAtIndex:indexPath.row];
+                                                          [[NXOAuth2AccountStore sharedStore] removeAccount:account];
+                                                          NSLog(@"account delete");
+                                                          [_settingTableView reloadData];
+                                                      }];
+    
+    // コントローラにアクションを追加
+    [ac addAction:cancelAction];
+    [ac addAction:okAction];
+    
+    // アラート表示処理
+    [self presentViewController:ac animated:YES completion:nil];
+}
+
+//-- 一般設定のテキストを取得
 - (NSString *)selectDetailText:(NSIndexPath *)indexPath userDefaults:(int)defaults {
     switch (indexPath.row) {
         case 0:
