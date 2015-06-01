@@ -20,6 +20,7 @@
 @interface UnreadViewController () <UITableViewDataSource, UITableViewDelegate>
 //@property (nonatomic, assign) NSInteger *categoryCount;
 @property (nonatomic, retain) NXOAuth2Account *account;
+- (IBAction)tapRefresh:(id)sender;
 
 @end
 
@@ -252,4 +253,9 @@
 }
 
 
+#pragma mark - BtnAction
+- (IBAction)tapRefresh:(id)sender {
+    AKASynchronized *synchronized = [[AKASynchronized alloc] init];
+    [synchronized synchro:_unreadTableView];
+}
 @end

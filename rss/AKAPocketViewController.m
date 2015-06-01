@@ -11,6 +11,7 @@
 #import "PocketAPI.h"
 
 @interface AKAPocketViewController ()
+@property (strong, nonatomic) IBOutlet UITableView *pocketTableView;
 
 @end
 

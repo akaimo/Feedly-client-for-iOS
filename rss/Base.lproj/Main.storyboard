@@ -105,7 +105,13 @@
                             <constraint firstItem="kqE-Zs-I8j" firstAttribute="top" secondItem="HRH-A2-Vbm" secondAttribute="top" id="gZc-gt-KeW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="vQe-3C-bQ4"/>
+                    <navigationItem key="navigationItem" id="vQe-3C-bQ4">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Wn2-IP-Il2">
+                            <connections>
+                                <action selector="tapRefresh:" destination="O2t-RL-F2R" id="Iiu-VM-cGC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -534,6 +540,9 @@
                             <outlet property="delegate" destination="YcV-63-SaW" id="UKH-PD-O0j"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="pocketTableView" destination="F2u-05-s8V" id="0Oa-P3-yUI"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p3G-Fl-OXJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
