@@ -7,6 +7,8 @@
 //
 
 #import "AKAPocketViewController.h"
+#import "AKANavigationController.h"
+#import "PocketAPI.h"
 
 @interface AKAPocketViewController ()
 
@@ -17,11 +19,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    /* Menu追加 */
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menuBtn"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(openVerticalMenu:)];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    /* 次のViewの戻るボタンの設定 */
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] init];
+    barButton.title = @"";
+    self.navigationItem.backBarButtonItem = barButton;
+    
+    self.title = [[PocketAPI sharedAPI] username];
+    
+    NSDictionary *dic = [NSDictionary dictionary];
+    [[PocketAPI sharedAPI] callAPIMethod:@"get" withHTTPMethod:PocketAPIHTTPMethodPOST arguments:nil handler:^(PocketAPI *api, NSString *apiMethod, NSDictionary *response, NSError *error) {
+        NSLog(@"dic: %@", dic);
+        NSLog(@"response %@", response);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

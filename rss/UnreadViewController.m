@@ -29,7 +29,6 @@
     [super viewDidLoad];
     
     /* Menu追加 */
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(openVerticalMenu:)];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menuBtn"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(openVerticalMenu:)];
     
     /* 次のViewの戻るボタンの設定 */
