@@ -105,6 +105,27 @@
                             <constraint firstItem="kqE-Zs-I8j" firstAttribute="top" secondItem="HRH-A2-Vbm" secondAttribute="top" id="gZc-gt-KeW"/>
                         </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="GbH-OK-zi8"/>
+                        <barButtonItem image="unsavedBtn" id="ksM-oq-AYh">
+                            <connections>
+                                <action selector="tapSaved:" destination="O2t-RL-F2R" id="Gsq-H4-tvy"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="22O-Z2-BH8"/>
+                        <barButtonItem image="readBtn" id="hHz-75-pMR">
+                            <connections>
+                                <action selector="tapUnread:" destination="O2t-RL-F2R" id="X6T-3t-1iX"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Kk7-Qo-ehJ"/>
+                        <barButtonItem image="feedlyBtn" id="hrs-rH-KnU">
+                            <connections>
+                                <action selector="tapAllItems:" destination="O2t-RL-F2R" id="etM-08-OU8"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="HzN-f9-jSg"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="vQe-3C-bQ4">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Wn2-IP-Il2">
                             <connections>
@@ -115,6 +136,9 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="allItemsBtn" destination="hrs-rH-KnU" id="9Em-rL-NLf"/>
+                        <outlet property="savedBtn" destination="ksM-oq-AYh" id="KWx-Zw-AnY"/>
+                        <outlet property="unreadBtn" destination="hHz-75-pMR" id="car-px-82i"/>
                         <outlet property="unreadTableView" destination="kqE-Zs-I8j" id="F0M-oi-urR"/>
                     </connections>
                 </viewController>
@@ -552,7 +576,10 @@
     <resources>
         <image name="FeedlyIcon" width="256" height="256"/>
         <image name="backBtn" width="21" height="11"/>
+        <image name="feedlyBtn" width="26" height="26"/>
         <image name="nextBtn" width="21" height="11"/>
+        <image name="readBtn" width="20" height="20"/>
         <image name="readability" width="26" height="20"/>
+        <image name="unsavedBtn" width="19" height="19"/>
     </resources>
 </document>

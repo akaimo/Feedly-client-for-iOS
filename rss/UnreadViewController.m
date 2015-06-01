@@ -21,6 +21,12 @@
 //@property (nonatomic, assign) NSInteger *categoryCount;
 @property (nonatomic, retain) NXOAuth2Account *account;
 - (IBAction)tapRefresh:(id)sender;
+- (IBAction)tapSaved:(id)sender;
+- (IBAction)tapUnread:(id)sender;
+- (IBAction)tapAllItems:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *savedBtn;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *unreadBtn;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *allItemsBtn;
 
 @end
 
@@ -56,6 +62,9 @@
     [refreshControl addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
     [self.unreadTableView addSubview:refreshControl];
     
+    /* toolbarItemの色を変える */
+    [self changeColor];
+    
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     _account = delegate.account;
     NSDictionary *dict = [_account userData];
@@ -78,7 +87,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     // footer off
-    [self.navigationController setToolbarHidden:YES animated:YES];
+    [self.navigationController setToolbarHidden:NO animated:NO];
+    self.navigationController.toolbar.barTintColor = [UIColor colorWithRed:61/255.0 green:173/255.0 blue:204/255.0 alpha:1.0];
+    self.navigationController.toolbar.tintColor = [UIColor whiteColor];
     
     /* fetch処理 */
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -252,10 +263,61 @@
     return capitalisedSentence;
 }
 
+//-- push for UnreadViewCOntroller
+- (void)pushUnreadView {
+    UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UnreadViewController"];
+    [self.navigationController pushViewController:vc animated:NO];
+}
+
+- (void)changeColor {
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    switch (delegate.feedStatus) {
+        case 0:
+        case UnreadItems:
+            _unreadBtn.tintColor = [UIColor colorWithRed:92/255.0 green:105/255.0 blue:230/255.0 alpha:1.0];
+            _savedBtn.tintColor = [UIColor whiteColor];
+            _allItemsBtn.tintColor = [UIColor whiteColor];
+            break;
+            
+        case SavedItems:
+            _unreadBtn.tintColor = [UIColor whiteColor];
+            _savedBtn.tintColor = [UIColor colorWithRed:92/255.0 green:105/255.0 blue:230/255.0 alpha:1.0];
+            _allItemsBtn.tintColor = [UIColor whiteColor];
+            break;
+            
+        case AllItems:
+            _unreadBtn.tintColor = [UIColor whiteColor];
+            _savedBtn.tintColor = [UIColor whiteColor];
+            _allItemsBtn.tintColor = [UIColor colorWithRed:92/255.0 green:105/255.0 blue:230/255.0 alpha:1.0];
+            break;
+            
+        default:
+            break;
+    }
+}
+
 
 #pragma mark - BtnAction
 - (IBAction)tapRefresh:(id)sender {
     AKASynchronized *synchronized = [[AKASynchronized alloc] init];
     [synchronized synchro:_unreadTableView];
+}
+
+- (IBAction)tapSaved:(id)sender {
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    delegate.feedStatus = SavedItems;
+    [self pushUnreadView];
+}
+
+- (IBAction)tapUnread:(id)sender {
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    delegate.feedStatus = UnreadItems;
+    [self pushUnreadView];
+}
+
+- (IBAction)tapAllItems:(id)sender {
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    delegate.feedStatus = AllItems;
+    [self pushUnreadView];
 }
 @end

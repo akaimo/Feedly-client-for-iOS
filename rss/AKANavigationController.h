@@ -14,8 +14,7 @@
 typedef NS_ENUM(int, FeedStatus) {
     UnreadItems = 1,
     SavedItems = 2,
-    AllItems = 3,
-    Pocket = 4
+    AllItems = 3
 };
 
 @property (strong, readonly, nonatomic) FCVerticalMenu *verticalMenu;

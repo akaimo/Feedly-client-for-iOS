@@ -36,59 +36,35 @@
 
 #pragma mark - FCVerticalMenu Configuration
 - (void)configureVerticalMenu {
-    FCVerticalMenuItem *item1 = [[FCVerticalMenuItem alloc] initWithTitle:@"Unread" andIconImage:[UIImage imageNamed:@"unreadIcon"]];
+    FCVerticalMenuItem *item1 = [[FCVerticalMenuItem alloc] initWithTitle:@"Feedly" andIconImage:[UIImage imageNamed:@"feedlyIcon"]];
     
-    FCVerticalMenuItem *item2 = [[FCVerticalMenuItem alloc] initWithTitle:@"Saved" andIconImage:[UIImage imageNamed:@"savedIcon"]];
+    FCVerticalMenuItem *item2 = [[FCVerticalMenuItem alloc] initWithTitle:@"Pocket" andIconImage:[UIImage imageNamed:@"pocketIcon"]];
     
-    FCVerticalMenuItem *item3 = [[FCVerticalMenuItem alloc] initWithTitle:@"All Items" andIconImage:[UIImage imageNamed:@"allIcon"]];
-    
-    FCVerticalMenuItem *item4 = [[FCVerticalMenuItem alloc] initWithTitle:@"Pocket" andIconImage:[UIImage imageNamed:@"pocketIcon"]];
-    
-    FCVerticalMenuItem *item5 = [[FCVerticalMenuItem alloc] initWithTitle:@"Settings" andIconImage:[UIImage imageNamed:@"settingIcon"]];
-    
-    FCVerticalMenuItem *item6 = [[FCVerticalMenuItem alloc] initWithTitle:@"Sync" andIconImage:[UIImage imageNamed:@"syncIcon"]];
+    FCVerticalMenuItem *item3 = [[FCVerticalMenuItem alloc] initWithTitle:@"Settings" andIconImage:[UIImage imageNamed:@"settingIcon"]];
     
     item1.actionBlock = ^{
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        delegate.feedStatus = UnreadItems;
+        if (delegate.feedStatus == 0) {
+            NSLog(@"hoge");
+            delegate.feedStatus = UnreadItems;
+        }
         UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UnreadViewController"];
         [self pushViewController:vc animated:NO];
         
     };
     item2.actionBlock = ^{
-        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        delegate.feedStatus = SavedItems;
-        UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UnreadViewController"];
-        [self pushViewController:vc animated:NO];
-        
-    };
-    item3.actionBlock = ^{
-        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        delegate.feedStatus = AllItems;
-        UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UnreadViewController"];
-        [self pushViewController:vc animated:NO];
-        
-    };
-    item4.actionBlock = ^{
-        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        delegate.feedStatus = Pocket;
         UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"PocketViewController"];
         [self pushViewController:vc animated:NO];
         
     };
-    item5.actionBlock = ^{
+    item3.actionBlock = ^{
         UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"SettingViewController"];
         [self pushViewController:vc animated:NO];
-    };
-    item6.actionBlock = ^{
-        UnreadViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UnreadViewController"];
-        AKASynchronized *synchronized = [[AKASynchronized alloc] init];
-        [synchronized synchro:vc.unreadTableView];
         
     };
     
     
-    _verticalMenu = [[FCVerticalMenu alloc] initWithItems:@[item1, item2, item3, item4, item5, item6]];
+    _verticalMenu = [[FCVerticalMenu alloc] initWithItems:@[item1, item2, item3]];
     _verticalMenu.appearsBehindNavigationBar = YES;
     
 }

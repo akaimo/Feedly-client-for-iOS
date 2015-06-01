@@ -31,10 +31,10 @@
     self.title = [[PocketAPI sharedAPI] username];
     
     NSDictionary *dic = [NSDictionary dictionary];
-    [[PocketAPI sharedAPI] callAPIMethod:@"get" withHTTPMethod:PocketAPIHTTPMethodPOST arguments:nil handler:^(PocketAPI *api, NSString *apiMethod, NSDictionary *response, NSError *error) {
-        NSLog(@"dic: %@", dic);
-        NSLog(@"response %@", response);
-    }];
+//    [[PocketAPI sharedAPI] callAPIMethod:@"get" withHTTPMethod:PocketAPIHTTPMethodPOST arguments:nil handler:^(PocketAPI *api, NSString *apiMethod, NSDictionary *response, NSError *error) {
+//        NSLog(@"dic: %@", dic);
+//        NSLog(@"response %@", response);
+//    }];
 }
 
 - (void)didReceiveMemoryWarning {
