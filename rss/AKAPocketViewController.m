@@ -9,6 +9,7 @@
 #import "AKAPocketViewController.h"
 #import "AKANavigationController.h"
 #import "PocketAPI.h"
+#import "AKAPocketSynchronized.h"
 
 @interface AKAPocketViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *pocketTableView;
@@ -30,11 +31,8 @@
     
     self.title = [[PocketAPI sharedAPI] username];
     
-    NSDictionary *dic = [NSDictionary dictionary];
-//    [[PocketAPI sharedAPI] callAPIMethod:@"get" withHTTPMethod:PocketAPIHTTPMethodPOST arguments:nil handler:^(PocketAPI *api, NSString *apiMethod, NSDictionary *response, NSError *error) {
-//        NSLog(@"dic: %@", dic);
-//        NSLog(@"response %@", response);
-//    }];
+    AKAPocketSynchronized *sync = [[AKAPocketSynchronized alloc] init];
+    [sync synchro:self.pocketTableView];
 }
 
 - (void)didReceiveMemoryWarning {

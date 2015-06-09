@@ -30,6 +30,7 @@
 		998C90771B131CFE008CB8D0 /* AKASettingCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 998C90751B131CFE008CB8D0 /* AKASettingCustomCell.xib */; };
 		998C907A1B132157008CB8D0 /* AKADetailSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998C90791B132157008CB8D0 /* AKADetailSettingViewController.m */; };
 		998C90801B1B37C2008CB8D0 /* AKAPocketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998C907F1B1B37C2008CB8D0 /* AKAPocketViewController.m */; };
+		998C90831B1C4DCC008CB8D0 /* AKAPocketSynchronized.m in Sources */ = {isa = PBXBuildFile; fileRef = 998C90821B1C4DCC008CB8D0 /* AKAPocketSynchronized.m */; };
 		999BEA2C1ADFF0CB0087D51A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 999BEA2A1ADFF0CB0087D51A /* Model.xcdatamodeld */; };
 		99A0A2DE1AE10DC100A3A592 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99A0A2DD1AE10DC100A3A592 /* CoreData.framework */; };
 		99A0A2E71AE110A000A3A592 /* AKACoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A0A2E61AE110A000A3A592 /* AKACoreData.m */; };
@@ -104,6 +105,8 @@
 		998C90791B132157008CB8D0 /* AKADetailSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKADetailSettingViewController.m; sourceTree = "<group>"; };
 		998C907E1B1B37C2008CB8D0 /* AKAPocketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKAPocketViewController.h; sourceTree = "<group>"; };
 		998C907F1B1B37C2008CB8D0 /* AKAPocketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKAPocketViewController.m; sourceTree = "<group>"; };
+		998C90811B1C4DCC008CB8D0 /* AKAPocketSynchronized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKAPocketSynchronized.h; sourceTree = "<group>"; };
+		998C90821B1C4DCC008CB8D0 /* AKAPocketSynchronized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKAPocketSynchronized.m; sourceTree = "<group>"; };
 		999BEA2B1ADFF0CB0087D51A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		99A0A2DD1AE10DC100A3A592 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		99A0A2E51AE110A000A3A592 /* AKACoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKACoreData.h; sourceTree = "<group>"; };
@@ -316,6 +319,8 @@
 				99FBE9061AEB431D0022B1F0 /* AKAFetchFeed.m */,
 				99A0A2E81AE1153F00A3A592 /* AKASynchronized.h */,
 				99A0A2E91AE1153F00A3A592 /* AKASynchronized.m */,
+				998C90811B1C4DCC008CB8D0 /* AKAPocketSynchronized.h */,
+				998C90821B1C4DCC008CB8D0 /* AKAPocketSynchronized.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -507,6 +512,7 @@
 				998C90801B1B37C2008CB8D0 /* AKAPocketViewController.m in Sources */,
 				9987E7771AF36FCE002622EE /* AKAFeedWebViewController.m in Sources */,
 				99FB28EE1AE7CFE60062214D /* AKACurrentData.m in Sources */,
+				998C90831B1C4DCC008CB8D0 /* AKAPocketSynchronized.m in Sources */,
 				99FBE9321AF35D730022B1F0 /* AKADetailCustomCell.m in Sources */,
 				99FBE9071AEB431D0022B1F0 /* AKAFetchFeed.m in Sources */,
 				997E43EB1AD3D4BB002CB3BB /* OAuthWebViewController.m in Sources */,
