@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Account" syncable="YES">
         <attribute name="client" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -26,6 +26,14 @@
         <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="image" inverseEntity="Article" syncable="YES"/>
     </entity>
+    <entity name="Pocket" syncable="YES">
+        <attribute name="detail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="favorite" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Site" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
@@ -35,7 +43,8 @@
         <element name="Account" positionX="-432" positionY="72" width="128" height="88"/>
         <element name="Article" positionX="-245" positionY="72" width="128" height="208"/>
         <element name="Category" positionX="-65" positionY="72" width="128" height="73"/>
-        <element name="Site" positionX="-432" positionY="173" width="128" height="88"/>
         <element name="Image" positionX="-65" positionY="197" width="128" height="73"/>
+        <element name="Site" positionX="-432" positionY="173" width="128" height="88"/>
+        <element name="Pocket" positionX="-630" positionY="72" width="128" height="135"/>
     </elements>
 </model>

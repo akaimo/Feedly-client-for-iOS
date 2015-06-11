@@ -14,8 +14,10 @@
 
 - (void)synchro:(UITableView *)tableView {
     [JDStatusBarNotification showWithStatus:@"Syscing..."];
+    
 // TODO: get unreadItem
     [[PocketAPI sharedAPI] callAPIMethod:@"get" withHTTPMethod:PocketAPIHTTPMethodPOST arguments:nil handler:^(PocketAPI *api, NSString *apiMethod, NSDictionary *response, NSError *error) {
+        NSLog(@"%@", response);
     }];
     
 // TODO: get savedItem
